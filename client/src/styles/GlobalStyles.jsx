@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   :root {
+<<<<<<< HEAD
     --primary-color: "#f48225", // 포인트 색상
     --btn-bg-color: "#0a95ff", // 기본 버튼 배경 색상
     --al-color: "#0074cc", // 기본 a 링크 색상
@@ -10,6 +11,15 @@ export const GlobalStyles = createGlobalStyle`
     --tag-bg-color: "#e1ecf4", // 태그 배경 색상
     --tag-font-color: "#39739d", // 태그 폰트 색상
     --aside-bg-color: "#fcf2d4", // 사이드 배경 색상
+=======
+    --primary-color: #f48225; // 포인트 색상
+    --btn-bg-color: #0a95ff; // 기본 버튼 배경 색상
+    --al-color: #0074cc; // 기본 a 링크 색상
+    --font-color-light: #525960; // 연한 폰트 기본 색상
+    --font-color-bold:#0c0d0e; // 진한 폰트 기본 색상
+    --tag-bg-color: #e1ecf4; // 태그 배경 색상
+    --tag-font-color: #39739d; // 태그 폰트 색상
+>>>>>>> 72418dce04ee240054802ab44e21b9aa8a712857
   }
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
