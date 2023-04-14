@@ -1,6 +1,15 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
+  :root {
+    --primary-color: "#f48225",
+    --btn-color: "#0a95ff",
+    --al-color: "#0074cc",
+    --font-color-light: "#525960",
+    --font-color-bold:"#0c0d0e",
+    --tag-bg-color: "#e1ecf4",
+    --tag-font-color: "#39739d",
+  }
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
