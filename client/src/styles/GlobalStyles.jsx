@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
   figure, figcaption, footer, header, hgroup, 
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: 0;
