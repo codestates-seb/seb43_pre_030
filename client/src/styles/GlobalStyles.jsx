@@ -10,6 +10,10 @@ export const GlobalStyles = createGlobalStyle`
     --tag-bg-color: #e1ecf4; // 태그 배경 색상
     --tag-font-color: #39739d; // 태그 폰트 색상
   }
+  * {
+    box-sizing: border-box;
+  }
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -23,7 +27,6 @@ export const GlobalStyles = createGlobalStyle`
   figure, figcaption, footer, header, hgroup, 
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: 0;
