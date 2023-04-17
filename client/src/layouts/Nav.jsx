@@ -5,12 +5,11 @@ import NewNavMenu from "../components/NewNavMenu";
 
 const NavContainer = styled.nav`
   border-right: 1px solid var(--border-default-color);
-  /* position: sticky; */
   width: 100%;
   max-width: 164px;
-  //100vh + 푸터 크기
-  height: 130vh;
+  height:100vh;
   font-size: 0.8rem;
+
   //Looking for your Teams?
   #looking {
     display: flex;
@@ -18,16 +17,17 @@ const NavContainer = styled.nav`
     justify-content: center;
     height: 34px;
     width: 90%;
-    color: #3262c3;
+    color: var( --al-color);
     background-color: #3262c311;
     border-radius: 5px;
     margin: 5%;
   }
-`;
+`
+
 const StyledStickyBox = styled.div`
   position: sticky;
-  top: 53px;
-`;
+  top: 80px;
+`
 
 function Nav() {
   // 메뉴 목록
