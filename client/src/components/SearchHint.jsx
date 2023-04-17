@@ -24,11 +24,20 @@ const StyledContainer = styled.div`
 `;
 
 function SearchHint() {
-  const test = [1, 2, 3];
+  const hints = {
+    "[tag]": "search within a tag",
+    "user:1234": "search by author",
+    '"words here"': "exact phrase",
+    'collective:"Name"': "collective content",
+    "answers:0": "unanswered questions",
+    "score:3": "posts with a 3+ score",
+    "is:question": "type of post",
+    "isaccepted:yes": "search within status",
+  };
   return (
     <StyledContainer>
-      {test.map(a => (
-        <SearchHintItem key={a} />
+      {Object.entries(hints).map(([k, v]) => (
+        <SearchHintItem key={k} keyText={k} valueText={v} />
       ))}
     </StyledContainer>
   );
