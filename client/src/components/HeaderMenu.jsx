@@ -1,6 +1,7 @@
 import { AiOutlineUser } from "react-icons/ai";
 import { BsMenuUp } from "react-icons/bs";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { StyledDropDown } from "../styles/StyledDropDown";
 import { useDropDown } from "../hooks/useDropDown";
 
@@ -35,7 +36,9 @@ function HeaderMenu() {
   const [menuDropDown, closeMenu, onMenuClick] = useDropDown(false);
   return (
     <StyledMenuContainer>
-      <AiOutlineUser size="2rem" color="var(--font-color-light)" />
+      <Link to="/profile">
+        <AiOutlineUser size="2rem" color="var(--font-color-light)" />
+      </Link>
       <StyledWrapper>
         <BsMenuUp size="2rem" color="var(--font-color-light)" onClick={onMenuClick} />
         {menuDropDown && <StyledMenuDropDown>text</StyledMenuDropDown>}
