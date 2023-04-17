@@ -9,6 +9,8 @@ export const GlobalStyles = createGlobalStyle`
     --font-color-bold:#0c0d0e; // 진한 폰트 기본 색상
     --tag-bg-color: #e1ecf4; // 태그 배경 색상
     --tag-font-color: #39739d; // 태그 폰트 색상
+    --aside-bg-bold: #fcf2d4; // 진한 사이드 배경 색상
+    --aside-bg-light: #fdf6e2; // 연한 사이드 배경 색상
   }
   * {
     box-sizing: border-box;
