@@ -1,8 +1,8 @@
-package seb43_pre_030.DevHelp.user.repository;
+package seb43_pre_030.DevHelp.domain.user.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import seb43_pre_030.DevHelp.user.entity.User;
+import seb43_pre_030.DevHelp.domain.user.entity.User;
 
 import java.util.Optional;
 
