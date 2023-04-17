@@ -37,7 +37,7 @@ function HeaderMenu() {
     <StyledMenuContainer>
       <AiOutlineUser size="2rem" color="var(--font-color-light)" />
       <StyledWrapper>
-        <BsMenuUp size="2rem" color="var(--font-color-light)" onClick={onMenuClick()} />
+        <BsMenuUp size="2rem" color="var(--font-color-light)" onClick={onMenuClick} />
         {menuDropDown && <StyledMenuDropDown>text</StyledMenuDropDown>}
       </StyledWrapper>
     </StyledMenuContainer>
