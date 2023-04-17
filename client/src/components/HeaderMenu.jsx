@@ -14,8 +14,8 @@ const StyledMenuContainer = styled.div`
 function HeaderMenu() {
   return (
     <StyledMenuContainer>
-      <AiOutlineUser size="30" color="var(--font-color-light)" />
-      <BsMenuUp size="30" color="var(--font-color-light)" />
+      <AiOutlineUser size="2rem" color="var(--font-color-light)" />
+      <BsMenuUp size="2rem" color="var(--font-color-light)" />
     </StyledMenuContainer>
   );
 }
