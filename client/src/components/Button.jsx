@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledBtn = styled.button`
   cursor: pointer;
+  font-size: 1rem;
   text-align: center;
   background-color: ${props => props.bg};
   color: ${props => props.fontColor};

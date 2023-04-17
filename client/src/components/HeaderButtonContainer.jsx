@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { ButtonMain } from "./ButtonMain";
 import { ButtonSub } from "./ButtonSub";
 
-function HeaderButtonContainer() {
+function HeaderButtonContainer({ logIn }) {
   const logInClickHandler = e => {
-    console.log("log in");
+    logIn();
   };
   return (
     <>
