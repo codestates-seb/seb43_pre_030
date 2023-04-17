@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useDropDown(init = false) {
   const [dropDown, setDropDown] = useState(init);
@@ -6,9 +6,8 @@ export function useDropDown(init = false) {
   const actionFunction = () => {
     setDropDown(false);
   };
-  const onItemClick = action => e => {
+  const onItemClick = e => {
     e.stopPropagation();
-    action();
     setDropDown(prev => !prev);
   };
   const onOutSideClick = () => {

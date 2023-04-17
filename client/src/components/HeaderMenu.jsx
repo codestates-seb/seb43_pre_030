@@ -32,16 +32,12 @@ const StyledWrapper = styled.div`
 `;
 
 function HeaderMenu() {
-  const [userDropDown, closeUser, onUserClick] = useDropDown(false);
   const [menuDropDown, closeMenu, onMenuClick] = useDropDown(false);
   return (
     <StyledMenuContainer>
+      <AiOutlineUser size="2rem" color="var(--font-color-light)" />
       <StyledWrapper>
-        <AiOutlineUser size="2rem" color="var(--font-color-light)" onClick={onUserClick(closeMenu)} />
-        {userDropDown && <StyledUserDropDown>text</StyledUserDropDown>}
-      </StyledWrapper>
-      <StyledWrapper>
-        <BsMenuUp size="2rem" color="var(--font-color-light)" onClick={onMenuClick(closeUser)} />
+        <BsMenuUp size="2rem" color="var(--font-color-light)" onClick={onMenuClick()} />
         {menuDropDown && <StyledMenuDropDown>text</StyledMenuDropDown>}
       </StyledWrapper>
     </StyledMenuContainer>
