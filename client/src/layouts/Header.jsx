@@ -4,12 +4,16 @@ import SearchBar from "../components/SearchBar";
 import HeaderButtonContainer from "../components/HeaderButtonContainer";
 
 const StyledWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f8f9f9;
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05), 0 2px 8px hsla(0, 0%, 0%, 0.05);
   border-top: 3px solid var(--primary-color);
+  z-index: 10;
 `;
 const StyledHeader = styled.header`
   display: flex;
@@ -20,13 +24,13 @@ const StyledHeader = styled.header`
     min-width: 95vw;
   }
 `;
-function Header() {
+function Header({ logIn }) {
   return (
     <StyledWrapper>
       <StyledHeader>
         <Logo />
         <SearchBar />
-        <HeaderButtonContainer />
+        <HeaderButtonContainer logIn={logIn} />
       </StyledHeader>
     </StyledWrapper>
   );
