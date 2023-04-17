@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyles";
+import Footer from './layouts/Footer';
 import Aside from "./layouts/Aside";
 
 import Nav from "./layouts/Nav";
@@ -8,13 +9,12 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <div>
+      <div className="App">test</div>
+
         <Aside/>
-      </div>
-      {/* <div className="App">test</div> */}
       <Nav className="App">test</Nav>
+      <Footer />
     </>
   );
-}
-
+  }
 export default App;
