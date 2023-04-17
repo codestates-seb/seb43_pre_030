@@ -24,7 +24,7 @@ const StyledSubMenuBlock = styled.aside`
     display: block;
     text-align: left;
     list-style: none;
-    background-color: #fdf6e2;
+    background-color: var(--aside-bg-light);
     border-radius: .5rem;
     box-shadow: 0 .1rem .2rem rgba(0,0,0,.3);
 
@@ -42,10 +42,9 @@ const StyledSubMenuBlock = styled.aside`
     }
 
     .submenu-header {
-      /* width: 30rem; */
       font-size: 1rem;
       font-weight: 700;
-      background-color: #fcf2d4;
+      background-color: var(--aside-bg-bold);
       border-top: 1px solid #f2c231;
       border-bottom: 1px solid #f2c231;
       &:first-child {
