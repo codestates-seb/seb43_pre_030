@@ -12,6 +12,10 @@ export const GlobalStyles = createGlobalStyle`
     --aside-bg-bold: #fcf2d4; // 진한 사이드 배경 색상
     --aside-bg-light: #fdf6e2; // 연한 사이드 배경 색상
     --border-default-color: #d6d9dc;
+
+    //questionPage 색상
+    --question-page-bg-color: #F8F9F9;// questionPage 배경 색상
+
   }
   * {
     box-sizing: border-box;
