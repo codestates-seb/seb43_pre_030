@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BsStackOverflow } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import LogoImg from "./LogoImg";
 
 const StyledLogoContainer = styled.div`
   cursor: pointer;
@@ -28,7 +29,7 @@ function Logo() {
   return (
     <Link to="/">
       <StyledLogoContainer>
-        <BsStackOverflow size={30} />
+        <LogoImg itemColor="#F48024" containerColor="#BCBBBB" />
         <StyledLogoText>
           stack <strong>overflow</strong>
         </StyledLogoText>
