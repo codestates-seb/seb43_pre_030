@@ -6,7 +6,7 @@ const MenuContainer = styled.li`
   width: 100%;
   display: flex;
   align-items: center;
-  color: #666;
+  color: var(--font-color-light);
   cursor: pointer;
 
   //span기본 css
@@ -19,10 +19,10 @@ const MenuContainer = styled.li`
   
   //클릭 시 변화 css
   &.active {
-    color: #222;
+    color:  var(--font-color-bold);
     font-weight: bold;
     background-color: #66666615;
-    box-shadow: -3px 0 0 0 #F48225 inset; 
+    box-shadow: -3px 0 0 0 var(--primary-color) inset; 
     transition: 0.1s;
   }
 
@@ -35,14 +35,14 @@ const MenuContainer = styled.li`
 
   //클릭시 변화가 없는 박스
   &.title{
-    margin-top: 16px;
+    padding-top: 16px;
     font-size: 0.6rem;
     font-weight: bold;
-    color: #222;
+    color: var(--font-color-bold);
   }
 
   &.content:hover{
-    color: #222;
+    color: var(--font-color-bold);
   }
 `
 

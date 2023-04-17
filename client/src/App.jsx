@@ -38,7 +38,7 @@ function App() {
       <Header logIn={logIn} currentUser={currentUser} />
       <StyledWrapper>
         <StyledMainSection>
-          {currentUser && <Nav className="App">test</Nav>}
+          {currentUser && <Nav />}
           <Main>test</Main>
           {currentUser && <Aside />}
         </StyledMainSection>
