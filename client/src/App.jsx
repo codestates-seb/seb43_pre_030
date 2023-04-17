@@ -35,7 +35,7 @@ function App() {
   return (
     <StyledBodyContainer>
       <GlobalStyles />
-      <Header logIn={logIn} /> 
+      <Header logIn={logIn} currentUser={currentUser} />
       <StyledWrapper>
         <StyledMainSection>
           {currentUser && <Nav />}
