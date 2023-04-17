@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
 import HeaderButtonContainer from "../components/HeaderButtonContainer";
+import HeaderMenu from "../components/HeaderMenu";
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -24,13 +25,13 @@ const StyledHeader = styled.header`
     min-width: 95vw;
   }
 `;
-function Header({ logIn }) {
+function Header({ logIn, currentUser }) {
   return (
     <StyledWrapper>
       <StyledHeader>
         <Logo />
         <SearchBar />
-        <HeaderButtonContainer logIn={logIn} />
+        {currentUser ? <HeaderMenu /> : <HeaderButtonContainer logIn={logIn} />}
       </StyledHeader>
     </StyledWrapper>
   );
