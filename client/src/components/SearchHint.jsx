@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SearchHintItem from "./SearchHintItem";
+import DropDown from "../styles/DropDown";
 
 const StyledContainer = styled.div`
   position: absolute;
@@ -35,11 +36,11 @@ function SearchHint() {
     "isaccepted:yes": "search within status",
   };
   return (
-    <StyledContainer>
+    <DropDown>
       {Object.entries(hints).map(([k, v]) => (
         <SearchHintItem key={k} keyText={k} valueText={v} />
       ))}
-    </StyledContainer>
+    </DropDown>
   );
 }
 
