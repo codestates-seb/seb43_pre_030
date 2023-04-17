@@ -4,6 +4,12 @@ import { HiPencil } from "react-icons/hi"
 import { BsStackOverflow } from "react-icons/bs"
 
 
+
+const StyledAsideBar = styled.div`
+  position: absolute;
+  top: 0;
+  right: .02rem;
+`;
 // 사이드서브메뉴
 const StyledSubMenuBlock = styled.aside`
   height: 100%;
@@ -13,21 +19,21 @@ const StyledSubMenuBlock = styled.aside`
   box-sizing: border-box;
 
   ul {
-    width: 30rem;
+    width: 20rem;
     padding: 0;
     display: block;
     text-align: left;
     list-style: none;
     background-color: #fdf6e2;
     border-radius: .5rem;
-    box-shadow: 0 .1rem .3rem rgba(0,0,0,.3);
+    box-shadow: 0 .1rem .2rem rgba(0,0,0,.3);
 
     li {
-      width: 30rem;
+      width: 20rem;
       display: flex;
       align-items: center;
       padding: 1rem .5rem;
-      font-size: 1rem;
+      font-size: .9rem;
       cursor: pointer;
 
       > div:first-child {
@@ -36,8 +42,8 @@ const StyledSubMenuBlock = styled.aside`
     }
 
     .submenu-header {
-      width: 29rem;
-      font-size: 1.1rem;
+      /* width: 30rem; */
+      font-size: 1rem;
       font-weight: 700;
       background-color: #fcf2d4;
       border-top: 1px solid #f2c231;
@@ -53,7 +59,7 @@ const StyledSubMenuBlock = styled.aside`
 
 // 태그 박스
 const StyledTagsBlock = styled.div`
-  width: 30rem;
+  width: 20rem;
   height: 100%;
   margin-top: 3rem;
   border: 1px solid #c8c8c9;
@@ -61,12 +67,11 @@ const StyledTagsBlock = styled.div`
   box-shadow: 0 .1rem .3rem rgba(0,0,0,.3);
 
   .tag-title {
-    height: 2rem;
-    height: 4rem;
+    height: 3.5rem;
     display: flex;
     align-items:center;
     color: #525960;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 500;
     background-color: #f7faf9;
     border-bottom: 1px solid #c8c8c9;
@@ -81,17 +86,18 @@ const StyledTagsBlock = styled.div`
   .tag-content {
     display: flex;
     .tag-inner {
-      width: 29rem;
+      width: 20rem;
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       padding: 2rem 0;
       & div {
-        margin-left: 1.3rem;
-        padding: .5rem .7rem;
+        font-size: 1rem;
+        padding: .3rem .3rem;
         background-color: #e3ebf4;
-        border-radius: .4rem;
+        border-radius: .2rem;
       }
       & a {
+        font-size: .9rem;
         color: #0074cc;
         text-decoration: none;
       }
@@ -101,7 +107,7 @@ const StyledTagsBlock = styled.div`
 
 function Aside() {
   return (
-    <div>
+    <StyledAsideBar>
       <StyledSubMenuBlock>
         <ul>
           <li className="submenu-header">The Overflow Blog</li>
@@ -151,7 +157,7 @@ function Aside() {
           </div>
         </div>
       </StyledTagsBlock>
-    </div>
+    </StyledAsideBar>
   )
 }
 

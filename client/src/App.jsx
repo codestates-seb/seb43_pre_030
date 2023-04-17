@@ -1,10 +1,14 @@
 import { GlobalStyles } from "./styles/GlobalStyles";
+import Aside from "./layouts/Aside";
+
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <div className="App">test</div>
+      <div>
+        <Aside/>
+      </div>
     </>
   );
 }
