@@ -2,6 +2,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsMenuUp } from "react-icons/bs";
 import styled from "styled-components";
 import { StyledDropDown } from "../styles/StyledDropDown";
+import { useDropDown } from "../hooks/useDropDown";
 
 const StyledMenuContainer = styled.div`
   display: flex;
@@ -11,29 +12,38 @@ const StyledMenuContainer = styled.div`
     cursor: pointer;
   }
 `;
+
 const StyledUserDropDown = styled(StyledDropDown)`
-  min-width: 250px;
-  transform: translateX(-100px);
+  top: 100%;
+  right: -1rem;
   &::after {
-    transform: translateX(95px) rotate(45deg);
+    position: absolute;
+    right: 10%;
   }
 `;
-
-function UserDropDown() {
-  return (
-    <div style={{ position: "relative" }}>
-      <AiOutlineUser size="2rem" color="var(--font-color-light)" />
-      <StyledUserDropDown>text</StyledUserDropDown>
-    </div>
-  );
-}
+const StyledMenuDropDown = styled(StyledUserDropDown)`
+  right: -0.5rem;
+  &::after {
+    right: 5%;
+  }
+`;
+const StyledWrapper = styled.div`
+  position: relative;
+`;
 
 function HeaderMenu() {
+  const [userDropDown, closeUser, onUserClick] = useDropDown(false);
+  const [menuDropDown, closeMenu, onMenuClick] = useDropDown(false);
   return (
     <StyledMenuContainer>
-      {/* <UserDropDown /> */}
-      <AiOutlineUser size="2rem" color="var(--font-color-light)" />
-      <BsMenuUp size="2rem" color="var(--font-color-light)" />
+      <StyledWrapper>
+        <AiOutlineUser size="2rem" color="var(--font-color-light)" onClick={onUserClick(closeMenu)} />
+        {userDropDown && <StyledUserDropDown>text</StyledUserDropDown>}
+      </StyledWrapper>
+      <StyledWrapper>
+        <BsMenuUp size="2rem" color="var(--font-color-light)" onClick={onMenuClick(closeUser)} />
+        {menuDropDown && <StyledMenuDropDown>text</StyledMenuDropDown>}
+      </StyledWrapper>
     </StyledMenuContainer>
   );
 }
