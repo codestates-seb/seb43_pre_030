@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     --tag-font-color: #39739d; // 태그 폰트 색상
     --aside-bg-bold: #fcf2d4; // 진한 사이드 배경 색상
     --aside-bg-light: #fdf6e2; // 연한 사이드 배경 색상
+    --border-default-color: #d6d9dc;
   }
   * {
     box-sizing: border-box;
