@@ -68,12 +68,6 @@ const FooterEl = styled.footer`
       }
     }
   }
-  .navList a:hover {
-    color: red;
-  }
-  .fCAjcR .footerFrame .footerNav .navContents .navList a:hover{
-    color: red;
-  }
   .navTitle{
     padding: 0 0 0.75rem 0;
   }
