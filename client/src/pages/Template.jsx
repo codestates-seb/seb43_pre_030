@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
-import Nav from "../layouts/Nav";
-import Aside from "../layouts/Aside";
-import Footer from "../layouts/Footer";
+import Nav from "../layouts/Nav/Nav";
+import Aside from "../layouts/Aside/Aside";
+import Footer from "../layouts/Footer/Footer";
 
 const StyledBodyContainer = styled.div`
   background-color: #f8f9f9;

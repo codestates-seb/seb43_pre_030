@@ -1,6 +1,6 @@
-import Main from "../layouts/Main";
-import MainHeaderSection from "../components/MainHeaderSection";
-import MainItem from "../components/MainItem";
+import Main from "../../layouts/Main/Main";
+import MainHeaderSection from "./MainHeaderSection";
+import MainItem from "./MainItem";
 
 function MainPage() {
   return (

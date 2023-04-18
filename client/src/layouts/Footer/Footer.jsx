@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LogoImg from "../components/LogoImg";
+import LogoImg from "../../components/ui/LogoImg";
 
 const FooterEl = styled.footer`
   background-color: hsl(210, 8%, 15%); // 홈페이지 꺼 따라함

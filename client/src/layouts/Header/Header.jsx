@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
-import HeaderButtonContainer from "../components/HeaderButtonContainer";
+import HeaderButtonContainer from "./HeaderButtonContainer";
 import HeaderMenu from "../components/HeaderMenu";
 
 const StyledWrapper = styled.div`

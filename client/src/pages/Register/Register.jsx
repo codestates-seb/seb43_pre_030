@@ -1,5 +1,5 @@
-import SignupInfo from '../components/SignupInfo';
-import SOInfo from '../components/SoInfo';
+import SignupInfo from "./SignupInfo";
+import SOInfo from "./SoInfo";
 
 function Signup() {
   return (
@@ -7,7 +7,6 @@ function Signup() {
       <div className="flex items-center justify-center w-full h-full mx-32">
         <SOInfo />
         <SignupInfo />
-
       </div>
     </div>
   );

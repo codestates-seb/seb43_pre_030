@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { StyledTitle } from "../styles/StyledTItle";
-import { ButtonMain } from "./ButtonMain";
+import { ButtonMain } from "./ui/ButtonMain";
 
 const StyledContainer = styled.div`
   display: flex;

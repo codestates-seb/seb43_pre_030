@@ -2,10 +2,9 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsMenuUp, BsSun, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { StyledDropDown } from "../styles/StyledDropDown";
-import { useDropDown } from "../hooks/useDropDown";
-import { ButtonMain } from "./ButtonMain";
-import Button from "./Button";
+import { StyledDropDown } from "../../styles/StyledDropDown";
+import { useDropDown } from "../../hooks/useDropDown";
+import { ButtonMain } from "../../components/ui/ButtonMain";
 
 const StyledMenuContainer = styled.div`
   display: flex;

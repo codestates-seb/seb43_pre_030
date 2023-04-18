@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Button from "../../components/Button";
+import Button from "../../components/ui/Button";
 
 const StyledOriginLoginWrapper = styled.div`
   width: 18rem;

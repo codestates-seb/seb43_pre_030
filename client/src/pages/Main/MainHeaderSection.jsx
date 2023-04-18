@@ -1,5 +1,5 @@
-import Button from "./Button";
-import HeaderContentSection from "./HeaderContentSection";
+import Button from "../../components/ui/Button";
+import HeaderContentSection from "../../components/HeaderContentSection";
 
 const MainButton = Button({
   bg: "#fff",

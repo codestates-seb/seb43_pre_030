@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { BsStackOverflow } from "react-icons/bs";
-import TagsBlock from "../components/TagsBlock";
+import TagsBlock from "../../components/TagsBlock";
 
 // 사이드서브메뉴
 const StyledSubMenuBlock = styled.aside`

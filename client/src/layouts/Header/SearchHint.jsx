@@ -1,5 +1,5 @@
 import SearchHintItem from "./SearchHintItem";
-import { StyledDropDown } from "../styles/StyledDropDown";
+import { StyledDropDown } from "../../styles/StyledDropDown";
 
 function SearchHint() {
   const hints = {

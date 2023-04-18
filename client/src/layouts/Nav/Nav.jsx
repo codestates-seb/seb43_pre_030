@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import NavMenu from "../components/NavMenu";
-import NewNavMenu from "../components/NewNavMenu";
+import NavMenu from "./NavMenu";
 
 const NavContainer = styled.nav`
   border-right: 1px solid var(--border-default-color);
   width: 100%;
   max-width: 164px;
-  height:100vh;
+  height: 100vh;
   font-size: 0.8rem;
 
   //Looking for your Teams?
@@ -17,17 +16,17 @@ const NavContainer = styled.nav`
     justify-content: center;
     height: 34px;
     width: 90%;
-    color: var( --al-color);
+    color: var(--al-color);
     background-color: #3262c311;
     border-radius: 5px;
     margin: 5%;
   }
-`
+`;
 
 const StyledStickyBox = styled.div`
   position: sticky;
   top: 80px;
-`
+`;
 
 function Nav() {
   // 메뉴 목록

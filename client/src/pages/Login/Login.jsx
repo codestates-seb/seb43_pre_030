@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import LogoImg from "../components/LogoImg";
-import SocialLogin from "./LoginComponents/SocialLogin";
-import OriginLogin from "./LoginComponents/OriginLogin";
+import LogoImg from "../../components/ui/LogoImg";
+import SocialLogin from "./SocialLogin";
+import OriginLogin from "./OriginLogin";
 
 const StyledLoginPage = styled.section`
   width: 100%;

@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Template from "./pages/Template";
-import Header from "./layouts/Header";
-import Register from "./pages/Register";
+import Header from "./layouts/Header/Header";
+import Register from "./pages/Register/Register";
 import { routerData } from "./data/routerData";
-import Main from "./layouts/Main";
-import Login from "./pages/Login";
-import QuestionPage from "./pages/QuestionPage";
-
+import Main from "./layouts/Main/Main";
+import Login from "./pages/Login/Login";
+import QuestionPage from "./pages/Ask/QuestionPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
