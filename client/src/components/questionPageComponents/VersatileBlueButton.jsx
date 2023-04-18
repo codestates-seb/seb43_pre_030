@@ -12,7 +12,7 @@ function VersatileBlueButton() {
 
   return (
     <VersatileBlueButtonContainer>
-      <div>태스트입니다</div>
+      <div>태스트</div>
     </VersatileBlueButtonContainer>
   );
 }
