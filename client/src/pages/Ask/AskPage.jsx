@@ -1,10 +1,6 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-import TipBox from "./TipBox";
 import WritingGuideBox from "./WritingGuideBox";
 import VersatileForm from "./VersatileForm";
-import ContentForm from "./ContentForm";
-import VersatileBlueButton from "./VersatileBlueButton";
 
 const QuestionPageWapper = styled.main`
   min-height: 100vh;
@@ -27,7 +23,7 @@ const QuestionPageContainer = styled.main`
   }
 `;
 
-function QuestionPage() {
+function AskPage() {
   const WritingGuideTitle = `Writing a good question`;
   const WritingGuideContent = `You’re ready to ask a programming-related question and this form will help guide you through the process.
   \nLooking to ask a non-programming question? See the topics here to find a relevant site.`;
@@ -65,4 +61,4 @@ function QuestionPage() {
   );
 }
 
-export default QuestionPage;
+export default AskPage;
