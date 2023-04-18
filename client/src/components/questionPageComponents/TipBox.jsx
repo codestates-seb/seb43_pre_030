@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 
 const TipBoxContainer = styled.div`
+  position: absolute;
+  top: -1rem;
+  left: 110%;
   width: 30%;
   border: 1px solid var(--question-page-form-border-color);
   border-radius: 0.2rem;
@@ -28,17 +31,19 @@ const TipBoxContainer = styled.div`
 `
 
 
-function TipBox({title, content}) {
+function TipBox({tipTitle, tipContent}) {
 
 
   return (
     <TipBoxContainer>
-      <h1>{title}</h1>
+      <h1>{tipTitle}</h1>
         <div className="divContainer">
-      {content.split(`\n`).map((el, idx) => (
-        <div key={idx}>{el}</div>
-      ))}
-    </div>
+        {tipContent ? tipContent.split(`\n`).map((el, idx) => (
+          <div key={idx}>{el}</div>
+        ))
+        : null
+        }
+      </div>
     </TipBoxContainer>
   );
 }

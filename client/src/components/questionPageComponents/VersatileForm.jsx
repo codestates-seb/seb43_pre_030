@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import TipBox from "./TipBox";
 
 
 const VersatileFormContainer = styled.div`
+  position: relative;
   width: 70%;
   border: 1px solid var(--question-page-form-border-color);
   border-radius: 0.2rem;
@@ -36,21 +38,37 @@ const VersatileFormContainer = styled.div`
 `
 
 
-function VersatileForm({title, content, placeholder}) {
+function VersatileForm({title, content, placeholder, tipTitle, tipContent}) {
 
   const [QuestionFormValue, setQuestionFormValue] = useState(``)
+  const [isFocusIn, setFocus] = useState(false)
+
   const setFormValue = (e) => {
     setQuestionFormValue(e.target.value)
+    console.log(tipTitle)
+    console.log(tipContent)
   }
+
+  const changeOnFocus = () => {
+    setFocus(true)
+  }
+
+  const changeOnBlur = () => {
+    setFocus(false)
+  }
+
 
   return (
     <VersatileFormContainer>
+      {isFocusIn ? <TipBox tipTitle={tipTitle} tipContent={tipContent} />
+      : null}
       <h1>{title}</h1>
       {content.split(`\n`).map((el, idx) => (
         <div key={idx}>{el}</div>
       ))}
       <input type="text" placeholder={placeholder}
-      value={QuestionFormValue} onChange={(e) => (setFormValue(e))}/>
+      value={QuestionFormValue} onChange={(e) => (setFormValue(e))} 
+      onFocus={() => {changeOnFocus()}} onBlur={() => {changeOnBlur()}}/>
     </VersatileFormContainer>
   );
   
