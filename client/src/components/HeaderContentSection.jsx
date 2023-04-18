@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { StyledTitle } from "../styles/StyledTItle";
 import { ButtonMain } from "./ui/ButtonMain";
 
@@ -25,7 +26,9 @@ function HeaderContentSection({ title, children }) {
     <StyledContainer>
       <StyledTopSection>
         <StyledTitle>{title}</StyledTitle>
-        <ButtonMain>Ask Question</ButtonMain>
+        <Link to="/ask">
+          <ButtonMain>Ask Question</ButtonMain>
+        </Link>
       </StyledTopSection>
       <StyledBottomSection>{children}</StyledBottomSection>
     </StyledContainer>
