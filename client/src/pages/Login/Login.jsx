@@ -16,6 +16,7 @@ const StyledLoginWrapper = styled.div`
   width: 100%;
   padding: 1.5rem;
   display: flex;
+  margin-top: 9rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
