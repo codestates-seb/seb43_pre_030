@@ -12,7 +12,7 @@ function ContentForm() {
 
   return (
     <ContentFormContainer>
-      <div>태스트입니다</div>
+      <div>태스트</div>
     </ContentFormContainer>
   );
 }
