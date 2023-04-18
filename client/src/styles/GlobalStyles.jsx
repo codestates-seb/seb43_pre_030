@@ -4,6 +4,8 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --primary-color: #f48225; // 포인트 색상
     --btn-bg-color: #0a95ff; // 기본 버튼 배경 색상
+    --btn-github-bg-color: #2f3337 // 깃헙버튼 색상
+    --btn-facebook-bg-color: #385499 // 페북버튼 색상
     --al-color: #0074cc; // 기본 a 링크 색상
     --font-color-light: #525960; // 연한 폰트 기본 색상
     --font-color-bold:#0c0d0e; // 진한 폰트 기본 색상
@@ -11,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
     --tag-font-color: #39739d; // 태그 폰트 색상
     --aside-bg-bold: #fcf2d4; // 진한 사이드 배경 색상
     --aside-bg-light: #fdf6e2; // 연한 사이드 배경 색상
-    --border-default-color: #d6d9dc;
+    --border-default-color: #d6d9dc; // 보더 기본 색상
   }
   * {
     box-sizing: border-box;
