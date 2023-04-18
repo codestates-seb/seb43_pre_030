@@ -47,11 +47,11 @@ function SocialLogin() {
         <FcGoogle style={{ width: "1.2rem", height: "1.2rem" }} />
         <span>Log in with Google</span>
       </SocialButton>
-      <SocialButton bg="#2f3337" color="#fff">
+      <SocialButton bg="var(--btn-github-bg-color)" color="#fff">
         <AiFillGithub style={{ width: "1.2rem", height: "1.2rem" }} />
         <span>Log in with GitHub</span>
       </SocialButton>
-      <SocialButton bg="#385499" color="#fff">
+      <SocialButton bg="var(--btn-facebook-bg-color)" color="#fff">
         <AiFillFacebook style={{ width: "1.2rem", height: "1.2rem" }} />
         <span>Log in with Facebook</span>
       </SocialButton>
