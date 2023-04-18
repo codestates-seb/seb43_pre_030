@@ -14,6 +14,15 @@ export const GlobalStyles = createGlobalStyle`
     --aside-bg-bold: #fcf2d4; // 진한 사이드 배경 색상
     --aside-bg-light: #fdf6e2; // 연한 사이드 배경 색상
     --border-default-color: #d6d9dc; // 보더 기본 색상
+
+
+    //questionPage 색상
+    --question-page-bg-color: #F8F9F9;// questionPage 배경 색상
+    --question-page-form-border-color: #E3E6E8;// 폼 테두리 색상 
+    --question-tip-box-bg-color: #EBF4FA;// 파란박스 배경 색상
+    --question-tip-box-border-color: #A5CFED;// 파란박스 테두리 색상
+    --question-foem-focus-color: #59A4DE;// 포커스 테두리 색상
+
   }
   * {
     box-sizing: border-box;
