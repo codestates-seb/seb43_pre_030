@@ -6,6 +6,7 @@ import Footer from "./layouts/Footer";
 import Aside from "./layouts/Aside";
 import Nav from "./layouts/Nav";
 import Main from "./layouts/Main";
+import Login from "./pages/Login";
 
 const StyledBodyContainer = styled.div`
   background-color: #f8f9f9;
@@ -39,11 +40,12 @@ function App() {
       <StyledWrapper>
         <StyledMainSection>
           {currentUser && <Nav />}
-          <Main>test</Main>
+          <Login />
+          {currentUser && <Main>test</Main>}
           {currentUser && <Aside />}
         </StyledMainSection>
       </StyledWrapper>
-      <Footer />
+      {currentUser && <Footer />}
     </StyledBodyContainer>
   );
 }
