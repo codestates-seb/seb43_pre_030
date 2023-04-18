@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import styled from "styled-components";
 import WritingGuideBox from "./WritingGuideBox";
 import VersatileForm from "./VersatileForm";
+import ContentForm from './ContentForm';
 
 const QuestionPageWapper = styled.main`
   min-height: 100vh;
@@ -23,39 +25,58 @@ const QuestionPageContainer = styled.main`
   }
 `;
 
+
 function AskPage() {
-  const WritingGuideTitle = `Writing a good question`;
-  const WritingGuideContent = `You’re ready to ask a programming-related question and this form will help guide you through the process.
-  \nLooking to ask a non-programming question? See the topics here to find a relevant site.`;
 
-  const titleTitle = `Title`;
-  const titleContent = `Be specific and imagine you’re asking a question to another person.`;
-  const titlePlaceholder = `e.g. ls there an R function for finding the index of an element in a vector?`;
+  // 현재 페이지 state
+  const [currentForm, setCurrentForm] = useState(1)
 
-  const tagsTitle = `Tags`;
-  const tagsContent = `Add up to 5 tags to describe what your question is about. Start typing to see suggestions.`;
-  const tagsPlaceholder = `e.g (.net json vba)`;
+  const changeCurrentForm = (idx) => {
+    setCurrentForm(idx + 1)
+  }
 
-  const ReviewTitle = `Review questions already on Stack Overflow to see if your question is a duplicate.`;
-  const ReviewContent = `Clicking on these questions will open them in a new tab for you to review. Your progress here will be saved so you can come back and continue.`;
-
-  const tipTitle = `Tip!`;
-  const tipContent = `Tip!Review Be specific and imagine you’re asking a question to another person. \nLooking to ask a non-programming question? See the topics here to `;
+  const infoArr = [
+    { component: WritingGuideBox,
+      title:`Writing a good question`,
+      content:`You’re ready to ask a programming-related question and this form will help guide you through the process. \nLooking to ask a non-programming question? See the topics here to find a relevant site.`
+    },
+    { component: VersatileForm,
+      title:`Title`,
+      content:`Be specific and imagine you’re asking a question to another person.`,
+      placeholder:`e.g. ls there an R function for finding the index of an element in a vector?`,
+    },
+    { component: ContentForm,
+      title:`What are the details of your problem?`,
+      content:`Introduce the problem and expand on what you put in the title. Minimum 20 characters.`,
+    },
+    { component: ContentForm,
+      title:`What did you try and what were you expecting?`,
+      content:`Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters.`,
+    },
+    { component: VersatileForm,
+      title:`Tags`,
+      content:`Add up to 5 tags to describe what your question is about. Start typing to see suggestions.`,
+      placeholder:`e.g (.net json vba)`,
+    },
+    { component: VersatileForm,
+      title:`Review questions already on Stack Overflow to see if your question is a duplicate.`,
+      content:`Clicking on these questions will open them in a new tab for you to review. Your progress here will be saved so you can come back and continue.`,
+    },   
+  ]
 
   return (
     <QuestionPageWapper>
       <QuestionPageContainer>
         <h1>Ask a public question</h1>
-        <WritingGuideBox title={WritingGuideTitle} content={WritingGuideContent} />
-        <VersatileForm
-          title={titleTitle}
-          content={titleContent}
-          placeholder={titlePlaceholder}
-          tipTitle={tipTitle}
-          tipContent={tipContent}
-        />
-        <VersatileForm title={tagsTitle} content={tagsContent} placeholder={tagsPlaceholder} />
-        <VersatileForm title={ReviewTitle} content={ReviewContent} />
+        
+        {infoArr.map((el, idx) => {
+          const Component = el.component;
+          console.log(Component)
+          return <Component key={idx} el={el} />;
+        })}
+        
+        <WritingGuideBox />
+
       </QuestionPageContainer>
     </QuestionPageWapper>
   );
