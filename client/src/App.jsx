@@ -20,7 +20,7 @@ function App() {
       <Header logIn={logIn} currentUser={currentUser} />
       <Routes>
         <Route path="/login" element={<Template />} />
-        <Route path="/register" element={< Register/>} />
+        <Route path="/register" element={<Register/>} />
         <Route path="/ask" element={<Template />} />
         <Route path="/" element={<Template currentUser={currentUser} />}>
           {routerData.map(route => (
