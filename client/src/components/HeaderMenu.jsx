@@ -1,7 +1,11 @@
 import { AiOutlineUser } from "react-icons/ai";
-import { BsMenuUp } from "react-icons/bs";
+import { BsMenuUp, BsSun, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { StyledDropDown } from "../styles/StyledDropDown";
+import { useDropDown } from "../hooks/useDropDown";
+import { ButtonMain } from "./ButtonMain";
+import Button from "./Button";
 
 const StyledMenuContainer = styled.div`
   display: flex;
@@ -11,29 +15,46 @@ const StyledMenuContainer = styled.div`
     cursor: pointer;
   }
 `;
-const StyledUserDropDown = styled(StyledDropDown)`
-  min-width: 250px;
-  transform: translateX(-100px);
+
+const StyledMenuDropDown = styled(StyledDropDown)`
+  top: 100%;
+  right: -0.5rem;
+  min-width: 180px;
+  color: var(--al-color);
+  cursor: auto;
   &::after {
-    transform: translateX(95px) rotate(45deg);
+    position: absolute;
+    right: 5%;
   }
 `;
-
-function UserDropDown() {
-  return (
-    <div style={{ position: "relative" }}>
-      <AiOutlineUser size="2rem" color="var(--font-color-light)" />
-      <StyledUserDropDown>text</StyledUserDropDown>
-    </div>
-  );
-}
+const StyledFlexBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const StyledWrapper = styled.div`
+  position: relative;
+`;
 
 function HeaderMenu() {
+  const [menuDropDown, _, onMenuClick] = useDropDown(false);
   return (
     <StyledMenuContainer>
-      {/* <UserDropDown /> */}
-      <AiOutlineUser size="2rem" color="var(--font-color-light)" />
-      <BsMenuUp size="2rem" color="var(--font-color-light)" />
+      <Link to="/profile">
+        <AiOutlineUser size="2rem" color="var(--font-color-light)" />
+      </Link>
+      <StyledWrapper>
+        <BsMenuUp size="2rem" color="var(--font-color-light)" onClick={onMenuClick} />
+        {menuDropDown && (
+          <StyledMenuDropDown onClick={e => e.stopPropagation()}>
+            <StyledFlexBox>
+              <ButtonMain>log out</ButtonMain>
+              <BsSunFill size="1.5rem" cursor="pointer" />
+            </StyledFlexBox>
+          </StyledMenuDropDown>
+        )}
+      </StyledWrapper>
     </StyledMenuContainer>
   );
 }

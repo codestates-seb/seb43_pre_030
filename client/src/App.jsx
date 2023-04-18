@@ -1,52 +1,37 @@
-import styled from "styled-components";
 import { useState } from "react";
-import Header from "./layouts/Header";
+import { Route, Routes } from "react-router-dom";
 import { GlobalStyles } from "./styles/GlobalStyles";
-import Footer from "./layouts/Footer";
-import Aside from "./layouts/Aside";
-import Nav from "./layouts/Nav";
+import Template from "./pages/Template";
+import Header from "./layouts/Header";
+import { routerData } from "./data/routerData";
 import Main from "./layouts/Main";
 import Login from "./pages/Login";
-
-const StyledBodyContainer = styled.div`
-  background-color: #f8f9f9;
-`;
-
-const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const StyledMainSection = styled.div`
-  padding-top: 53px;
-  display: flex;
-  min-width: 80vw;
-  gap: 1rem;
-  @media screen and (max-width: 780px) {
-    min-width: 95vw;
-  }
-`;
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
   const logIn = () => {
     setCurrentUser(prev => !prev);
   };
+
   return (
-    <StyledBodyContainer>
+    <>
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
-      <StyledWrapper>
-        <StyledMainSection>
-          {currentUser && <Nav />}
-          <Login />
-          {currentUser && <Main>test</Main>}
-          {currentUser && <Aside />}
-        </StyledMainSection>
-      </StyledWrapper>
-      {currentUser && <Footer />}
-    </StyledBodyContainer>
+      <Routes>
+        <Route path="/login" element={<Template />} />
+        <Route path="/register" element={<Template />} />
+        <Route path="/ask" element={<Template />} />
+        <Route path="/" element={<Template currentUser={currentUser} />}>
+          {routerData.map(route => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={route.element ? route.element : <Main>{route.path}</Main>}
+            />
+          ))}
+        </Route>
+      </Routes>
+    </>
   );
 }
 export default App;
