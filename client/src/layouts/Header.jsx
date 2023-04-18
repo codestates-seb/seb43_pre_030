@@ -19,7 +19,7 @@ const StyledWrapper = styled.div`
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  min-width: 80vw;
+  min-width: 85vw;
   gap: 1rem;
   @media screen and (max-width: 780px) {
     min-width: 95vw;
