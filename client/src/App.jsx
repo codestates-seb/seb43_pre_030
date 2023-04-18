@@ -18,7 +18,7 @@ function App() {
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
       <Routes>
-        <Route path="/login" element={<Template />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Template />} />
         <Route path="/ask" element={<Template />} />
         <Route path="/" element={<Template currentUser={currentUser} />}>
