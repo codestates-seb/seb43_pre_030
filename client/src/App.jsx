@@ -6,6 +6,7 @@ import Footer from "./layouts/Footer";
 import Aside from "./layouts/Aside";
 import Nav from "./layouts/Nav";
 import Main from "./layouts/Main";
+import QuestionPage from "./layouts/QuestionPage";
 
 const StyledBodyContainer = styled.div`
   background-color: #f8f9f9;
@@ -33,18 +34,26 @@ function App() {
     setCurrentUser(prev => !prev);
   };
   return (
-    <StyledBodyContainer>
-      <GlobalStyles />
-      <Header logIn={logIn} currentUser={currentUser} />
-      <StyledWrapper>
-        <StyledMainSection>
-          {currentUser && <Nav />}
-          <Main>test</Main>
-          {currentUser && <Aside />}
-        </StyledMainSection>
-      </StyledWrapper>
-      <Footer />
-    </StyledBodyContainer>
+    // <StyledBodyContainer>
+    //   <GlobalStyles />
+    //   <Header logIn={logIn} currentUser={currentUser} />
+    //   <StyledWrapper>
+    //     <StyledMainSection>
+    //       {currentUser && <Nav />}
+    //       <Main>test</Main>
+    //       {currentUser && <Aside />}
+    //     </StyledMainSection>
+    //   </StyledWrapper>
+    //   <Footer />
+    // </StyledBodyContainer>
+      <StyledBodyContainer>
+        <GlobalStyles />
+        <Header logIn={logIn} currentUser={currentUser} />
+        <StyledWrapper>
+          <QuestionPage />
+        </StyledWrapper>
+        <Footer />
+      </StyledBodyContainer>
   );
 }
 export default App;
