@@ -6,7 +6,7 @@ const NavContainer = styled.nav`
   border-right: 1px solid var(--border-default-color);
   width: 100%;
   max-width: 164px;
-  height: 100vh;
+
   font-size: 0.8rem;
 
   //Looking for your Teams?
