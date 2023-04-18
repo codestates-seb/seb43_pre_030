@@ -1,6 +1,19 @@
+import styled from "styled-components";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import identicon1 from "../../images/icon1.jpeg";
+
+
+const StyledSignupSection =styled.div`
+  .main{
+    box-shadow: 0 10px 24px hsla(0,0%,0%,0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+    padding: 24px
+    
+  }
+  .text{
+    font-size: 12px;
+  }
+`
 
 function SignupInfo() {
   const navigate = useNavigate();
@@ -136,6 +149,9 @@ function SignupInfo() {
   };
 
   return (
+    <StyledSignupSection>
+    <div className="main" style={{ width: "18rem", height: "650px" }}>
+      
     <div className="flex-col w-1/3 my-5 ml-2 mr-10 align-middle justify-items-center">
       <div className="px-5 pt-3 pb-10 bg-white rounded-md drop-shadow-xl">
         <form className="form" onSubmit={onSubmit}>
@@ -160,31 +176,27 @@ function SignupInfo() {
               className={borderColor[!!passwordError]}
             />
             {passwordError && (
-              <p className="text-xxs text-danger-500">영어와 숫자를 최소 1개 포함하여 8자 이상이어야합니다.</p>
+              <p className="asdacav">영어와 숫자를 최소 1개 포함하여 8자 이상이어야합니다.</p>
             )}
-            <p className="text-sm text-soGray-normal">
+            <p className="text" >
               Passwords must contain at least eight characters, including at least 1 letter and 1 number.
             </p>
           </div>
+          <img src={identicon1} ref={defaultImage} alt="default-profile" />
           <button type="submit" className="justify-center w-full mt-10 so-button-primary">
-            Sign up
-          </button>
-
-          <div className="hidden">
-            <label htmlFor="file-input">
-              Choose a file: <input type="file" id="file-input" />
-              <img src={identicon1} ref={defaultImage} alt="default-profile" />
-            </label>
-          </div>
+                      Sign up
+          </button>        
         </form>
       </div>
-      <div className="flex justify-center my-5">
-        <p className="mx-1">Already have an account?</p>
-        <a href="./login" className="text-secondary-600 hover:text-secondary-300">
-          Log in
-        </a>
-      </div>
     </div>
+    </div>
+  <div className="flex justify-center my-5">
+    <p className="mx-1">Already have an account?</p>
+     <a href="./login" className="text-secondary-600 hover:text-secondary-300">
+      Log in
+     </a>
+  </div>
+    </StyledSignupSection>
   );
 }
 
