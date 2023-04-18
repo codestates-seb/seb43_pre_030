@@ -7,7 +7,7 @@ import Register from "./pages/Register/Register";
 import { routerData } from "./data/routerData";
 import Main from "./layouts/Main/Main";
 import Login from "./pages/Login/Login";
-import QuestionPage from "./pages/Ask/QuestionPage";
+import AskPage from "./pages/Ask/AskPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/ask" element={<QuestionPage />} />
+        <Route path="/ask" element={<AskPage />} />
         <Route path="/" element={<Template currentUser={currentUser} />}>
           {routerData.map(route => (
             <Route

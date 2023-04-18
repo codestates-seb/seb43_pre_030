@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BsStackOverflow } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import LogoImg from "./ui/LogoImg";
+import LogoImg from "../../components/ui/LogoImg";
 
 const StyledLogoContainer = styled.div`
   cursor: pointer;

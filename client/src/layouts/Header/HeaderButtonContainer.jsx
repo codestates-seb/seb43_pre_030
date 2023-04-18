@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ButtonMain } from "./ButtonMain";
-import { ButtonSub } from "./ButtonSub";
+import { ButtonMain } from "../../components/ui/ButtonMain";
+import { ButtonSub } from "../../components/ui/ButtonSub";
 
 function HeaderButtonContainer({ logIn }) {
   const logInClickHandler = e => {

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Logo from "../components/Logo";
-import SearchBar from "../components/SearchBar";
+import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 import HeaderButtonContainer from "./HeaderButtonContainer";
-import HeaderMenu from "../components/HeaderMenu";
+import HeaderMenu from "./HeaderMenu";
 
 const StyledWrapper = styled.div`
   position: fixed;
