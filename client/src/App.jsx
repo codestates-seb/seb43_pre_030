@@ -5,6 +5,7 @@ import Template from "./pages/Template";
 import Header from "./layouts/Header";
 import { routerData } from "./data/routerData";
 import Main from "./layouts/Main";
+import Login from "./pages/Login";
 import QuestionPage from "./pages/QuestionPage";
 
 function App() {
@@ -17,10 +18,10 @@ function App() {
     <>
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
-      {/* <Routes>
-        <Route path="/login" element={<Template />} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Template />} />
-        <Route path="/ask" element={<Template />} />
+        <Route path="/ask" element={<QuestionPage />} />
         <Route path="/" element={<Template currentUser={currentUser} />}>
           {routerData.map(route => (
             <Route
@@ -30,8 +31,7 @@ function App() {
             />
           ))}
         </Route>
-      </Routes> */}
-      <QuestionPage />
+      </Routes>
     </>
   );
 }
