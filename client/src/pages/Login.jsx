@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LogoImg from "../components/LogoImg";
 import SocialLogin from "./LoginComponents/SocialLogin";
+import OriginLogin from "./LoginComponents/OriginLogin";
 
 const StyledLoginPage = styled.section`
   width: 100%;
@@ -27,11 +28,11 @@ const StyledSignUpLinkWrapper = styled.div`
   font-size: 0.85rem;
   text-align: center;
   > a {
-    color: var(--tag-font-color);
+    color: var(--al-color);
     margin-left: 0.7rem;
   }
   > a:hover {
-    color: var(--al-color);
+    color: var(--tag-font-color);
   }
 `;
 
@@ -44,10 +45,8 @@ function Login() {
             <LogoImg itemColor="#F48024" containerColor="#BCBBBB" />
           </Link>
         </div>
-        <SocialLogin style={{ padding: "6rem", border: "1px solid gray", margin: "1rem 0" }}>
-          Social login box
-        </SocialLogin>
-        <div style={{ padding: "6rem", border: "1px solid gray" }}>Original login box</div>
+        <SocialLogin />
+        <OriginLogin />
         <StyledSignUpLinkWrapper>
           {`Don't have an account?`}
           <Link to="/register">Sign up</Link>
