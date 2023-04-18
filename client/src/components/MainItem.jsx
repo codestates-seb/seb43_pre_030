@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 
 const StyledContainer = styled.div`
@@ -31,6 +32,7 @@ const StyledContentDescription = styled.p`
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  word-break: break-all;
   text-overflow: ellipsis;
 `;
 const StyledTagSection = styled.div`
@@ -53,7 +55,7 @@ const TagButton = Button({
   fontSize: ".8rem",
 });
 
-function MainItem() {
+function MainItem({ id }) {
   return (
     <StyledContainer>
       <StyledCountContainer>
@@ -62,9 +64,11 @@ function MainItem() {
         <div>0 votes</div>
       </StyledCountContainer>
       <StyledContentContainer>
-        <StyledContentTitle>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium a similique totam hic maiores libero.
-        </StyledContentTitle>
+        <Link to={`/questions/${id}`}>
+          <StyledContentTitle>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium a similique totam hic maiores libero.
+          </StyledContentTitle>
+        </Link>
         <StyledContentDescription>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, facere aut quam minima expedita, harum
           architecto minus doloremque blanditiis illo odio voluptatum error mollitia facilis atque? Harum dolor nobis

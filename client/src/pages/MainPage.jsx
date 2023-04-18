@@ -6,8 +6,8 @@ function MainPage() {
   return (
     <Main>
       <MainHeaderSection />
-      {[1, 2, 4, 5].map(_ => (
-        <MainItem />
+      {[1, 2, 4, 5].map(id => (
+        <MainItem id={id} />
       ))}
     </Main>
   );
