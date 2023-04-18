@@ -78,4 +78,7 @@ export const GlobalStyles = createGlobalStyle`
   a:visited{
     color: inherit;
   }
+  html{
+    font-size: 14px;
+  }
 `;

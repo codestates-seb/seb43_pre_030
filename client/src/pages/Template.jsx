@@ -17,12 +17,8 @@ const StyledWrapper = styled.div`
 const StyledMainSection = styled.div`
   padding-top: 53px;
   display: flex;
-  min-width: 85vw;
-  max-width: 85vw;
-  @media screen and (max-width: 780px) {
-    min-width: 95vw;
-    max-width: 95vw;
-  }
+  width: 97.2307692rem;
+  max-width: auto;
 `;
 
 function Template() {
