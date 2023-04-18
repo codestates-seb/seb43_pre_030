@@ -20,7 +20,7 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   width: 97.2307692rem;
-  max-width: auto;
+  max-width: 97vw;
   gap: 1rem;
 `;
 function Header({ logIn, currentUser }) {

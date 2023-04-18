@@ -16,7 +16,7 @@ const StyledMainSection = styled.div`
   padding-top: 63px;
   display: flex;
   width: 97.2307692rem;
-  max-width: auto;
+  max-width: 97vw;
 `;
 
 function Template() {
