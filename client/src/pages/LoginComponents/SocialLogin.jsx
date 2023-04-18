@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
-import { VscGithub } from "react-icons/vsc";
-import { AiOutlineFacebook } from "react-icons/ai";
+import { AiFillGithub, AiFillFacebook } from "react-icons/ai";
 
+// 소셜로그인 버튼 래퍼
 const StyledSocialLoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,22 +11,49 @@ const StyledSocialLoginWrapper = styled.div`
   margin: 1.2rem 0 1rem;
 `;
 
-const SocialButton = styled.button``;
+// 소셜로그인 버튼들
+const SocialButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem;
+  margin: 0.25rem 0;
+  border: 1px solid ${props => props.border || "var(--border-default-color)"};
+  border-radius: 0.3rem;
+  background-color: ${props => props.bg || "#fff"};
+  color: ${props => props.color || "var(--font-color-bold)"};
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: inset 0.3rem 0.4rem 1rem rgba(0, 0, 0, 0.03);
+  }
+  &:nth-child(2):hover,
+  &:nth-child(3):hover {
+    color: var(--border-default-color);
+  }
+
+  > span {
+    font-size: 0.785rem;
+    margin-left: 0.4rem;
+  }
+`;
 
 function SocialLogin() {
   return (
     <StyledSocialLoginWrapper>
       <SocialButton>
-        <FcGoogle />
-        Log in with Google
+        <FcGoogle style={{ width: "1.2rem", height: "1.2rem" }} />
+        <span>Log in with Google</span>
       </SocialButton>
-      <SocialButton>
-        <VscGithub />
-        Log in with GitHub
+      <SocialButton bg="#2f3337" color="#fff">
+        <AiFillGithub style={{ width: "1.2rem", height: "1.2rem" }} />
+        <span>Log in with GitHub</span>
       </SocialButton>
-      <SocialButton>
-        <AiOutlineFacebook />
-        Log in with Facebook
+      <SocialButton bg="#385499" color="#fff">
+        <AiFillFacebook style={{ width: "1.2rem", height: "1.2rem" }} />
+        <span>Log in with Facebook</span>
       </SocialButton>
     </StyledSocialLoginWrapper>
   );
