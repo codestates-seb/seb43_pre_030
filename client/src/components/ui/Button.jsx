@@ -7,7 +7,7 @@ const StyledBtn = styled.button`
   text-align: center;
   background-color: ${props => props.bg};
   color: ${props => props.fontColor};
-  padding: 0.5rem 0.7rem;
+  padding: ${props => props.padding || "0.5rem 0.7rem"};
   border-radius: 3px;
   border: ${props => props.border};
   &:hover {
