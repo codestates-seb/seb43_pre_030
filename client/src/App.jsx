@@ -18,7 +18,7 @@ function App() {
       <Routes>
         {routerData.map(route =>
           route.needTemplate ? (
-            <Route path="/" element={<Template currentUser={currentUser} />}>
+            <Route path="/" element={<Template currentUser={currentUser} />}>npm stat
               <Route key={route.path} path={route.path} element={route.element} />
             </Route>
           ) : (

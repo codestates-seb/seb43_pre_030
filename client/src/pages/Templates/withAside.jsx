@@ -10,13 +10,11 @@ const StyledContainer = styled.div`
 
 function withAside(Component) {
   return function ({ children, rest }) {
-    return (
-      <StyledContainer>
-        <Component {...rest}>{children}</Component>
-        <Aside />
-      </StyledContainer>
-    );
-  };
+  return <StyledContainer>
+      <Component {...rest}>{children}</Component>
+      <Aside />
+    </StyledContainer>
+};
 }
 
 export default withAside;
