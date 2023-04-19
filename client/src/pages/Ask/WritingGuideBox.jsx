@@ -17,18 +17,25 @@ const WritingGuideBoxContainer = styled.div`
   }
 `
 
-function WritingGuideBox({title, content}) {
+function WritingGuideBox({el}) {
+  let title;
+  let content;
+  let currentForm;
 
+  if(el !== undefined){
+    ({ title, content } = el);
+  } 
 
   return (
     <WritingGuideBoxContainer>
       <h1>{title}</h1>
-      {content.split(`\n`).map((el, index) => (
-        <div key={index}>{el}</div>
-      ))}
+      {content ? content.split(`\n`).map((innerEl, index) => (
+        <div key={index}>{innerEl}</div>
+      ))
+      : null
+      }
     </WritingGuideBoxContainer>
   );
 }
 
 export default WritingGuideBox;
-
