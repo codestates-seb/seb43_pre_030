@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const MenuContainer = styled.li`
@@ -47,20 +47,22 @@ const MenuContainer = styled.li`
   }
 `;
 
-function NavMenu({ menuFoucs, setFocus, menuIdx, el }) {
+function NavMenu({ menuFocus, setFocus, menuIdx, el }) {
   const navigation = useNavigate();
   // 클릭된 매뉴의 값을 menuFoucs에 적용하는 함수
-  const setActive = e => {
-    setFocus(e.target.value);
+  console.log(menuFocus);
+  const setActive = () => {
+    navigation(el.route);
+    setFocus(el.route);
   };
 
   return (
     // 클릭 시 menuFoucs에 따라서 액티브 클래스 적용
     <MenuContainer
       value={menuIdx}
-      className={`${menuIdx === menuFoucs && el.isContent ? "active" : ""} ${el.isContent ? "content" : "title"}`}
-      onClick={e => {
-        setActive(e);
+      className={`${el.route === menuFocus && el.isContent ? "active" : ""} ${el.isContent ? "content" : "title"}`}
+      onClick={_ => {
+        setActive();
       }}
     >
       <span>{el.title}</span>
