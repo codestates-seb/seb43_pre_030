@@ -1,31 +1,42 @@
-import Aside from "../layouts/Aside/Aside";
-import Nav from "../layouts/Nav/Nav";
 import NotFound from "../pages/404/NotFound";
 import MainPage from "../pages/Main/MainPage";
+import Register from "../pages/Register/Register";
+import Login from "../pages/Login/Login";
+import AskPage from "../pages/Ask/AskPage";
+import withFooter from "../pages/Templates/withFooter";
+import QuestionPage from "../pages/Questions/QuestionPage";
+
+const AskPageWithFooter = withFooter(AskPage);
 
 export const routerData = [
   {
     path: "/",
-    element: (
-      <>
-        <Nav />
-        <MainPage />
-        <Aside />
-      </>
-    ),
+    element: <MainPage />,
+    needTemplate: true,
   },
   {
     path: "/questions",
-    element: (
-      <>
-        <Nav />
-        <MainPage />
-        <Aside />
-      </>
-    ),
+    element: <QuestionPage />,
+    needTemplate: true,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    needTemplate: false,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+    needTemplate: false,
+  },
+  {
+    path: "/ask",
+    element: <AskPageWithFooter />,
+    needTemplate: false,
   },
   {
     path: "*",
     element: <NotFound />,
+    needTemplate: false,
   },
 ];

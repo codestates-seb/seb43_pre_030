@@ -14,7 +14,9 @@ export const GlobalStyles = createGlobalStyle`
     --aside-bg-bold: #fcf2d4; // 진한 사이드 배경 색상
     --aside-bg-light: #fdf6e2; // 연한 사이드 배경 색상
     --border-default-color: #d6d9dc; // 보더 기본 색상
-
+    --login-page-bg-color: #f1f2f3; // 로그인 페이지 배경 색상
+    --input-focus-shadow: rgba(244,248,251,1); // 인풋 포커스 쉐도우 색상
+    --input-focus-border: rgba(0,116,204,1); // 인풋 포커스 보더 색상
 
     //questionPage 색상
     --question-page-bg-color: #F8F9F9;// questionPage 배경 색상
