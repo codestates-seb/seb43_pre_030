@@ -35,7 +35,7 @@ const SocialButton = styled.button`
   }
 
   > span {
-    font-size: 0.785rem;
+    font-size: 0.9rem;
     margin-left: 0.4rem;
   }
 `;
@@ -47,11 +47,11 @@ function SocialLogin() {
         <FcGoogle style={{ width: "1.2rem", height: "1.2rem" }} />
         <span>Log in with Google</span>
       </SocialButton>
-      <SocialButton bg="#2f3337" color="#fff">
+      <SocialButton bg="var(--btn-github-bg-color)" color="#fff">
         <AiFillGithub style={{ width: "1.2rem", height: "1.2rem" }} />
         <span>Log in with GitHub</span>
       </SocialButton>
-      <SocialButton bg="#385499" color="#fff">
+      <SocialButton bg="var(--btn-facebook-bg-color)" color="#fff">
         <AiFillFacebook style={{ width: "1.2rem", height: "1.2rem" }} />
         <span>Log in with Facebook</span>
       </SocialButton>
