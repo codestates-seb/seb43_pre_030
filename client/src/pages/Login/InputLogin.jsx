@@ -12,8 +12,8 @@ const StyledInput = css`
   font-weight: 400;
 
   &:focus {
-    border-color: ${props => props.border || "var(--input-focus-border)"};
-    box-shadow: 0rem 0rem 0rem 0.25rem ${props => props.shadow || "var(--input-focus-shadow)"};
+    border-color: ${props => props.focusBorder || "var(--input-focus-border)"};
+    box-shadow: 0rem 0rem 0.08rem 0.13rem ${props => props.shadow || "var(--input-focus-shadow)"};
   }
 `;
 
