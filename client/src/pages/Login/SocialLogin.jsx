@@ -35,7 +35,7 @@ const SocialButton = styled.button`
   }
 
   > span {
-    font-size: 0.785rem;
+    font-size: 0.9rem;
     margin-left: 0.4rem;
   }
 `;
