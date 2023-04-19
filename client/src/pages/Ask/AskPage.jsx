@@ -40,28 +40,38 @@ function AskPage() {
       title:`Title`,
       content:`Be specific and imagine you’re asking a question to another person.`,
       placeholder:`e.g. ls there an R function for finding the index of an element in a vector?`,
-      isDone:true,
+      isDoneYet:false,
+      isButtonBlocked:false,
+      isFormBlocked:false,
     },
     { component: ContentForm,
       title:`What are the details of your problem?`,
       content:`Introduce the problem and expand on what you put in the title. Minimum 20 characters.`,
-      isDone:false,
+      isDoneYet:true,
+      isButtonBlocked:true,
+      isFormBlocked:true,
     },
     { component: ContentForm,
       title:`What did you try and what were you expecting?`,
       content:`Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters.`,
-      isDone:false,
+      isDoneYet:true,
+      isButtonBlocked:true,
+      isFormBlocked:true,
     },
     { component: VersatileForm,
       title:`Tags`,
       content:`Add up to 5 tags to describe what your question is about. Start typing to see suggestions.`,
       placeholder:`e.g (.net json vba)`,
-      isDone:false,
+      isDoneYet:true,
+      isButtonBlocked:true,
+      isFormBlocked:true,
     },
     { component: VersatileForm,
       title:`Review questions already on Stack Overflow to see if your question is a duplicate.`,
       content:`Clicking on these questions will open them in a new tab for you to review. Your progress here will be saved so you can come back and continue.`,
-      isDone:false,
+      isDoneYet:true,
+      isButtonBlocked:true,
+      isFormBlocked:true,
     },   
   ]);
 
@@ -78,10 +88,11 @@ function AskPage() {
     },
     clickButton: (idx) => {
       const newInfoArr = [...infoArr];
-      newInfoArr[idx].isDone = false; 
-      newInfoArr[idx+1].isDone = true; 
+      newInfoArr[idx].isDoneYet = true; 
+      newInfoArr[idx+1].isDoneYet = false; 
+      newInfoArr[idx+1].isFormBlocked = false; 
+
       setInfoArr(newInfoArr); 
-    
     }
   }
 
@@ -95,8 +106,6 @@ function AskPage() {
           return <Component key={idx} idx={idx} el={el} askController={askController}/>;
         })}
         
-        <WritingGuideBox />
-
       </QuestionPageContainer>
     </QuestionPageWapper>
   );

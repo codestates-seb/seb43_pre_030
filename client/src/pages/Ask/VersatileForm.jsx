@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import TipBox from "./TipBox";
 import VersatileBlueButton from "./VersatileBlueButton";
+import ContentBlocker from "./ContentBlocker";
 
 const VersatileFormContainer = styled.div`
   position: relative;
@@ -18,13 +19,13 @@ const VersatileFormContainer = styled.div`
     margin-bottom: 0.4rem;
   }
 
-  div{
+  .div{
     font-size: 0.8rem;
-    margin-bottom: 0.4rem;
   }
 
   input{
     width: 100%;
+    margin: 0.6rem 0 0.6rem 0;
     padding: 0.4rem 0.5rem;
     border-radius: 0.2rem;
     border: 1px solid #BABFC4;
@@ -35,6 +36,11 @@ const VersatileFormContainer = styled.div`
     border: 1px solid #59A4DE;
     box-shadow: 0 0 0 0.2rem #59a4de30;
   }
+
+  .buttonDiv{
+    display: inline-block;
+    position: relative;
+  }
 `
 
 
@@ -43,7 +49,10 @@ function VersatileForm({idx, el, askController}) {
   let title;
   let content;
   let placeholder;
-  let isDone;
+  let isDoneYet;
+  let isButtonBlocked;
+  let isFormBlocked;
+
   let tipTitle;
   let tipContent;
 
@@ -53,7 +62,8 @@ function VersatileForm({idx, el, askController}) {
 
 
   if(el !== undefined){
-    ({ title, content, placeholder, isDone, tipTitle, tipContent } = el);
+    ({ title, content, placeholder, isDoneYet, isButtonBlocked, isFormBlocked,
+      tipTitle, tipContent } = el);
     ({ currentForm, focusForm} = askController);
   } 
 
@@ -65,10 +75,13 @@ function VersatileForm({idx, el, askController}) {
   }
 
   // 버튼 제어 
-  const nextButton = isDone ? <VersatileBlueButton text='Next' idx={idx} askController={askController}/> : null;
+  const nextButton = !isDoneYet ? <VersatileBlueButton text='Next' idx={idx} askController={askController}/> : null;
+  const formBlocker = isFormBlocked ? <ContentBlocker /> : null;
+  const buttonBlocker = isButtonBlocked ? <ContentBlocker /> : null;
 
   return (
     <VersatileFormContainer>
+      {formBlocker}
       <h1>{title}</h1>
       {content ? content.split(`\n`).map((innerEl, index) => (
         <div key={index}>{innerEl}</div>
@@ -82,7 +95,10 @@ function VersatileForm({idx, el, askController}) {
       {currentForm === idx ? (
         <>
           <TipBox tipTitle={tipTitle} tipContent={tipContent} />
-          {nextButton}
+          <div className="buttonDiv">
+            {buttonBlocker}
+            {nextButton}
+          </div>
         </>
       ) : null}    
   </VersatileFormContainer>

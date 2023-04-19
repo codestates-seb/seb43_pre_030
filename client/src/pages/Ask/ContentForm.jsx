@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import VersatileBlueButton from "./VersatileBlueButton";
 import TipBox from "./TipBox";
+import ContentBlocker from "./ContentBlocker";
 
 const ContentFormContainer = styled.div`
   position: relative;
@@ -20,12 +21,12 @@ const ContentFormContainer = styled.div`
 
   div{
     font-size: 0.8rem;
-    margin-bottom: 0.4rem;
   }
 
   textarea{
     width: 100%;
     height: 200px;
+    margin: 0.6rem 0 0.6rem 0;
     padding: 0.4rem 0.5rem;
     border-radius: 0.2rem;
     border: 1px solid #BABFC4;
@@ -36,28 +37,41 @@ const ContentFormContainer = styled.div`
     border: 1px solid #59A4DE;
     box-shadow: 0 0 0 0.2rem #59a4de30;
   }
+
+  .buttonDiv{
+    display: inline-block;
+    position: relative;
+  }
 `
 
 
 function ContentForm({idx, el, askController}) {
   let title;
   let content;
-  let isDone;
+  let isDoneYet;
+  let isButtonBlocked;
+  let isFormBlocked;
+
   let tipTitle;
   let tipContent;
+
   let currentForm;
   let focusForm;
 
   if(el !== undefined){
-    ({ title, content, isDone, tipTitle, tipContent } = el);
+    ({ title, content, isDoneYet, isButtonBlocked, isFormBlocked,
+      tipTitle, tipContent } = el);
     ({ currentForm, focusForm } = askController)
   } 
 
   // 버튼 제어 
-  const nextButton = isDone ? <VersatileBlueButton text='Next' idx={idx} askController={askController} /> : null;
+  const nextButton = !isDoneYet ? <VersatileBlueButton text='Next' idx={idx} askController={askController} /> : null;
+  const formBlocker = isFormBlocked ? <ContentBlocker /> : null;
+  const buttonBlocker = isButtonBlocked ? <ContentBlocker /> : null;
 
   return (
     <ContentFormContainer>
+      {formBlocker}
       <h1>{title}</h1>
       {content ? content.split(`\n`).map((innerEl, index) => (
         <div key={index}>{innerEl}</div>
@@ -65,10 +79,14 @@ function ContentForm({idx, el, askController}) {
       : null
       }
       <textarea onFocus={()=>{focusForm(idx)}}> </textarea>
+
       {currentForm === idx ? (
         <>
           <TipBox tipTitle={tipTitle} tipContent={tipContent} />
-          {nextButton}
+          <div className="buttonDiv">
+            {buttonBlocker}
+            {nextButton}
+          </div>
         </>
       ) : null}        
     </ContentFormContainer>

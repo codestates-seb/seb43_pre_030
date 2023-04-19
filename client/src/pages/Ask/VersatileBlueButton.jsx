@@ -9,7 +9,6 @@ const VersatileBlueButtonContainer = styled.div`
     border-radius: 0.2rem;
     color: #fff;
     padding: 0.7rem;
-    margin-top: 0.7rem;
     cursor: pointer;
   }
 `
@@ -24,8 +23,6 @@ function VersatileBlueButton({text, idx, askController}) {
   if(askController !== undefined){
     ({infoArr, clickForm, clickButton } = askController);
   } 
-
-  console.log(infoArr[idx].isDone)
 
   return (
     <VersatileBlueButtonContainer>
