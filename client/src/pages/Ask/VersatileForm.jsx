@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TipBox from "./TipBox";
-
+import VersatileBlueButton from "./VersatileBlueButton";
 
 const VersatileFormContainer = styled.div`
   position: relative;
@@ -38,38 +38,54 @@ const VersatileFormContainer = styled.div`
 `
 
 
-function VersatileForm({title, content, placeholder, tipTitle, tipContent}) {
+function VersatileForm({idx, el, askController}) {
+
+  let title;
+  let content;
+  let placeholder;
+  let isDone;
+  let tipTitle;
+  let tipContent;
+
+  let currentForm;
+  let focusForm;
+
+
+
+  if(el !== undefined){
+    ({ title, content, placeholder, isDone, tipTitle, tipContent } = el);
+    ({ currentForm, focusForm} = askController);
+  } 
 
   const [QuestionFormValue, setQuestionFormValue] = useState(``)
-  const [isFocusIn, setFocus] = useState(false)
 
+  // 폼 value 관리 state
   const setFormValue = (e) => {
     setQuestionFormValue(e.target.value)
-    console.log(tipTitle)
-    console.log(tipContent)
   }
 
-  const changeOnFocus = () => {
-    setFocus(true)
-  }
-
-  const changeOnBlur = () => {
-    setFocus(false)
-  }
-
+  // 버튼 제어 
+  const nextButton = isDone ? <VersatileBlueButton text='Next' idx={idx} askController={askController}/> : null;
 
   return (
     <VersatileFormContainer>
-      {isFocusIn ? <TipBox tipTitle={tipTitle} tipContent={tipContent} />
-      : null}
       <h1>{title}</h1>
-      {content.split(`\n`).map((el, idx) => (
-        <div key={idx}>{el}</div>
-      ))}
+      {content ? content.split(`\n`).map((innerEl, index) => (
+        <div key={index}>{innerEl}</div>
+      ))
+      : null
+      }
       <input type="text" placeholder={placeholder}
       value={QuestionFormValue} onChange={(e) => (setFormValue(e))} 
-      onFocus={() => {changeOnFocus()}} onBlur={() => {changeOnBlur()}}/>
-    </VersatileFormContainer>
+      onFocus={() => {focusForm(idx)}} />
+
+      {currentForm === idx ? (
+        <>
+          <TipBox tipTitle={tipTitle} tipContent={tipContent} />
+          {nextButton}
+        </>
+      ) : null}    
+  </VersatileFormContainer>
   );
   
 }
