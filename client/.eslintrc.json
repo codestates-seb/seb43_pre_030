@@ -19,15 +19,22 @@
     "jsx-a11y/click-events-have-key-events": "off", // click 이벤트가 있으면 키보드 이벤트가 반드시 있어야 하는 규칙 해제
     "jsx-a11y/no-static-element-interactions": "off", // 인터렉티브한 태그가 아닌데 인터렉티브 이벤트가 있으면 안되는 규칙 해제
     "react/no-array-index-key": "off", // key로 index를 주면 안되는 규칙 해제
-    "jsx-a11y/label-has-associated-control": ["error", {
-      "required": {
-        "some": ["nesting", "id"]
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
       }
-    }],
-    "jsx-a11y/label-has-for": ["error", {
-      "required": {
-        "some": ["nesting", "id"]
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
       }
-    }] // lagel태그와 input태그의 id값 동기화 시, 요구되는 중첩 id문제 해제 
+    ], // lagel태그와 input태그의 id값 동기화 시, 요구되는 중첩 id문제 해제
+    "no-else-return": "off"
   }
 }

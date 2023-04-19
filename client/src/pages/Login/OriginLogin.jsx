@@ -63,8 +63,10 @@ const StyledLoginForm = styled.div`
 function OriginLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [emailValid, setEmailValid] = useState(true); // 유효한게 true
   const [pwValid, setPwValid] = useState(true);
+
   const [isEmailEmpty, setIsEmailEmpty] = useState(false); // 비어있는게 true
   const [isPwEmpty, setIsPwEmpty] = useState(false);
   // 로그인 성공/실패 상태
@@ -72,12 +74,12 @@ function OriginLogin() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (User.email && User.password) {
-      navigate("/");
-      setLoginFailed(true);
-    }
-  }, [User.email, User.password]);
+  // useEffect(() => {
+  //   if (User.email && User.password) {
+  //     navigate("/");
+  //     setLoginFailed(true);
+  //   }
+  // }, [User.email, User.password]);
 
   // 유저 정보 확인 요청
   const confirmUserInfoHander = () => {
@@ -86,12 +88,16 @@ function OriginLogin() {
     const regexPw = /^[A-Za-z\d!@#$%^&*()_+~\-=]{8,40}$/;
 
     // email이 비어있으면
+    // early return
     if (email === "") {
       setIsEmailEmpty(true);
+      return;
     } else if (!regexEmail.test(email)) {
       // email 유효하지 않으면
       setIsEmailEmpty(false);
       setEmailValid(false); // 유효하지 않게
+      setEmail("");
+      setPassword("");
     }
 
     // password가 비어있으면
@@ -101,22 +107,28 @@ function OriginLogin() {
       // pw 유효하지 않으면
       setIsEmailEmpty(false);
       setPwValid(false); // 유효하지 않게
+      setEmail("");
+      setPassword("");
     }
 
+    const found = User.find(a => a.email === email);
+
     // 유효한 email,pw이고 입력값이 User정보와 같다면
-    if (regexEmail.test(email) && regexPw.test(password) && email === User.email && password === User.password) {
+    if (found && password === found.password) {
       setIsEmailEmpty(false);
       setIsPwEmpty(false);
       setEmailValid(true);
       setPwValid(true);
       navigate("/"); // 메인페이지 이동
-    } else if (email !== User.email) {
+    } else if (!found) {
+      setEmail("");
+      setPassword("");
       console.log("The email is not a valid email address.");
-    } else if (password !== User.password) {
+    } else if (password !== found.password) {
+      setEmail("");
+      setPassword("");
       console.log("The password is not a valid password.");
     }
-    setEmail("");
-    setPassword("");
   };
 
   return (
