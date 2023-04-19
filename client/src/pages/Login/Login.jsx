@@ -10,6 +10,7 @@ const StyledLoginPage = styled.section`
   height: 100vh;
   display: flex;
   justify-content: center;
+  background-color: var(--login-page-bg-color);
 `;
 
 const StyledLoginWrapper = styled.div`
