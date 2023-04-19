@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "crowwan@naver.com",
+      "password": "aaaaaaaa",
+      "name": "crowwan",
+      "reputation": 1,
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "text",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "updated_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "question_id": 1,
+      "answer_id": 1
+    }
+  ],
+  "question": [
+    {
+      "id": 1,
+      "title": "title",
+      "body": "text",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": "bigint",
+      "tag": "javascript"
+    }
+  ],
+  "answer": [
+    {
+      "id": 1,
+      "body": "text",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "updated_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "question_id": 1
+    }
+  ]
+}
