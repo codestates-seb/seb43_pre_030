@@ -98,17 +98,20 @@ function OriginLogin() {
       setEmailValid(false); // 유효하지 않게
       setEmail("");
       setPassword("");
+      return;
     }
 
     // password가 비어있으면
     if (password === "") {
       setIsPwEmpty(true);
+      return;
     } else if (!regexPw.test(password)) {
       // pw 유효하지 않으면
       setIsEmailEmpty(false);
       setPwValid(false); // 유효하지 않게
       setEmail("");
       setPassword("");
+      return;
     }
 
     const found = User.find(a => a.email === email);
