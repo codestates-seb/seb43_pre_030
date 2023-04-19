@@ -34,8 +34,8 @@ const StyledOriginLoginWrapper = styled.div`
 `;
 
 // 로그인 폼 컨테이너
-const StyledLoginForm = styled.form`
-  margin-top: 0.7rem;
+const StyledLoginForm = styled.div`
+  margin-top: 0.5rem;
   div {
     width: 100%;
     margin-top: 0.4rem;
@@ -43,7 +43,7 @@ const StyledLoginForm = styled.form`
     flex-direction: column;
 
     label {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
       margin: 0.5rem 0;
     }
@@ -63,50 +63,53 @@ const StyledLoginForm = styled.form`
 function OriginLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const [emailValid, setEmailValid] = useState(false);
-  const [pwValid, setPwValid] = useState(false);
-  const [emailEmpty, setEmailEmpty] = useState(false);
-  const [pwEmpty, setPwEmpty] = useState(false);
+  const [emailValid, setEmailValid] = useState(true); // 유효한게 true
+  const [pwValid, setPwValid] = useState(true);
+  const [isEmailEmpty, setIsEmailEmpty] = useState(false); // 비어있는게 true
+  const [isPwEmpty, setIsPwEmpty] = useState(false);
+  // 로그인 성공/실패 상태
+  const [loginFailed, setLoginFailed] = useState(false);
 
   const navigate = useNavigate();
 
-  // Email 유효성 검사
-  const handleEmail = e => {
-    setEmail(e.target.value);
-    const regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    // email이 비어있으면
-    if (email.length === 0) setEmailEmpty(true);
-    // email이 유효하면
-    if (regex.test(email)) {
-      setEmailValid(true);
-    } else {
-      setEmailValid(false);
-    }
-  };
-
-  // PW 유효성 검사
-  const handlePw = e => {
-    setPassword(e.target.value);
-    const regex = /^[A-Za-z\d!@#$%^&*()_+~\-=]{8,40}$/;
-    // email이 비어있으면
-    if (password.length === 0) setPwEmpty(true);
-    // pw가 유효하면
-    if (regex.test(password)) {
-      setPwValid(true);
-    } else {
-      setPwValid(false);
-    }
-  };
-
-  // 유저 정보 확인 이벤트
-  const confirmUserInfoHander = () => {
-    // 로그인 성공시 메인페이지로 이동
-    if (email === User.email && password === User.password) {
+  useEffect(() => {
+    if (User.email && User.password) {
       navigate("/");
-    } else if (emailEmpty || pwEmpty) {
-      setEmailEmpty(true);
-      setPwEmpty(true);
+      setLoginFailed(true);
+    }
+  }, [User.email, User.password]);
+
+  // 유저 정보 확인 요청
+  const confirmUserInfoHander = () => {
+    // 정규식
+    const regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    const regexPw = /^[A-Za-z\d!@#$%^&*()_+~\-=]{8,40}$/;
+
+    // email이 비어있으면
+    if (email === "") {
+      setIsEmailEmpty(true);
+    } else if (!regexEmail.test(email)) {
+      // email 유효하지 않으면
+      setIsEmailEmpty(false);
+      setEmailValid(false); // 유효하지 않게
+    }
+
+    // password가 비어있으면
+    if (password === "") {
+      setIsPwEmpty(true);
+    } else if (!regexPw.test(password)) {
+      // pw 유효하지 않으면
+      setIsEmailEmpty(false);
+      setPwValid(false); // 유효하지 않게
+    }
+
+    // 유효한 email,pw이고 입력값이 User정보와 같다면
+    if (regexEmail.test(email) && regexPw.test(password) && email === User.email && password === User.password) {
+      setIsEmailEmpty(false);
+      setIsPwEmpty(false);
+      setEmailValid(true);
+      setPwValid(true);
+      navigate("/"); // 메인페이지 이동
     } else if (email !== User.email) {
       console.log("The email is not a valid email address.");
     } else if (password !== User.password) {
@@ -121,15 +124,35 @@ function OriginLogin() {
       <StyledLoginForm>
         <div className="email">
           <label htmlFor="email">Email</label>
-          <LoginInput id="email" name="email" type="email" value={email} onChange={handleEmail} />
-          {emailEmpty && <p>Email cannot be empty.</p>}
-          {!emailValid && email.length > 0 && <p>The email is not a valid email address.</p>}
+          <LoginInput
+            id="email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            border={isEmailEmpty || loginFailed ? "var(--primary-color)" : null}
+            focusBorder={isEmailEmpty || loginFailed ? "var(--primary-color)" : null}
+            shadow={isEmailEmpty || loginFailed ? "var(--primary-color)" : null}
+          />
+          {isEmailEmpty && <p>Email cannot be empty.</p>}
+          {!emailValid && <p>The email is not a valid email address.</p>}
+          {loginFailed && <p>The email or password is incorrect.</p>}
         </div>
         <div className="password">
           <label htmlFor="password">Password</label>
-          <LoginInput id="password" name="password" type="password" value={password} onChange={handlePw} />
-          {pwEmpty && <p>Password cannot be empty.</p>}
-          {!pwValid && password.length > 0 && <p>The password must be at least 8 characters long.</p>}
+          <LoginInput
+            id="password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            border={isPwEmpty || loginFailed ? "var(--primary-color)" : null}
+            focusBorder={isPwEmpty || loginFailed ? "var(--primary-color)" : null}
+            shadow={isPwEmpty || loginFailed ? "var(--primary-color)" : null}
+          />
+          {isPwEmpty && <p>Password cannot be empty.</p>}
+          {!pwValid && <p>The password must be at least 8 characters long.</p>}
+          {loginFailed && <p>The email or password is incorrect.</p>}
         </div>
         <div className="button">
           <ButtonLogin onClick={confirmUserInfoHander}>Log in</ButtonLogin>
