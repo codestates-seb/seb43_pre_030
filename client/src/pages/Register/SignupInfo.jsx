@@ -5,15 +5,56 @@ import identicon1 from "../../images/icon1.jpeg";
 
 
 const StyledSignupSection =styled.div`
-  .main{
+  #main{
     box-shadow: 0 10px 24px hsla(0,0%,0%,0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
-    padding: 24px
-    
+    padding: 24px;
+    background-color: white;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 100%;
   }
   .text{
     font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .inputLI{
+    font-size: 15px;
+    margin: 2px 0;
+    padding: 0 2px;
+    display: grid;
+  }
+  .inputText{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    padding: 24px;
+  }
+  .img{
+    margin-top: 10px;
+    margin-bottom: 6px;
+    padding-left: 30px;
+  }
+  .mainFooter{
+    font-size: 12px;
+    margin-top: 32px;
+  }
+  .gotoLoginWrapper{
+    display: flex;
+    justify-content: center;
+  }
+  .gotoLogin{
+    margin-left: 10px;
+  }
+  .textError{
+    font-size: 12px;
+    color: red;
+    margin: 2px 0;
+    padding: 2px;
   }
 `
+
 
 function SignupInfo() {
   const navigate = useNavigate();
@@ -142,7 +183,6 @@ function SignupInfo() {
     }
   }
 
-  // 동적으로 tailwindcss 추가
   const borderColor = {
     true: "w-full px-2 py-1 border rounded border-danger-500",
     false: "w-full px-2 py-1 border rounded border-soGray-light",
@@ -150,51 +190,52 @@ function SignupInfo() {
 
   return (
     <StyledSignupSection>
-    <div className="main" style={{ width: "18rem", height: "650px" }}>
-      
-    <div className="flex-col w-1/3 my-5 ml-2 mr-10 align-middle justify-items-center">
-      <div className="px-5 pt-3 pb-10 bg-white rounded-md drop-shadow-xl">
+    <div id="main" >
+      <div className="mainContainer">
         <form className="form" onSubmit={onSubmit}>
-          <div className="flex-col justify-center mx-2 my-3">
-            <div className="font-bold">Display name</div>
+            <div className="inputLI">Display name
+            <div className="inputText">
             <input type="text" onChange={handleUserName} className={borderColor[!!usernameError]} />
             {usernameError && (
-              <p className="text-xxs text-danger-500">4자 이상부터 가능하며 특수 문자가 없어야 합니다.</p>
-            )}
-          </div>
-          <div className="flex-col justify-center mx-2 my-3">
-            <div className="font-bold">Email</div>
+              <p className="textError">4자 이상부터 가능하며 특수 문자가 없어야 합니다.</p>
+            )}</div></div>
+            <div className="inputLI">Email
+            <div className="inputText">
             <input type="Email" value={email} onChange={handleEmail} className={borderColor[!!emailError]} />
-            {emailError && <p className="text-xxs text-danger-500">이메일 형식에 맞지 않습니다.</p>}
+            {emailError && <p className="textError">이메일 형식에 맞지 않습니다.</p>}</div>
           </div>
-          <div className="flex-col justify-center mx-2 my-3">
-            <div className="font-bold">Password</div>
+            <div className="inputLI">Password
+            <div className="inputText">
             <input
               type="password"
               value={password}
               onChange={handlePassword}
-              className={borderColor[!!passwordError]}
-            />
+              className={borderColor[!!passwordError]}/>
             {passwordError && (
-              <p className="asdacav">영어와 숫자를 최소 1개 포함하여 8자 이상이어야합니다.</p>
-            )}
+              <p className="textError">영어와 숫자를 최소 1개 포함하여 8자 이상이어야합니다.</p>
+            )}</div></div>
             <p className="text" >
               Passwords must contain at least eight characters, including at least 1 letter and 1 number.
             </p>
-          </div>
+          <div className="img">
           <img src={identicon1} ref={defaultImage} alt="default-profile" />
-          <button type="submit" className="justify-center w-full mt-10 so-button-primary">
-                      Sign up
-          </button>        
+          </div>
+          <button type="submit" style={{ width: "268px", height: "38px" }}>
+            Sign up
+          </button>
+          <div className="mainFooter">
+          By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy
+          </div>
         </form>
       </div>
     </div>
-    </div>
-  <div className="flex justify-center my-5">
-    <p className="mx-1">Already have an account?</p>
-     <a href="./login" className="text-secondary-600 hover:text-secondary-300">
-      Log in
+  <div className="gotoLoginWrapper">
+    <p className="mx-1">Already have an account?  </p>
+    <div className="gotoLogin">
+     <a href="./login" className="gtl">
+          Log in
      </a>
+     </div>
   </div>
     </StyledSignupSection>
   );

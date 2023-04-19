@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import SignupInfo from "./SignupInfo";
 import SOInfo from "./SoInfo";
-import SocialLogin from "../Login/SocialLogin";
+import SocialSignup from "./SocialSignup";
 
 const StyledSoinfoSection =styled.div`
    .body{
+    width: 100%;
+    max-width: 1264px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +16,13 @@ const StyledSoinfoSection =styled.div`
 
    .container{
     margin-top: 57px;
+    width: 100%;
+    height: 1024px;
+    background-color: rgb(248, 249, 249);
+    display: flex;
+    min-width: auto;
+    -webkit-box-pack: center;
+    justify-content: center;
    }
    .socialLogo{
     width: 20rem;
@@ -20,6 +30,7 @@ const StyledSoinfoSection =styled.div`
 
    .info{
     padding: 0 48px 128px 0;
+    align-items: center;
    }
 `
 
@@ -32,8 +43,8 @@ function Signup() {
                       
         <SOInfo className="info"/>
 
-        <div className="formContainer" style={{ width: "268px", height: "650px" }}>
-        <SocialLogin className="socialLogo" />
+        <div className="formContainer" style={{ width: "316px", height: "100%" }}>
+        <SocialSignup className="socialLogo" />
         <SignupInfo />
         </div>
       </div>
