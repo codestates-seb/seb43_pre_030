@@ -1,16 +1,6 @@
-import Nav from "../../layouts/Nav/Nav";
-import Aside from "../../layouts/Aside/Aside";
+import withNav from "./withNav";
+import withAside from "./withAside";
 
-function withSidebar(Component) {
-  return function ({ children, ...rest }) {
-    return (
-      <>
-        <Nav />
-        <Component {...rest}>{children}</Component>
-        <Aside />
-      </>
-    );
-  };
-}
+const withSidebar = Component => withNav(withAside(Component));
 
 export default withSidebar;
