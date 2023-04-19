@@ -18,10 +18,9 @@ function VersatileBlueButton({text, idx, askController}) {
 
   let clickForm;
   let clickButton;
-  let infoArr;
 
   if(askController !== undefined){
-    ({infoArr, clickForm, clickButton } = askController);
+    ({ clickForm, clickButton } = askController);
   } 
 
   return (

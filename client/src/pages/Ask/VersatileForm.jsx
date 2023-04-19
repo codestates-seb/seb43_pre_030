@@ -46,33 +46,18 @@ const VersatileFormContainer = styled.div`
 
 function VersatileForm({idx, el, askController}) {
 
-  let title;
-  let content;
-  let placeholder;
-  let isDoneYet;
-  let isButtonBlocked;
-  let isFormBlocked;
+  // 받아온 프롭스 구조분해 할당
+  const { title, content, placeholder, isDoneYet, isButtonBlocked, isFormBlocked, tipTitle, tipContent } = el;
+  const { currentForm, focusForm} = askController;
 
-  let tipTitle;
-  let tipContent;
-
-  let currentForm;
-  let focusForm;
-
-
-
-  if(el !== undefined){
-    ({ title, content, placeholder, isDoneYet, isButtonBlocked, isFormBlocked,
-      tipTitle, tipContent } = el);
-    ({ currentForm, focusForm} = askController);
-  } 
-
-  const [QuestionFormValue, setQuestionFormValue] = useState(``)
 
   // 폼 value 관리 state
+  const [QuestionFormValue, setQuestionFormValue] = useState(``)
+  
   const setFormValue = (e) => {
     setQuestionFormValue(e.target.value)
   }
+
 
   // 버튼 제어 
   const nextButton = !isDoneYet ? <VersatileBlueButton text='Next' idx={idx} askController={askController}/> : null;

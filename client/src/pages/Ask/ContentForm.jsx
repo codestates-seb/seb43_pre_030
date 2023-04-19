@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MDEditor from '@uiw/react-md-editor';
 import styled from "styled-components";
 import VersatileBlueButton from "./VersatileBlueButton";
 import TipBox from "./TipBox";
@@ -23,7 +24,7 @@ const ContentFormContainer = styled.div`
     font-size: 0.8rem;
   }
 
-  textarea{
+  .MDEditor{
     width: 100%;
     height: 200px;
     margin: 0.6rem 0 0.6rem 0;
@@ -33,7 +34,7 @@ const ContentFormContainer = styled.div`
     outline: none;
   }
 
-  textarea:focus{
+  .MDEditor:focus{
     border: 1px solid #59A4DE;
     box-shadow: 0 0 0 0.2rem #59a4de30;
   }
@@ -46,23 +47,20 @@ const ContentFormContainer = styled.div`
 
 
 function ContentForm({idx, el, askController}) {
-  let title;
-  let content;
-  let isDoneYet;
-  let isButtonBlocked;
-  let isFormBlocked;
 
-  let tipTitle;
-  let tipContent;
+  // 받아온 프롭스 구조분해 할당
+  const { title, content, isDoneYet, isButtonBlocked, isFormBlocked, tipTitle, tipContent} = el;
+  const { currentForm, focusForm, changeWord } = askController;
 
-  let currentForm;
-  let focusForm;
 
-  if(el !== undefined){
-    ({ title, content, isDoneYet, isButtonBlocked, isFormBlocked,
-      tipTitle, tipContent } = el);
-    ({ currentForm, focusForm } = askController)
-  } 
+  // 폼 value 관리 state
+  const [QuestionFormValue, setQuestionFormValue] = useState(``)
+
+  const setFormValue = (newValue) => {
+    setQuestionFormValue(newValue)
+    changeWord(idx, QuestionFormValue)
+  }
+
 
   // 버튼 제어 
   const nextButton = !isDoneYet ? <VersatileBlueButton text='Next' idx={idx} askController={askController} /> : null;
@@ -78,7 +76,7 @@ function ContentForm({idx, el, askController}) {
       ))
       : null
       }
-      <textarea onFocus={()=>{focusForm(idx)}}> </textarea>
+      <MDEditor className="MDEditor" value={QuestionFormValue} onChange={setFormValue} onFocus={()=>{focusForm(idx)}} />
 
       {currentForm === idx ? (
         <>
