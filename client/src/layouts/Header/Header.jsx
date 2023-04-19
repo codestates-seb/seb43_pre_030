@@ -19,11 +19,9 @@ const StyledWrapper = styled.div`
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  min-width: 85vw;
+  width: 97.2307692rem;
+  max-width: 97vw;
   gap: 1rem;
-  @media screen and (max-width: 780px) {
-    min-width: 95vw;
-  }
 `;
 function Header({ logIn, currentUser }) {
   return (
