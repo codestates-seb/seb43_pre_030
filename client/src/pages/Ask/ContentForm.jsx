@@ -76,7 +76,10 @@ function ContentForm({idx, el, askController}) {
       ))
       : null
       }
-      <MDEditor className="MDEditor" value={QuestionFormValue} onChange={setFormValue} onFocus={()=>{focusForm(idx)}} />
+      
+      <div data-color-mode="light">
+        <MDEditor className="MDEditor" value={QuestionFormValue} onChange={setFormValue} onFocus={()=>{focusForm(idx)}} />
+      </div>
 
       {currentForm === idx ? (
         <>
