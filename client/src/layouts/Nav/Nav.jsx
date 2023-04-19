@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import styled from "styled-components";
 import NavMenu from "./NavMenu";
 
@@ -31,24 +31,22 @@ const StyledStickyBox = styled.div`
 function Nav() {
   // 메뉴 목록
   const menus = [
-    { isContent: false, title: `PUBLIC`, route: ``, emoji: ``, contentsNav: true },
-    { isContent: true, title: `Home`, route: ``, emoji: `` },
-    { isContent: true, title: `Questions`, route: ``, emoji: `` },
-    { isContent: true, title: `Tag`, route: ``, emoji: `` },
-    { isContent: true, title: `Users`, route: ``, emoji: `` },
-    { isContent: true, title: `Companies`, route: ``, emoji: `` },
-
-    { isContent: false, title: `COLLECTIVES`, route: ``, emoji: `` },
-    { isContent: true, title: `Explore Collectives`, route: ``, emoji: `` },
-
-    { isContent: false, title: `TEAMS`, route: ``, emoji: `` },
-    { isContent: true, title: `Create free Team`, route: ``, emoji: `` },
+    { isContent: false, title: `PUBLIC`, route: `/404`, emoji: ``, contentsNav: true },
+    { isContent: true, title: `Home`, route: `/`, emoji: `` },
+    { isContent: true, title: `Questions`, route: `/questions`, emoji: `` },
+    { isContent: true, title: `Tag`, route: `/tags`, emoji: `` },
+    { isContent: true, title: `Users`, route: `/users`, emoji: `` },
+    { isContent: true, title: `Companies`, route: `/companies`, emoji: `` },
+    { isContent: false, title: `COLLECTIVES`, route: `/404`, emoji: `` },
+    { isContent: true, title: `Explore Collectives`, route: `/404`, emoji: `` },
+    { isContent: false, title: `TEAMS`, route: ``, emoji: `/404` },
+    { isContent: true, title: `Create free Team`, route: `/404`, emoji: `` },
   ];
 
   const menusLength = menus.length;
 
   // 클릭 이벤트 제어 state
-  const [menuFoucs, setFocus] = useState(1);
+  const [menuFocus, setFocus] = useState(menus[1].route);
 
   return (
     <NavContainer>
@@ -59,7 +57,7 @@ function Nav() {
               menusLength={menusLength}
               key={idx}
               menuIdx={idx}
-              menuFoucs={menuFoucs}
+              menuFocus={menuFocus}
               setFocus={setFocus}
               el={el}
             />

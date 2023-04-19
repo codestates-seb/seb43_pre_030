@@ -16,11 +16,15 @@ function App() {
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
       <Routes>
-        <Route path="/" element={<Template currentUser={currentUser} />}>
-          {routerData.map(route => (
+        {routerData.map(route =>
+          route.needTemplate ? (
+            <Route path="/" element={<Template currentUser={currentUser} />}>
+              <Route key={route.path} path={route.path} element={route.element} />
+            </Route>
+          ) : (
             <Route key={route.path} path={route.path} element={route.element} />
-          ))}
-        </Route>
+          )
+        )}
       </Routes>
     </>
   );

@@ -20,3 +20,7 @@ function withAside(Component) {
 }
 
 export default withAside;
+
+// withAside(Login) -> 어사이드가 붙은 컴포넌트가 리턴
+
+// 컴포지션 -> 합성 : 자바스크립트 프로그래밍에서 함수형 프로그래밍 :
