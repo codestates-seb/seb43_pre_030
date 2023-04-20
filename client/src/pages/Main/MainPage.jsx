@@ -16,7 +16,7 @@ function MainPage() {
       const { data } = await axios("http://localhost:3001/question");
       dispatch(setData(data));
     })();
-  });
+  }, []);
   const onPageChange = el => {
     setCurPage(el);
   };
