@@ -3,25 +3,37 @@ import styled from "styled-components";
 import WritingGuideBox from "./WritingGuideBox";
 import VersatileForm from "./VersatileForm";
 import ContentForm from './ContentForm';
+import askBackground from './askBackground.svg'
 
-const QuestionPageWapper = styled.main`
-  min-height: 100vh;
+const QuestionPageWrapper = styled.main`
   background-color: var(--question-page-bg-color);
 `;
 
 const QuestionPageContainer = styled.main`
-
-  //해더 마진
   margin: 0 auto;
   max-width: 1264px;
   width: 100%;
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  padding: 5rem 1.5rem 5rem 1.5rem;
+  line-height: 1.2rem;
+  font-size: 0.9rem;
 
-  & > h1 {
-    margin-top: 70px;
-    font-size: 2rem;
-    font-weight: bold;
+  .askHeader{
+    height: 9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    img{
+      height: 100%;
+    }
   }
+
+
 `;
 
 
@@ -76,6 +88,8 @@ function AskPage() {
     { component: VersatileForm,
       title:`Review questions already on Stack Overflow to see if your question is a duplicate.`,
       content:`Clicking on these questions will open them in a new tab for you to review. Your progress here will be saved so you can come back and continue.`,
+      tipTitle:`Make sure we don’t already have an answer for your question`,
+      tipContent:`Stack Overflow is a huge database of knowledge.\nPlease make sure your question isn’t already answered before posting, or your question might be closed as a duplicate.`,
       isDoneYet:true,
       isButtonBlocked:false,
       isFormBlocked:true,
@@ -95,16 +109,21 @@ function AskPage() {
 
     // Next를 클릭했을 때 다음 오는 폼을 현재 폼으로 변경하는 함수
     clickForm: (idx) => {
-      setCurrentForm(idx + 1)
+      // 마지막 인덱스를 넘어가면 처리하지 않음
+      if(idx+2 <= infoArr.length){
+        setCurrentForm(idx + 1)
+      }
     },
 
     // Next를 눌렸을 때 다음 폼의 버튼을 생성하고, 폼을 활성화 시키는 함수 
     clickButton: (idx) => {
       const newInfoArr = [...infoArr];
-      newInfoArr[idx].isDoneYet = true; 
-      newInfoArr[idx+1].isDoneYet = false; 
-      newInfoArr[idx+1].isFormBlocked = false; 
-
+      // 마지막 인덱스를 넘어가면 처리하지 않음
+      if(idx+2 <= infoArr.length){
+        newInfoArr[idx].isDoneYet = true;
+        newInfoArr[idx+1].isDoneYet = false; 
+        newInfoArr[idx+1].isFormBlocked = false; 
+      }
       setInfoArr(newInfoArr); 
     },
 
@@ -113,24 +132,27 @@ function AskPage() {
       if((idx === 1 || 2 || 3) && QuestionFormValue.length >= 15){
         const newInfoArr = [...infoArr];
         newInfoArr[idx].isButtonBlocked = false; 
-
         setInfoArr(newInfoArr); 
       }
     }
   }
 
   return (
-    <QuestionPageWapper>
+    <QuestionPageWrapper>
       <QuestionPageContainer>
-        <h1>Ask a public question</h1>
-        
+        <div className='askHeader'>
+          <h1>Ask a public question</h1>
+          <img src={askBackground} alt="askBackground" />
+        </div>
+
+    
         {infoArr.map((el, idx) => {
           const Component = el.component;
           return <Component key={idx} idx={idx} el={el} askController={askController}/>;
         })}
         
       </QuestionPageContainer>
-    </QuestionPageWapper>
+    </QuestionPageWrapper>
   );
 }
 
