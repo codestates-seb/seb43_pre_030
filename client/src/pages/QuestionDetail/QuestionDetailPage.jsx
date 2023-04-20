@@ -35,26 +35,24 @@ function QuestionDetailPage() {
   // 답변글 id에 따른 데이터 요청 주소
   const url2 = `http://localhost:3001/answer/${id}`;
 
-  // 서버에서 받아온 질문 데이터 상태
+  // 서버에서 받아온 질문과 답변 데이터 상태
   const [questionData, setQuestionData] = useState({});
+  const [answerData, setAnswerData] = useState({});
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       setIsPending(true);
-      try {
-        const { data } = await axios(url);
-        console.log(data);
-        setQuestionData({ ...data });
-      } catch (err) {
-        console.error(err);
-      }
-      setIsPending(false);
-    };
-    fetchData();
-  }, [url]);
+      const res = await axios(url); // 질문데이터
+      const res2 = await axios(url2); // 답변데이터
 
-  console.log(questionData);
+      const resQuestion = res.data;
+      const resAnswer = res2.data;
+      setQuestionData(resQuestion);
+      setAnswerData(resAnswer);
+    })();
+    setIsPending(false);
+  }, [url, url2]);
 
   return (
     <>
@@ -65,22 +63,31 @@ function QuestionDetailPage() {
             title={questionData.title}
             createAt={questionData.created_at}
             updateAt={questionData.modified_at}
-            tags={questionData.tag}
           />
           {/* 내용 */}
           <QuestionContentSection
+            type="question"
             id={questionData.id}
             userId={questionData.user_id}
             body={questionData.body}
+            tag={questionData.tag}
             createdAt={questionData.created_at}
-            updatedAt={questionData.modified_at}
+            modifiedAt={questionData.modified_at}
           />
           {/* 답변들 */}
-          {questionData.answer.length > 0 && (
+          {questionData.answer && (
             <>
-              <AnswersHeader count={questionData.answer} />
-              {questionData.answers.map((answer, idx) => (
-                <QuestionContentSection key={idx} />
+              <AnswersHeader count={answerData} />
+              {questionData.answers.map(answer => (
+                <QuestionContentSection
+                  type="answer"
+                  key={answer.id}
+                  id={answerData.id}
+                  userId={answerData.user_id}
+                  body={answerData.body}
+                  createAt={answerData.createAt}
+                  modifiedAt={answerData.modifiedAt}
+                />
               ))}
             </>
           )}
