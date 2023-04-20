@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import AskPage from "../pages/Ask/AskPage";
 import withFooter from "../pages/Templates/withFooter";
 import QuestionPage from "../pages/Questions/QuestionPage";
+import QuestionDetailPage from "../pages/QuestionDetail/QuestionDetailPage";
 
 const AskPageWithFooter = withFooter(AskPage);
 
@@ -17,6 +18,11 @@ export const routerData = [
   {
     path: "/questions",
     element: <QuestionPage />,
+    needTemplate: true,
+  },
+  {
+    path: "/questions/:id",
+    element: <QuestionDetailPage />,
     needTemplate: true,
   },
   {
