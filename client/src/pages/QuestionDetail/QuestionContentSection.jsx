@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import UserInfo from "./UserInfo";
 // 잘문 컨텐츠 전체 내용 래퍼
 const StyledContentWrapper = styled.div`
   display: flex;
@@ -21,6 +21,7 @@ const StyledUtilsWrapper = styled.div`
   }
 `;
 
+// Util버튼들 프레임
 const UtilsOptions = styled.div`
   display: flex;
   color: var(--font-color-light);
@@ -29,8 +30,6 @@ const UtilsOptions = styled.div`
 
   button {
     height: 1rem;
-    margin-top: 0.125rem;
-    padding-top: 0.4rem;
     color: var(--font-color-light);
     font-size: 0.7rem;
     background-color: transparent; // 투명하게
@@ -40,7 +39,7 @@ const UtilsOptions = styled.div`
 `;
 
 // 컨텐츠 내용
-function QuestionContentSection({ id, userId, body, createAt, modifiedAt }) {
+function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt }) {
   return (
     <StyledContentWrapper>
       <div className="vote">vote</div>
@@ -54,7 +53,7 @@ function QuestionContentSection({ id, userId, body, createAt, modifiedAt }) {
             <button type="button">Delete</button>
           </UtilsOptions>
           {modifiedAt && <span className="modified-date">edited {modifiedAt}</span>}
-          <div className="user-info">유저정보</div>
+          <UserInfo type={type} userId={userId} createAt={createAt} />
         </StyledUtilsWrapper>
       </div>
     </StyledContentWrapper>
