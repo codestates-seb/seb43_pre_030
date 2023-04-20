@@ -37,6 +37,9 @@
       }
     ], // lagel태그와 input태그의 id값 동기화 시, 요구되는 중첩 id문제 해제
     "no-else-return": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+
+    // 인터벌 함수를 실행할 때 생기는 useState변수 이름 중첩 애러 해제
+    "no-shadow":"off"
   }
 }

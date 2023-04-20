@@ -34,6 +34,7 @@ const StyledUser =styled.div`
     border-color: black;
     back
  }
+ 
  .header{
   display: flex;
   align-items: center;

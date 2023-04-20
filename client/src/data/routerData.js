@@ -8,6 +8,7 @@ import QuestionPage from "../pages/Questions/QuestionPage";
 import User from "../pages/User/User";
 import withNav from "../pages/Templates/withNav";
 import withPageWrapper from "../pages/Templates/withPageWrapper";
+// import LandingPage from "../pages/Landing/LandingPage";
 
 const AskPageWithFooter = withFooter(AskPage);
 const UserPageWithNavFooter = withFooter(withPageWrapper(withNav(User)));
