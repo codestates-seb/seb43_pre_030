@@ -32,9 +32,8 @@ const StyledUser =styled.div`
     right: 0;
     top: 0;
     border-color: black;
-    back
  }
- 
+
  .header{
   display: flex;
   align-items: center;

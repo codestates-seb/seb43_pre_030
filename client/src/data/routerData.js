@@ -8,7 +8,7 @@ import QuestionPage from "../pages/Questions/QuestionPage";
 import User from "../pages/User/User";
 import withNav from "../pages/Templates/withNav";
 import withPageWrapper from "../pages/Templates/withPageWrapper";
-// import LandingPage from "../pages/Landing/LandingPage";
+import QuestionDetailPage from "../pages/QuestionDetail/QuestionDetailPage";
 
 const AskPageWithFooter = withFooter(AskPage);
 const UserPageWithNavFooter = withFooter(withPageWrapper(withNav(User)));
@@ -22,6 +22,11 @@ export const routerData = [
   {
     path: "/questions",
     element: <QuestionPage />,
+    needTemplate: true,
+  },
+  {
+    path: "/questions/:id",
+    element: <QuestionDetailPage />,
     needTemplate: true,
   },
   {
