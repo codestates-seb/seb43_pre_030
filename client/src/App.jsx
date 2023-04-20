@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Template from "./pages/Templates/Template";
 import Header from "./layouts/Header/Header";
-import { routerData } from "./data/routerData";
 import LandingPage from "./pages/Landing/LandingPage";
+import { routerData } from "./data/routerData";
 import store from "./app/store";
 
 function App() {
