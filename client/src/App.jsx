@@ -4,6 +4,7 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 import Template from "./pages/Templates/Template";
 import Header from "./layouts/Header/Header";
 import { routerData } from "./data/routerData";
+import LandingPage from "./pages/Landing/LandingPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
@@ -15,7 +16,7 @@ function App() {
     <>
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
-      <Routes>
+      {/* <Routes>
         {routerData.map(route =>
           route.needTemplate ? (
             <Route path="/" element={<Template currentUser={currentUser} />}>
@@ -25,7 +26,8 @@ function App() {
             <Route key={route.path} path={route.path} element={route.element} />
           )
         )}
-      </Routes>
+      </Routes> */}
+      <LandingPage />
     </>
   );
 }
