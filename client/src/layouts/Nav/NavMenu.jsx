@@ -50,7 +50,6 @@ const MenuContainer = styled.li`
 function NavMenu({ menuFocus, setFocus, menuIdx, el }) {
   const navigation = useNavigate();
   // 클릭된 매뉴의 값을 menuFoucs에 적용하는 함수
-  console.log(menuFocus);
   const setActive = () => {
     navigation(el.route);
     setFocus(el.route);
