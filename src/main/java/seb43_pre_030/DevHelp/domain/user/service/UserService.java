@@ -2,93 +2,107 @@ package seb43_pre_030.DevHelp.domain.user.service;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import seb43_pre_030.DevHelp.domain.user.dto.UserDto;
-import seb43_pre_030.DevHelp.domain.user.entity.Reputation;
-import seb43_pre_030.DevHelp.domain.user.entity.Role;
+import org.springframework.transaction.annotation.Transactional;
 import seb43_pre_030.DevHelp.domain.user.entity.User;
 import seb43_pre_030.DevHelp.domain.user.repository.UserRepository;
-import seb43_pre_030.DevHelp.exception.UserAlreadyExistsException;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-@Slf4j
 @Service
+@Slf4j
 public class UserService {
 
-    /*
-    회원가입 및 로그인기능
-    프로필 관리 기능
-    질문과 답변 기능
-    태그 기능
-    검색 기능 : 사용자가 특정 키워드로 검색
-    */
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils customAuthorityUtils;
+    private final ConfirmationTokenService confirmationTokenService;
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, CustomAuthorityUtils customAuthorityUtils, ConfirmationTokenService confirmationTokenService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.customAuthorityUtils = customAuthorityUtils;
+        this.confirmationTokenService = confirmationTokenService;
     }
 
-    //회원가입기능
+    public User createUser(User user) throws MessagingException {
 
-    public UserDto createUser(UserDto userDto) throws UserAlreadyExistsException {
-        if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
-            throw new UserAlreadyExistsException("User with username " +  userDto.getUsername() + " already exists");
+        validateDuplicateUser(user.getEmail());
+
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
+        List<String> roles = new ArrayList<>(customAuthorityUtils.createRoles(user.getEmail()));
+        user.setRoles(roles);
+
+        User createdUser = userRepository.saveAndFlush(user);
+
+        Long userId = user.getUserId();
+        Optional<String> optional = Optional.ofNullable(user.getDisplayName());
+        if (optional.isEmpty()) {
+            user.setDisplayName("user"+userId);
         }
 
-        User user = new User();
-        user.setUsername(userDto.getUsername());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(passwordEncoder.encode(userDto.getEncryptedPassword()));
-        user.setRoles(Collections.singletonList(Role.ROLE_USER.name()));
-        user.setCreatedAt(LocalDateTime.now());
-        user.setModifiedAt(LocalDateTime.now());
+        String profileURI = "https://source.boringavatars.com/beam/120/" + userId + "?colors=66FFFF,8CBFE6,B380CC,D940B3,FF0099";
+        user.setProfileImage(profileURI);
 
+        userRepository.save(user);
 
-        Reputation reputation = new Reputation();
-        reputation.setAmount(0);
-        reputation.setUser(user);
+        confirmationTokenService.createEmailConfirmationToken(user.getUserId(), user.getEmail());
 
-        user.setReputation(reputation);
+        return createdUser;
+    }
 
-        User savedUser = userRepository.save(user);
-        return UserDto.Response.builder()
-                .userId(savedUser.getUserId())
-                .displayName(savedUser.getDisplayName())
-                .email(savedUser.getEmail())
-                .profileImage(savedUser.getProfileImage())
-                .reputation(savedUser.getReputation())
-                .build();
+    public User updateUser(User user) {
 
+        User findUser = verifyUser(user.getUserId());
+
+        Optional.ofNullable(user.getDisplayName())
+                .ifPresent(findUser::setDisplayName);
+
+        return userRepository.save(findUser);
     }
 
 
-    /*
+    @Transactional(readOnly = true)
+    public Page<User> getUserList(int page) {
+        return userRepository.findAll(PageRequest.of(page,36, Sort.by(Sort.Direction.DESC, "reputation")));
+    }
 
-    public UserDto createUser(UserDto userDto) throws UserAlreadyExistsException {
-        if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
-            throw new UserAlreadyExistsException("User with username " + userDto.getUsername() + " already exists");
+    public User getUser(Long userId) {
+
+        Optional<User> optional = userRepository.findById(userId);
+        return optional.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USERS_NOT_VALID));
+    }
+
+    private void validateDuplicateUser(String email) {
+
+        Optional<User> optional = userRepository.findByEmail(email);
+        if (optional.isPresent()) {
+            throw new BusinessLogicException(ExceptionCode.USERS_EXISTS_EMAIL);
         }
-        User user = new User();
-        user.setUsername(userDto.getUsername());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setPoints(0);
-        user.setRoles(Collections.singleton(Role.USER));
-        User savedUser = userRepository.save(user);
-        r
+    }
 
-     */
+    public void confirmEmail(String token) {
+        ConfirmationToken findConfirmationToken = confirmationTokenService.findByIdAndExpired(token);
+        Optional<User> optionalUser = userRepository.findById(findConfirmationToken.getUserId());
 
+        User user = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USERS_NOT_VALID));
 
+        confirmationTokenService.useToken(findConfirmationToken);
+        user.setEmailVerified(true);
+        userRepository.save(user);
+    }
 
+    public User verifyUser(Long userId) {
+        Optional<User> optional = userRepository.findById(userId);
+        return optional.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USERS_NOT_VALID));
+    }
 }

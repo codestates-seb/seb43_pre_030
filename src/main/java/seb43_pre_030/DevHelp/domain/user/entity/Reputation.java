@@ -1,37 +1,57 @@
 package seb43_pre_030.DevHelp.domain.user.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
-@Entity
 @Getter
-@Setter
-@NoArgsConstructor
-@Table(name = "REPUTATIONS")
-public class Reputation {
+@AllArgsConstructor
+public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reputationId;
+    @Getter
+    @AllArgsConstructor
+    public static class Post{
 
-    @OneToOne(mappedBy = "reputation")
-    private User user; // 둘의 연관관계를 매핑함.
+        private String displayName;
 
-    @Column(nullable = false)
-    private int amount = 1;  // 첫 시작시에 평판량 1로 초기화.
+        @NotBlank(message ="Email cannot be empty.")
+        @Email
+        private String email;
 
+        @NotBlank(message = "Password cannot be empty")
+        private String password;
 
-    public void setUser(User user){  // User 객체와 Reputation 객체의 양방향 참조하기 위한 메서드
-        this.user = user;
-        if (user.getReputation() != this){
-            user.setReputation(this);
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class Patch{
+        private Long userId;
+        private String displayName;
+
+        public void setUserId(long userId) {
+            this.userId = userId;
         }
     }
 
+    @Getter
+    @AllArgsConstructor
+    public static class Response{
+        private long userId;
+        private String email;
+        private String displayName;
+        private String profileImage;
+        private Reputation reputation;
 
-
+        public int getReputation() {
+            return reputation.getAmount();
+        }
+    }
 }
+
