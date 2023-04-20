@@ -8,12 +8,17 @@ const WritingGuideBoxContainer = styled.div`
   border-radius: 0.2rem;
   background-color:#EBF4FA;
   padding: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 0.9rem;
+  font-size: 1rem;
 
   h1{
     font-size: 1.5rem;
     font-weight: normal;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 1024px){
+    width: 100%;
   }
 `
 

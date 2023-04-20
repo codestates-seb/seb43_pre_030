@@ -5,6 +5,9 @@ import VersatileBlueButton from "./VersatileBlueButton";
 import TipBox from "./TipBox";
 import ContentBlocker from "./ContentBlocker";
 
+const ContentFormWrapper = styled.div`
+  position: relative;
+`
 const ContentFormContainer = styled.div`
   position: relative;
   width: 70%;
@@ -15,13 +18,12 @@ const ContentFormContainer = styled.div`
   margin-top: 1rem;
 
   h1{
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bolder;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
   }
 
   div{
-    font-size: 0.8rem;
   }
 
   .MDEditor{
@@ -42,6 +44,10 @@ const ContentFormContainer = styled.div`
   .buttonDiv{
     display: inline-block;
     position: relative;
+  }
+
+  @media (max-width: 1024px){
+    width: 100%;
   }
 `
 
@@ -68,29 +74,29 @@ function ContentForm({idx, el, askController}) {
   const buttonBlocker = isButtonBlocked ? <ContentBlocker /> : null;
 
   return (
-    <ContentFormContainer>
-      {formBlocker}
-      <h1>{title}</h1>
-      {content ? content.split(`\n`).map((innerEl, index) => (
-        <div key={index}>{innerEl}</div>
-      ))
-      : null
-      }
-      
-      <div data-color-mode="light">
-        <MDEditor className="MDEditor" value={QuestionFormValue} onChange={setFormValue} onFocus={()=>{focusForm(idx)}} />
-      </div>
+    <ContentFormWrapper>
+      {currentForm === idx ? <TipBox tipTitle={tipTitle} tipContent={tipContent} /> : null}   
+      <ContentFormContainer>
+        {formBlocker}
+        <h1>{title}</h1>
+        {content ? content.split(`\n`).map((innerEl, index) => (
+          <div key={index}>{innerEl}</div>
+        ))
+        : null
+        }
+        
+        <div data-color-mode="light">
+          <MDEditor className="MDEditor" value={QuestionFormValue} onChange={setFormValue} onFocus={()=>{focusForm(idx)}} />
+        </div>
 
-      {currentForm === idx ? (
-        <>
-          <TipBox tipTitle={tipTitle} tipContent={tipContent} />
-          <div className="buttonDiv">
-            {buttonBlocker}
-            {nextButton}
-          </div>
-        </>
-      ) : null}        
-    </ContentFormContainer>
+        {currentForm === idx ? 
+            <div className="buttonDiv">
+              {buttonBlocker}
+              {nextButton}
+            </div>
+        : null}        
+      </ContentFormContainer>
+    </ContentFormWrapper>
   );
 }
 
