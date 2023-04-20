@@ -36,7 +36,7 @@
         }
       }
     ], // lagel태그와 input태그의 id값 동기화 시, 요구되는 중첩 id문제 해제
-    "no-else-return": "off"
-
+    "no-else-return": "off",
+    "consistent-return": "off"
   }
 }
