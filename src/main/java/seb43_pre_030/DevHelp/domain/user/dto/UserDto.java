@@ -5,14 +5,41 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import seb43_pre_030.DevHelp.domain.user.entity.Reputation;
+import seb43_pre_030.DevHelp.domain.user.entity.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class UserDto {
+
+    private long userId;
+    private String username;
+    private String encryptedPassword;
+    private String email;
+    private String profileImage;
+    private List<String> roles ;
+    private Reputation reputation;
+
+
+
+
+    public static UserDto fromEntity(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setUserId(user.getUserId());
+        userDto.setUsername(user.getUsername());
+        userDto.setEmail(user.getEmail());
+        userDto.setUsername(user.getUsername());
+        userDto.setProfileImage(user.getProfileImage());
+        userDto.setReputation(user.getReputation());
+        return userDto;
+    }
+
+
 
     @Getter
     @AllArgsConstructor

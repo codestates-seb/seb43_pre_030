@@ -21,5 +21,7 @@ public interface UserRepository extends JpaRepository <User, Long> {
 
     Optional<User> findById(Long id); // 데이터에서 id값에 해당하는 사용자를 찾아 그 정보를 optional<user>로 감까서 전달하기.
 
+    // findById 메소드는 기본적으로 이미 Optional로 반환하기 때문에 Optional로 감싸지 않아도 됩니다.
+    // User findById(Long id);
 
 }
