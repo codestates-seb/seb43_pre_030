@@ -39,6 +39,7 @@ function getDays(dateObj) {
       return `${days} days ago`;
     }
   }
+  return false;
 }
 // 서브 헤더(작성날짜, 업데이트날짜, 조회수정보)
 function QuestionSubHeader({ createAt, updateAt, views }) {
