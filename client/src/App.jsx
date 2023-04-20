@@ -16,8 +16,10 @@ function App() {
     <>
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
-      {/* <Routes>
-        {routerData.map(route =>
+      <Routes>
+        {!currentUser ? <Route path="/" element={<LandingPage />} />
+        :
+        routerData.map(route =>
           route.needTemplate ? (
             <Route path="/" element={<Template currentUser={currentUser} />}>
               <Route key={route.path} path={route.path} element={route.element} />
@@ -26,8 +28,7 @@ function App() {
             <Route key={route.path} path={route.path} element={route.element} />
           )
         )}
-      </Routes> */}
-      <LandingPage />
+      </Routes>
     </>
   );
 }
