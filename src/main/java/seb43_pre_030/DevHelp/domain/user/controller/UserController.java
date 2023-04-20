@@ -1,6 +1,7 @@
 package seb43_pre_030.DevHelp.domain.user.controller;
 
 
+import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -8,10 +9,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import seb43_pre_030.DevHelp.auth.PrincipalDetails;
 import seb43_pre_030.DevHelp.domain.user.dto.UserDto;
 import seb43_pre_030.DevHelp.domain.user.entity.Reputation;
 import seb43_pre_030.DevHelp.domain.user.entity.User;
+import seb43_pre_030.DevHelp.domain.user.mapper.UserMapper;
 import seb43_pre_030.DevHelp.domain.user.service.UserService;
+import seb43_pre_030.DevHelp.utils.UriUtil;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;

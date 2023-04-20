@@ -3,6 +3,10 @@ package seb43_pre_030.DevHelp.exception;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
 @Getter
 public class ErrorResponse {
     private final int status;
@@ -21,4 +25,3 @@ public class ErrorResponse {
         return new ErrorResponse(httpStatus.value(), httpStatus.getReasonPhrase());
     }
 }
-

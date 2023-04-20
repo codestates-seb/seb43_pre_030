@@ -1,6 +1,7 @@
 package seb43_pre_030.DevHelp.domain.user.service;
 
 
+import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,8 +9,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import seb43_pre_030.DevHelp.auth.CustomAuthorityUtils;
+import seb43_pre_030.DevHelp.auth.mail.ConfirmationToken;
+import seb43_pre_030.DevHelp.auth.mail.ConfirmationTokenService;
 import seb43_pre_030.DevHelp.domain.user.entity.User;
 import seb43_pre_030.DevHelp.domain.user.repository.UserRepository;
+import seb43_pre_030.DevHelp.exception.BusinessLogicException;
+import seb43_pre_030.DevHelp.exception.ExceptionCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +56,7 @@ public class UserService {
             user.setDisplayName("user"+userId);
         }
 
-        String profileURI = "https://source.boringavatars.com/beam/120/" + userId + "?colors=66FFFF,8CBFE6,B380CC,D940B3,FF0099";
+        String profileURI = "https://source.boringavatars.com/beam" + userId + "?colors=5F545C,EB7072,F5BA90,F5E2B8,A2CAA5";
         user.setProfileImage(profileURI);
 
         userRepository.save(user);

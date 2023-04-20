@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import seb43_pre_030.DevHelp.audit.Auditable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
