@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Template from "./pages/Templates/Template";
 import Header from "./layouts/Header/Header";
 import { routerData } from "./data/routerData";
 import LandingPage from "./pages/Landing/LandingPage";
+import store from "./app/store";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
@@ -13,7 +15,7 @@ function App() {
   };
 
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
       <Routes>
@@ -29,7 +31,7 @@ function App() {
           )
         )}
       </Routes>
-    </>
+    </Provider>
   );
 }
 export default App;
