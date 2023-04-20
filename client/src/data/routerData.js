@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import AskPage from "../pages/Ask/AskPage";
 import withFooter from "../pages/Templates/withFooter";
 import QuestionPage from "../pages/Questions/QuestionPage";
+import LandingPage from "../pages/Landing/LandingPage";
 
 const AskPageWithFooter = withFooter(AskPage);
 
