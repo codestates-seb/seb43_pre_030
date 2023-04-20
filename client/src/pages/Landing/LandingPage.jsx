@@ -229,8 +229,8 @@ function LandingPage(){
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setContent((mainContent) => {
-        const nextContent = mainContent + 1;
+      setContent(prev => {
+        const nextContent = prev + 1;
         if (nextContent >= contentList.length) {
           return 0;
         }
