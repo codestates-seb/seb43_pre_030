@@ -55,7 +55,7 @@ const TagButton = Button({
   fontSize: ".8rem",
 });
 
-function MainItem({ id }) {
+function MainItem({ data }) {
   return (
     <StyledContainer>
       <StyledCountContainer>
@@ -64,24 +64,16 @@ function MainItem({ id }) {
         <div>0 votes</div>
       </StyledCountContainer>
       <StyledContentContainer>
-        <Link to={`/questions/${id}`}>
-          <StyledContentTitle>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium a similique totam hic maiores libero.
-          </StyledContentTitle>
+        <Link to={`/questions/${data.id}`}>
+          <StyledContentTitle>{data.title}</StyledContentTitle>
         </Link>
-        <StyledContentDescription>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, facere aut quam minima expedita, harum
-          architecto minus doloremque blanditiis illo odio voluptatum error mollitia facilis atque? Harum dolor nobis
-          voluptatem. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, facere aut quam minima expedita,
-          harum architecto minus doloremque blanditiis illo odio voluptatum error mollitia facilis atque? Harum dolor
-          nobis voluptatem.
-        </StyledContentDescription>
+        <StyledContentDescription>{data.body}</StyledContentDescription>
         <StyledTagSection>
-          <TagButton>javascript</TagButton>
-          <TagButton>javascript</TagButton>
-          <TagButton>javascript</TagButton>
+          {data.tags.map(tag => (
+            <TagButton>{tag}</TagButton>
+          ))}
         </StyledTagSection>
-        <StyledAuthorSection>username 9765 asked 1 min ago</StyledAuthorSection>
+        <StyledAuthorSection>{data.user_id} 9765 asked 1 min ago</StyledAuthorSection>
       </StyledContentContainer>
     </StyledContainer>
   );
