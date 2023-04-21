@@ -5,8 +5,8 @@ import AnswerForm from "./AnswerForm";
 // Your Answer header
 const YourAnswerHeader = styled.h2`
   margin: 0 0 1rem;
-  font-size: 1rem;
-  padding-top: 1rem;
+  font-size: 2rem;
+  padding: 1rem 1.5rem;
   font-weight: 500;
   line-height: 1.2;
 `;
@@ -16,7 +16,7 @@ function AnswerCreateSection() {
   return (
     <>
       <YourAnswerHeader>Your Answer</YourAnswerHeader>
-      <AnswerForm>markdown</AnswerForm>
+      <AnswerForm />
     </>
   );
 }
