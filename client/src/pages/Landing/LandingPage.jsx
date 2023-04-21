@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import lock from "./1.png";
 import glass from "./2.png";
 import stackOverflow from "./3.svg";
 import forTeams from "./4.svg";
 import Logo from "../../layouts/Header/Logo";
+
+const leftAnimation = keyframes`
+  from{
+    transform: translateX(-40px);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
 
 const LandingPageWrapper = styled.div`
   position: relative;
@@ -117,7 +126,10 @@ const ContentContainer = styled.div`
       color: #fff;
       font-size: 4rem;
       font-weight: bold;
-      span {
+      span.l {
+        animation: ${leftAnimation} 5s;
+      }
+      span.mainContent {
         color: var(--primary-color);
       }
     }
@@ -234,7 +246,7 @@ function LandingPage() {
         }
         return nextContent;
       });
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -262,7 +274,8 @@ function LandingPage() {
           <ContentContainer>
             <div>
               <div className="topContent">
-                Every <span className="mainContant">{contentList[mainContent]}</span> has a
+                <span className="l">Every</span> <span className="mainContent">{contentList[mainContent]}</span>{" "}
+                <span className="r">has a</span>
               </div>
               <div className="bottomContent">tab open to Stack Overflow</div>
             </div>
