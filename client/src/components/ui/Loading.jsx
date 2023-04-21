@@ -17,8 +17,8 @@ const StyledBg = styled.div`
 `;
 
 const LoadingText = styled.div`
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
+  font-size: 4rem;
 `;
 
 // 로딩화면
@@ -26,7 +26,7 @@ function Loading() {
   return (
     <StyledBg>
       <LoadingText>Loading...</LoadingText>
-      <img src={LoadingSpinner} alt="Loading" width="5%" />
+      <img src={LoadingSpinner} alt="Loading" />
     </StyledBg>
   );
 }

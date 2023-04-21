@@ -12,8 +12,9 @@ import Loading from "../../components/ui/Loading";
 const AnswerHeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 1.5rem;
   h2 {
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 500;
   }
 `;
@@ -22,7 +23,7 @@ const AnswerHeaderWrapper = styled.div`
 function AnswersHeader({ count }) {
   return (
     <AnswerHeaderWrapper>
-      <h2>{count > 0 && count + (count === 1 ? "answer" : "answers")}</h2>
+      <h2>{count > 0 && `${count} ${count === 1 ? "answer" : "answers"}`}</h2>
     </AnswerHeaderWrapper>
   );
 }
@@ -31,13 +32,13 @@ function AnswersHeader({ count }) {
 function QuestionDetailPage() {
   const { id } = useParams();
   // 질문글 id에 따른 데이터 요청 주소
-  const url = `http://localhost:3001/question/${id}`;
+  const url = `http://localhost:3001/questions/${id}`;
   // 답변글 id에 따른 데이터 요청 주소
-  const url2 = `http://localhost:3001/answer/${id}`;
+  const url2 = `http://localhost:3001/answers`;
 
   // 서버에서 받아온 질문과 답변 데이터 상태
   const [questionData, setQuestionData] = useState({});
-  const [answerData, setAnswerData] = useState({});
+  const [answerData, setAnswerData] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
@@ -54,15 +55,18 @@ function QuestionDetailPage() {
     setIsPending(false);
   }, [url, url2]);
 
+  console.log(questionData);
+  console.log(answerData);
+
   return (
     <>
       {isPending && <Loading />}
-      {questionData && (
+      {questionData && answerData && (
         <Main>
           <QuestionHeaderSection
             title={questionData.title}
             createAt={questionData.created_at}
-            updateAt={questionData.modified_at}
+            modifiedAt={questionData.modified_at}
           />
           {/* 내용 */}
           <QuestionContentSection
@@ -70,25 +74,27 @@ function QuestionDetailPage() {
             id={questionData.id}
             userId={questionData.user_id}
             body={questionData.body}
-            tag={questionData.tag}
+            tags={questionData.tags}
             createdAt={questionData.created_at}
             modifiedAt={questionData.modified_at}
           />
           {/* 답변들 */}
-          {questionData.answer && (
+          {answerData.length > 0 && (
             <>
-              <AnswersHeader count={answerData} />
-              {questionData.answers.map(answer => (
-                <QuestionContentSection
-                  type="answer"
-                  key={answer.id}
-                  id={answerData.id}
-                  userId={answerData.user_id}
-                  body={answerData.body}
-                  createAt={answerData.createAt}
-                  modifiedAt={answerData.modifiedAt}
-                />
-              ))}
+              <AnswersHeader count={answerData.length} />
+              {answerData.map(answer => {
+                return (
+                  <QuestionContentSection
+                    type="answer"
+                    key={answer.id}
+                    id={answer.id}
+                    userId={answer.user_id}
+                    body={answer.body}
+                    createAt={answer.created_at}
+                    modifiedAt={answer.modified_at}
+                  />
+                );
+              })}
             </>
           )}
           {/* 답변 작성폼 */}
