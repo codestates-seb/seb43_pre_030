@@ -18,8 +18,6 @@ const StyledTopSection = styled.div`
 const StyledBottomSection = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-end;
-  gap: 0.1rem;
 `;
 function HeaderContentSection({ title, children }) {
   return (

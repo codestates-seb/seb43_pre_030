@@ -8,14 +8,15 @@ const MainButton = Button({
   border: "1px solid #BABFC4",
   hoverBg: "#E3E5E8",
 });
+
 const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
 `;
-function MainHeaderSection() {
+function QuestionHeaderSection() {
   return (
-    <HeaderContentSection title="Top Questions">
+    <HeaderContentSection title="All Questions">
       <StyledButtonContainer>
         <MainButton>hottest</MainButton>
         <MainButton>newest</MainButton>
@@ -25,4 +26,4 @@ function MainHeaderSection() {
   );
 }
 
-export default MainHeaderSection;
+export default QuestionHeaderSection;

@@ -45,13 +45,13 @@ export const routerData = [
     needTemplate: false,
   },
   {
-    path: "*",
-    element: <NotFound />,
+    path: "/users",
+    element: <UserPageWithNavFooter />,
     needTemplate: false,
   },
   {
-    path: "/users",
-    element: <UserPageWithNavFooter />,
+    path: "*",
+    element: <NotFound />,
     needTemplate: false,
   },
 ];
