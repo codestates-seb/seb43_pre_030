@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useState } from "react";
 import SearchHint from "./SearchHint";
+import useInput from "../../hooks/useInput";
 
 const StyledInputContainer = styled.div`
   position: relative;
@@ -28,10 +29,14 @@ const StyledInput = styled.input`
   padding: 0.5rem 0.5rem 0.5rem 2.5rem;
 `;
 function SearchBar() {
+  const [valProps, setValue] = useInput("");
+
   const [showHint, setShowHint] = useState(false);
   const onSubmitHandler = e => {
     e.preventDefault();
+    setValue("");
   };
+
   const invertShowState = () => {
     setShowHint(prev => !prev);
   };
@@ -42,7 +47,7 @@ function SearchBar() {
         <div>
           <AiOutlineSearch color="#838c95" />
         </div>
-        <StyledInput placeholder="Search..." onFocus={invertShowState} onBlur={invertShowState} />
+        <StyledInput placeholder="Search..." onFocus={invertShowState} onBlur={invertShowState} {...valProps} />
         {showHint && <SearchHint />}
       </StyledInputContainer>
     </StyledForm>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonLogin } from "./ButtonLogin";
 import { LoginInput } from "./InputLogin";
+import useInput from "../../hooks/useInput";
 
 // dummy user data
 const User = [
@@ -61,8 +62,8 @@ const StyledLoginForm = styled.div`
 `;
 
 function OriginLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailProps, setEmail] = useInput("");
+  const [passwordProps, setPassword] = useInput("");
 
   const [emailValid, setEmailValid] = useState(true); // 유효한게 true
   const [pwValid, setPwValid] = useState(true);
@@ -82,11 +83,12 @@ function OriginLogin() {
   // }, [User.email, User.password]);
 
   // 유저 정보 확인 요청
-  const confirmUserInfoHander = () => {
+  const confirmUserInfoHandler = () => {
     // 정규식
     const regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     const regexPw = /^[A-Za-z\d!@#$%^&*()_+~\-=]{8,40}$/;
-
+    const email = emailProps.value;
+    const password = passwordProps.value;
     // email이 비어있으면
     // early return
     if (email === "") {
@@ -126,11 +128,9 @@ function OriginLogin() {
     } else if (!found) {
       setEmail("");
       setPassword("");
-      console.log("The email is not a valid email address.");
     } else if (password !== found.password) {
       setEmail("");
       setPassword("");
-      console.log("The password is not a valid password.");
     }
   };
 
@@ -143,8 +143,7 @@ function OriginLogin() {
             id="email"
             name="email"
             type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            {...emailProps}
             border={isEmailEmpty || loginFailed ? "var(--primary-color)" : null}
             focusBorder={isEmailEmpty || loginFailed ? "var(--primary-color)" : null}
             shadow={isEmailEmpty || loginFailed ? "var(--primary-color)" : null}
@@ -159,8 +158,7 @@ function OriginLogin() {
             id="password"
             name="password"
             type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            {...passwordProps}
             border={isPwEmpty || loginFailed ? "var(--primary-color)" : null}
             focusBorder={isPwEmpty || loginFailed ? "var(--primary-color)" : null}
             shadow={isPwEmpty || loginFailed ? "var(--primary-color)" : null}
@@ -170,7 +168,7 @@ function OriginLogin() {
           {loginFailed && <p>The email or password is incorrect.</p>}
         </div>
         <div className="button">
-          <ButtonLogin onClick={confirmUserInfoHander}>Log in</ButtonLogin>
+          <ButtonLogin onClick={confirmUserInfoHandler}>Log in</ButtonLogin>
         </div>
       </StyledLoginForm>
     </StyledOriginLoginWrapper>
