@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import TagButton from "../../components/ui/TagButton";
 
 // 태그 박스
 const StyledTagsBlock = styled.div`
@@ -8,6 +9,9 @@ const StyledTagsBlock = styled.div`
   border: 1px solid #c8c8c9;
   border-radius: 0.5rem;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 const StyledTagsTitle = styled.div`
@@ -34,20 +38,6 @@ const StyledTagsContent = styled.div`
     display: flex;
     justify-content: space-evenly;
     padding: 2rem 0;
-    & div {
-      font-size: 1rem;
-      padding: 0.3rem 0.3rem;
-      background-color: #e3ebf4;
-      border-radius: 0.2rem;
-    }
-    & a {
-      font-size: 0.9rem;
-      color: var(--tag-font-color);
-      text-decoration: none;
-    }
-    & a:hover {
-      color: var(--al-color);
-    }
   }
 `;
 
@@ -79,22 +69,8 @@ function TagsBlock() {
       <StyledTagsContent>
         <ul>
           {tagList.map(el => (
-            <div key={el.id}>
-              <a href="/">{el.tagName}</a>
-            </div>
+            <TagButton key={el.id}>{el.tagName}</TagButton>
           ))}
-          {/* <div>
-            <a href="/">javascript</a>
-          </div>
-          <div>
-            <a href="/">nextjs</a>
-          </div>
-          <div>
-            <a href="/">reactjs</a>
-          </div>
-          <div>
-            <a href="/">typescript</a>
-          </div> */}
         </ul>
       </StyledTagsContent>
     </StyledTagsBlock>
