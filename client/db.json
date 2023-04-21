@@ -21,7 +21,7 @@
       "answer_id": 1
     }
   ],
-  "question": [
+  "questions": [
     {
       "id": 1,
       "title": "title",
@@ -122,7 +122,7 @@
       "tags": ["javascript", "react"]
     }
   ],
-  "answer": [
+  "answers": [
     {
       "id": 1,
       "body": "text",
