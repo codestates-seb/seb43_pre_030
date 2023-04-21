@@ -86,13 +86,15 @@ function User() {
 
   const questions = useSelector(s => s.data);
   const dispatch = useDispatch();
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios("http://localhost:3001/users");
-      dispatch(setData(data));
+  
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const { data } = await axios("http://localhost:3001/users");
+  //     dispatch(setData(data));
       
-    })();
-  });
+  //   })();
+  // });
 
   return (
     <StyledUser>
@@ -162,9 +164,7 @@ function User() {
       </div>
 
 
-      {questions.map(question => (
-        <MainItem id={question.id} />
-      ))}
+      {questions && questions.map(question => <MainItem data={question} />)}
      
    </StyledUser>
   );
