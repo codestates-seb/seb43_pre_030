@@ -19,16 +19,25 @@ function App() {
       <GlobalStyles />
       <Header logIn={logIn} currentUser={currentUser} />
       <Routes>
-        {!currentUser ? <Route path="/" element={<LandingPage />} />
-        :
-        routerData.map(route =>
-          route.needTemplate ? (
-            <Route path="/" element={<Template currentUser={currentUser} />}>
-              <Route key={route.path} path={route.path} element={route.element} />
+        {!currentUser ? (
+          <Route path="/" element={<LandingPage />} />
+        ) : (
+          <>
+            (
+            <Route path="/" element={<Template />}>
+              {routerData
+                .filter(route => route.needTemplate)
+                .map(route => (
+                  <Route key={route.path} path={route.path} element={route.element} />
+                ))}
             </Route>
-          ) : (
-            <Route key={route.path} path={route.path} element={route.element} />
-          )
+            {routerData
+              .filter(route => !route.needTemplate)
+              .map(route => (
+                <Route key={route.path} path={route.path} element={route.element} />
+              ))}
+            )
+          </>
         )}
       </Routes>
     </Provider>

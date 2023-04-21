@@ -40,7 +40,7 @@ function HeaderMenu() {
   const [menuDropDown, _, onMenuClick] = useDropDown(false);
   return (
     <StyledMenuContainer>
-      <Link to="/profile">
+      <Link to="/users">
         <AiOutlineUser size="2rem" color="var(--font-color-light)" />
       </Link>
       <StyledWrapper>

@@ -14,7 +14,7 @@ const StyledWrapper = styled.div`
   background-color: #f8f9f9;
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05), 0 2px 8px hsla(0, 0%, 0%, 0.05);
   border-top: 3px solid var(--primary-color);
-  z-index: 10;
+  z-index: 100;
 `;
 const StyledHeader = styled.header`
   display: flex;
