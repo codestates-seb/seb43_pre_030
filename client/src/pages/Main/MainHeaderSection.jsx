@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Button from "../../components/ui/Button";
 import HeaderContentSection from "../../components/HeaderContentSection";
 
@@ -7,14 +8,19 @@ const MainButton = Button({
   border: "1px solid #BABFC4",
   hoverBg: "#E3E5E8",
 });
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
 function MainHeaderSection() {
   return (
     <HeaderContentSection title="Top Questions">
-      <>
+      <StyledButtonContainer>
         <MainButton>hottest</MainButton>
         <MainButton>newest</MainButton>
         <MainButton>oldest</MainButton>
-      </>
+      </StyledButtonContainer>
     </HeaderContentSection>
   );
 }
