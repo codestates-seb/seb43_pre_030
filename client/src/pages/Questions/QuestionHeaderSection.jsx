@@ -1,12 +1,12 @@
-import FilterButtons from "../../components/FilterButtons";
 import HeaderContentSection from "../../components/HeaderContentSection";
+import FilterButtons from "../../components/FilterButtons";
 
-function MainHeaderSection() {
+function QuestionHeaderSection() {
   return (
-    <HeaderContentSection title="Top Questions">
+    <HeaderContentSection title="All Questions">
       <FilterButtons buttons={["hottest", "newest", "oldest"]} />
     </HeaderContentSection>
   );
 }
 
-export default MainHeaderSection;
+export default QuestionHeaderSection;

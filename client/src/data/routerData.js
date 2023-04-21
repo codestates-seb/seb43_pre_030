@@ -5,9 +5,13 @@ import Login from "../pages/Login/Login";
 import AskPage from "../pages/Ask/AskPage";
 import withFooter from "../pages/Templates/withFooter";
 import QuestionPage from "../pages/Questions/QuestionPage";
-import LandingPage from "../pages/Landing/LandingPage";
+import User from "../pages/User/User";
+import withNav from "../pages/Templates/withNav";
+import withPageWrapper from "../pages/Templates/withPageWrapper";
+import QuestionDetailPage from "../pages/QuestionDetail/QuestionDetailPage";
 
 const AskPageWithFooter = withFooter(AskPage);
+const UserPageWithNavFooter = withFooter(withPageWrapper(withNav(User)));
 
 export const routerData = [
   {
@@ -18,6 +22,11 @@ export const routerData = [
   {
     path: "/questions",
     element: <QuestionPage />,
+    needTemplate: true,
+  },
+  {
+    path: "/questions/:id",
+    element: <QuestionDetailPage />,
     needTemplate: true,
   },
   {
@@ -33,6 +42,11 @@ export const routerData = [
   {
     path: "/ask",
     element: <AskPageWithFooter />,
+    needTemplate: false,
+  },
+  {
+    path: "/users",
+    element: <UserPageWithNavFooter />,
     needTemplate: false,
   },
   {

@@ -28,7 +28,7 @@ const LandingPageWrapper = styled.div`
 `
 
 const LandingPageContainer = styled.div`
-  background-color: #3B4045;
+  background-color: #3b4045;
   border-radius: 1rem;
   height: 940px;
   max-width: 1854px;
@@ -58,7 +58,7 @@ const SmallBubbleContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  & > div{
+  & > div {
     margin-top: 2rem;
     max-width: 948px;
     width: 100%;
@@ -66,7 +66,8 @@ const SmallBubbleContainer = styled.div`
     justify-content: center;
   }
 
-  .lSmallBubble, .rSmallBubble{
+  .lSmallBubble,
+  .rSmallBubble {
     padding: 2rem 3rem;
     display: flex;
     flex-direction: column;
@@ -77,48 +78,47 @@ const SmallBubbleContainer = styled.div`
     border-radius: 0.5rem;
     font-size: 1.2rem;
 
-    img{
+    img {
       width: 5rem;
       height: 5rem;
     }
 
-    span{
+    span {
       color: #232629;
       margin: 1rem;
       line-height: 1.5rem;
     }
 
-    button{
+    button {
       border: none;
       border-radius: 0.2rem;
       width: 14rem;
       color: #fff;
-      padding: 0.8rem 2rem; 
+      padding: 0.8rem 2rem;
       margin-bottom: 1rem;
     }
 
-    a{
+    a {
       font-size: 0.8rem;
-      color: #535B60;
+      color: #535b60;
       text-decoration: underline;
     }
   }
 
-  .lSmallBubble{
-    background-color: #FDE3CD;
-    button{
+  .lSmallBubble {
+    background-color: #fde3cd;
+    button {
       background-color: var(--primary-color);
     }
   }
 
-  .rSmallBubble{
-    background-color: #CCE8FE;
-    button{
-      background-color: var(--btn-bg-color)
+  .rSmallBubble {
+    background-color: #cce8fe;
+    button {
+      background-color: var(--btn-bg-color);
     }
   }
-
-`
+`;
 const ContentContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -131,7 +131,7 @@ const ContentContainer = styled.div`
     width: 100%;
     transition: 1s;
 
-    div{
+    div {
       color: #fff;
       font-size: 4rem;
       font-weight: bold;
@@ -145,8 +145,7 @@ const ContentContainer = styled.div`
       }
     }
   }
-
-`
+`;
 const Record = styled.div`
   display: flex;
   justify-content: center;
@@ -156,10 +155,10 @@ const Record = styled.div`
     width: 100%;
     display: flex;
 
-    div{
+    div {
       flex: 1;
       text-align: center;
-      color: #9EA6AC;
+      color: #9ea6ac;
       padding: 0 2rem;
 
       span{
@@ -174,7 +173,7 @@ const Record = styled.div`
       }
     }
   }
-`
+`;
 const BigBubbleContainer = styled.div`
   position: absolute;
   top: 50%;
@@ -186,7 +185,8 @@ const BigBubbleContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  .lBigBubble, .rBigBubble{
+  .lBigBubble,
+  .rBigBubble {
     padding: 2rem 3rem;
     display: flex;
     flex-direction: column;
@@ -199,56 +199,55 @@ const BigBubbleContainer = styled.div`
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05), 0 1rem 2rem rgba(0, 0, 0, 0.05), 0 1rem 3rem rgba(0, 0, 0, 0.1);
 
 
-    img{
+    img {
       width: 100%;
       margin: 4rem 0;
     }
 
-    span{
+    span {
       color: #232629;
       margin: 2rem 0;
       line-height: 1.5rem;
     }
 
-    h1{
+    h1 {
       font-size: 2rem;
       font-weight: bold;
       line-height: 2.5rem;
     }
-    
-    button{
+
+    button {
       border: none;
       border-radius: 0.2rem;
       width: 14rem;
       color: #fff;
-      padding: 0.8rem 2rem; 
+      padding: 0.8rem 2rem;
       margin-bottom: 1rem;
     }
 
-    a{
+    a {
       font-size: 0.8rem;
-      color: #535B60;
+      color: #535b60;
       text-decoration: underline;
     }
-
   }
 
-  .lBigBubble{
-    background-color: #FDE3CD;
-    button{
+  .lBigBubble {
+    background-color: #fde3cd;
+    button {
       background-color: var(--primary-color);
     }
   }
 
-  .rBigBubble{
-    background-color: #CCE8FE;
-    button{
+  .rBigBubble {
+    background-color: #cce8fe;
+    button {
       background-color: var(--btn-bg-color);
       width: auto;
       margin: 0 1rem;
     }
   }
-`
+`;
 
 function LandingPage(){
 
@@ -270,6 +269,15 @@ function LandingPage(){
     <LandingPageWrapper> 
       <LandingPageContainer>
 
+      <ContentContainer>
+        <div>
+          <div className="topContent">
+            <span className="l">Every</span> <span className="mainContent">{contentList[mainContent]}</span>{" "}
+            <span className="r">has a</span>
+          </div>
+          <div className="bottomContent">tab open to Stack Overflow</div>
+        </div>
+      </ContentContainer>
 
       <SmallBubbleContainer>
         <div>
@@ -346,7 +354,7 @@ function LandingPage(){
 
       </LandingPageContainer>
     </LandingPageWrapper>
-  )
+  );
 }
 
 export default LandingPage;

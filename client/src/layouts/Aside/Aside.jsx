@@ -5,12 +5,20 @@ import { BsStackOverflow } from "react-icons/bs";
 import TagsBlock from "./TagsBlock";
 
 // 사이드서브메뉴
+const StyledAsideWrapper = styled.div`
+  padding: 1.5rem 0;
+  @media screen and (max-width: 1200px) {
+    padding: 1.5rem 1.5rem;
+  }
+`;
 const StyledSubMenuBlock = styled.aside`
-  display: block;
+  display: flex;
   margin-top: 1rem;
+  @media screen and (max-width: 1200px) {
+    display: block;
+  }
 
   ul {
-    width: 20rem;
     padding: 0;
     display: block;
     text-align: left;
@@ -26,6 +34,10 @@ const StyledSubMenuBlock = styled.aside`
       padding: 1rem 0.5rem;
       font-size: 0.9rem;
       cursor: pointer;
+
+      @media screen and (max-width: 1200px) {
+        width: 100%;
+      }
 
       > div:first-child {
         margin-right: 1rem;
@@ -50,7 +62,7 @@ const SubMenuHeader = styled.div`
 
 function Aside() {
   return (
-    <div>
+    <StyledAsideWrapper>
       <StyledSubMenuBlock>
         <ul>
           <SubMenuHeader>The Overflow Blog</SubMenuHeader>
@@ -101,7 +113,7 @@ function Aside() {
         </ul>
       </StyledSubMenuBlock>
       <TagsBlock />
-    </div>
+    </StyledAsideWrapper>
   );
 }
 

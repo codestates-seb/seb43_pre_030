@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Button from "../../components/ui/Button";
+import { elapsedText } from "../../utils/elapsedText";
+import TagButton from "../../components/ui/TagButton";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -45,17 +46,10 @@ const StyledAuthorSection = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 0.5rem 1.5rem;
+  color: var(--font-color-light);
 `;
 
-const TagButton = Button({
-  bg: "var(--tag-bg-color)",
-  fontColor: "var(--tag-font-color)",
-  border: "none",
-  hoverBg: "#b3d3ea",
-  fontSize: ".8rem",
-});
-
-function MainItem({ id }) {
+function MainItem({ data }) {
   return (
     <StyledContainer>
       <StyledCountContainer>
@@ -64,24 +58,18 @@ function MainItem({ id }) {
         <div>0 votes</div>
       </StyledCountContainer>
       <StyledContentContainer>
-        <Link to={`/questions/${id}`}>
-          <StyledContentTitle>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium a similique totam hic maiores libero.
-          </StyledContentTitle>
+        <Link to={`/questions/${data.id}`}>
+          <StyledContentTitle>{data.title}</StyledContentTitle>
         </Link>
-        <StyledContentDescription>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, facere aut quam minima expedita, harum
-          architecto minus doloremque blanditiis illo odio voluptatum error mollitia facilis atque? Harum dolor nobis
-          voluptatem. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, facere aut quam minima expedita,
-          harum architecto minus doloremque blanditiis illo odio voluptatum error mollitia facilis atque? Harum dolor
-          nobis voluptatem.
-        </StyledContentDescription>
+        <StyledContentDescription>{data.body}</StyledContentDescription>
         <StyledTagSection>
-          <TagButton>javascript</TagButton>
-          <TagButton>javascript</TagButton>
-          <TagButton>javascript</TagButton>
+          {data.tags.map(tag => (
+            <TagButton>{tag}</TagButton>
+          ))}
         </StyledTagSection>
-        <StyledAuthorSection>username 9765 asked 1 min ago</StyledAuthorSection>
+        <StyledAuthorSection>
+          {data.user_id} 9765 asked {elapsedText(new Date(data.created_at))}
+        </StyledAuthorSection>
       </StyledContentContainer>
     </StyledContainer>
   );

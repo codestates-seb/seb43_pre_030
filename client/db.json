@@ -21,18 +21,108 @@
       "answer_id": 1
     }
   ],
-  "question": [
+  "questions": [
     {
       "id": 1,
       "title": "title",
-      "body": "text",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
       "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
       "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
-      "user_id": "bigint",
-      "tag": "javascript"
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 2,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 3,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 4,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 5,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 6,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 7,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 8,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 9,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 10,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
+    },
+    {
+      "id": 11,
+      "title": "title",
+      "body": "I've worked on an react native application in my mac PC. my colleague cloned my branch to his ubuntu(linux) system and tried to run my react native code in his system but it's throwing errors. is there any changes that we need to do in the code before running the MacOS code in linux . ps (we both use vscode only)\nit throwed this error while running the code in linux pc  => [react-native-gesture-handler] react-native-gesture-handler module was not found, and i installed the module and it is showing the below error \n```\n[react-native-gesture-handler] react-native-gesture-handler module was not found. Make sure you're running your app on the native platform and your code is linked properly (cd ios && pod install && cd ..). while taking ios code on android\n```",
+      "created_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "modified_at": "Wed Apr 19 2023 16:53:12 GMT+0900 (한국 표준시)",
+      "user_id": 1,
+      "tags": ["javascript", "react"]
     }
   ],
-  "answer": [
+  "answers": [
     {
       "id": 1,
       "body": "text",
