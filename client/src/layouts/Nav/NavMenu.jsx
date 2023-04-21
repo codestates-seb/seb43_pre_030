@@ -47,19 +47,19 @@ const MenuContainer = styled.li`
   }
 `;
 
-function NavMenu({ menuFocus, setFocus, menuIdx, el }) {
+function NavMenu({ el }) {
   const navigation = useNavigate();
   // 클릭된 매뉴의 값을 menuFoucs에 적용하는 함수
   const setActive = () => {
     navigation(el.route);
-    setFocus(el.route);
   };
 
   return (
     // 클릭 시 menuFoucs에 따라서 액티브 클래스 적용
     <MenuContainer
-      value={menuIdx}
-      className={`${el.route === menuFocus && el.isContent ? "active" : ""} ${el.isContent ? "content" : "title"}`}
+      className={`${el.route === document.location.pathname && el.isContent ? "active" : ""} ${
+        el.isContent ? "content" : "title"
+      }`}
       onClick={_ => {
         setActive();
       }}
