@@ -6,27 +6,28 @@ import AskPage from "../pages/Ask/AskPage";
 import withFooter from "../pages/Templates/withFooter";
 import QuestionPage from "../pages/Questions/QuestionPage";
 import User from "../pages/User/User";
-import withNav from "../pages/Templates/withNav";
-import withPageWrapper from "../pages/Templates/withPageWrapper";
 import QuestionDetailPage from "../pages/QuestionDetail/QuestionDetailPage";
+import withAside from "../pages/Templates/withAside";
 
 const AskPageWithFooter = withFooter(AskPage);
-const UserPageWithNavFooter = withFooter(withPageWrapper(withNav(User)));
+const MainWithAside = withAside(MainPage);
+const QuestionWithAside = withAside(QuestionPage);
+const DetailPageWithAside = withAside(QuestionDetailPage);
 
 export const routerData = [
   {
     path: "/",
-    element: <MainPage />,
+    element: <MainWithAside />,
     needTemplate: true,
   },
   {
     path: "/questions",
-    element: <QuestionPage />,
+    element: <QuestionWithAside />,
     needTemplate: true,
   },
   {
     path: "/questions/:id",
-    element: <QuestionDetailPage />,
+    element: <DetailPageWithAside />,
     needTemplate: true,
   },
   {
@@ -46,8 +47,8 @@ export const routerData = [
   },
   {
     path: "/users",
-    element: <UserPageWithNavFooter />,
-    needTemplate: false,
+    element: <User />,
+    needTemplate: true,
   },
   {
     path: "*",
