@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import MDEditor from "@uiw/react-md-editor";
-// import { IoMdAlert } from "react-icons/io";
 import Button from "../../components/ui/Button";
 
 // 답변 작성 폼
@@ -47,7 +46,6 @@ function AnswerForm({ on }) {
       <MarkDownEditor>
         <div data-color-mode="light">
           <MDEditor className="md-editor" value={answerValue} onChange={handledAnswerValue} />
-          <MDEditor.Markdown source={answerValue} style={{ whiteSpace: "pre-wrap" }} />
         </div>
       </MarkDownEditor>
       <div className="answer-submit">
