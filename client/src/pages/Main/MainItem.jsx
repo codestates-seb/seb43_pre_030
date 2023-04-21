@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../../components/ui/Button";
+import { elapsedText } from "../../utils/elapsedText";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -73,7 +74,9 @@ function MainItem({ data }) {
             <TagButton>{tag}</TagButton>
           ))}
         </StyledTagSection>
-        <StyledAuthorSection>{data.user_id} 9765 asked 1 min ago</StyledAuthorSection>
+        <StyledAuthorSection>
+          {data.user_id} 9765 asked {elapsedText(new Date(data.created_at))}
+        </StyledAuthorSection>
       </StyledContentContainer>
     </StyledContainer>
   );
