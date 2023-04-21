@@ -39,19 +39,33 @@ function getDays(dateObj) {
       return `${days} days ago`;
     }
   }
+  // 12달 미만은 개월 단위로 반환
+  const months = Math.floor(days / 30);
+  if (months < 12) return months + (months === 1 ? "month ago" : "months ago");
+
+  // 그 이상은 연도 수와 개월 수(연도 계산하고 남은 개월 수가 0 이상일 때)를 반환
+  const years = Math.floor(months / 12); // 연도 계산
+  const monthsLeft = Math.floor(months % 12); // 그 후 남은 개월수
+
+  let yearsAndMonth = years + (years === 1 ? " year" : " years"); // 몇년도 몇월까지 나오는 수
+  // 남은 개월수가 있다면
+  if (monthsLeft > 0) {
+    yearsAndMonth += `, ${monthsLeft} ${monthsLeft === 1 ? " month" : " months"}`;
+  }
+  return `${yearsAndMonth} ago`;
 }
 // 서브 헤더(작성날짜, 업데이트날짜, 조회수정보)
-function QuestionSubHeader({ createAt, updateAt, views }) {
+function QuestionSubHeader({ createAt, modifiedAt, views }) {
   return (
     <StyledSubHeaderWrapper>
       <div>
         <span>Asked</span>
         <time>{getDays(createAt)}</time>
       </div>
-      {updateAt && (
+      {modifiedAt && (
         <div>
           <span>Modified</span>
-          <time>{getDays(updateAt)}</time>
+          <time>{getDays(modifiedAt)}</time>
         </div>
       )}
       <div>
@@ -63,10 +77,10 @@ function QuestionSubHeader({ createAt, updateAt, views }) {
 }
 
 // 상세페이지 헤더 섹션
-function QuestionHeaderSection({ title, createAt, updateAt, views }) {
+function QuestionHeaderSection({ title, createAt, modifiedAt, views }) {
   return (
     <HeaderContentSection title={title}>
-      <QuestionSubHeader createAt={createAt} updateAt={updateAt} views={views} />
+      <QuestionSubHeader createAt={createAt} modifiedAt={modifiedAt} views={views} />
     </HeaderContentSection>
   );
 }
