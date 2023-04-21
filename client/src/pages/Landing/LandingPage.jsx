@@ -269,16 +269,6 @@ function LandingPage(){
     <LandingPageWrapper> 
       <LandingPageContainer>
 
-      <ContentContainer>
-        <div>
-          <div className="topContent">
-            <span className="l">Every</span> <span className="mainContent">{contentList[mainContent]}</span>{" "}
-            <span className="r">has a</span>
-          </div>
-          <div className="bottomContent">tab open to Stack Overflow</div>
-        </div>
-      </ContentContainer>
-
       <SmallBubbleContainer>
         <div>
           <div className="lSmallBubble">
