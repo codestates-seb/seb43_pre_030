@@ -18,6 +18,7 @@ export const GlobalStyles = createGlobalStyle`
     --input-focus-shadow: rgba(244,248,251,1); // 인풋 포커스 쉐도우 색상
     --input-focus-border: rgba(0,116,204,1); // 인풋 포커스 보더 색상
     --userInfo-bg-color: #babec4;// 유저박스 배경 색상
+    --error-color: #F45050; // 에러 색상
 
     //questionPage 색상
     --question-page-bg-color: #F8F9F9;// questionPage 배경 색상
