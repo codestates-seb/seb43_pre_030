@@ -39,6 +39,7 @@ function getDays(dateObj) {
       return `${days} days ago`;
     }
   }
+
   // 12달 미만은 개월 단위로 반환
   const months = Math.floor(days / 30);
   if (months < 12) return months + (months === 1 ? "month ago" : "months ago");
