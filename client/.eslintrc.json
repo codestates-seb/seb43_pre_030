@@ -40,6 +40,7 @@
     "consistent-return": "off",
     "import/no-unresolved": "off",
     // 인터벌 함수를 실행할 때 생기는 useState변수 이름 중첩 애러 해제
-    "no-shadow":"off"
+    "no-shadow":"off",
+    "arrow-body-style": "off"
   }
 }
