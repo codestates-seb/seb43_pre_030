@@ -13,7 +13,7 @@ function MainPage() {
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
-      const { data } = await axios("http://localhost:3001/question");
+      const { data } = await axios("http://localhost:3001/questions");
       dispatch(setData(data));
     })();
   }, []);
