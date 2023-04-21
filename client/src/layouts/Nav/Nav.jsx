@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useMemo } from "react";
 import styled from "styled-components";
 import NavMenu from "./NavMenu";
 
@@ -30,37 +30,28 @@ const StyledStickyBox = styled.div`
 
 function Nav() {
   // 메뉴 목록
-  const menus = [
-    { isContent: false, title: `PUBLIC`, route: `/404`, emoji: ``, contentsNav: true },
-    { isContent: true, title: `Home`, route: `/`, emoji: `` },
-    { isContent: true, title: `Questions`, route: `/questions`, emoji: `` },
-    { isContent: true, title: `Tag`, route: `/tags`, emoji: `` },
-    { isContent: true, title: `Users`, route: `/users`, emoji: `` },
-    { isContent: true, title: `Companies`, route: `/companies`, emoji: `` },
-    { isContent: false, title: `COLLECTIVES`, route: `/404`, emoji: `` },
-    { isContent: true, title: `Explore Collectives`, route: `/404`, emoji: `` },
-    { isContent: false, title: `TEAMS`, route: ``, emoji: `/404` },
-    { isContent: true, title: `Create free Team`, route: `/404`, emoji: `` },
-  ];
-
-  const menusLength = menus.length;
-
-  // 클릭 이벤트 제어 state
-  const [menuFocus, setFocus] = useState(menus[1].route);
+  const menus = useMemo(
+    () => [
+      { isContent: false, title: `PUBLIC`, route: `/404`, emoji: ``, contentsNav: true },
+      { isContent: true, title: `Home`, route: `/`, emoji: `` },
+      { isContent: true, title: `Questions`, route: `/questions`, emoji: `` },
+      { isContent: true, title: `Tag`, route: `/tags`, emoji: `` },
+      { isContent: true, title: `Users`, route: `/users`, emoji: `` },
+      { isContent: true, title: `Companies`, route: `/companies`, emoji: `` },
+      { isContent: false, title: `COLLECTIVES`, route: `/404`, emoji: `` },
+      { isContent: true, title: `Explore Collectives`, route: `/404`, emoji: `` },
+      { isContent: false, title: `TEAMS`, route: ``, emoji: `/404` },
+      { isContent: true, title: `Create free Team`, route: `/404`, emoji: `` },
+    ],
+    []
+  );
 
   return (
     <NavContainer>
       <StyledStickyBox>
         <ul>
-          {menus.map((el, idx) => (
-            <NavMenu
-              menusLength={menusLength}
-              key={idx}
-              menuIdx={idx}
-              menuFocus={menuFocus}
-              setFocus={setFocus}
-              el={el}
-            />
+          {menus.map(el => (
+            <NavMenu key={el.title} el={el} />
           ))}
         </ul>
         <span id="looking">Looking for your Teams?</span>
