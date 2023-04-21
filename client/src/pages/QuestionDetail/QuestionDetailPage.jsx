@@ -55,8 +55,8 @@ function QuestionDetailPage() {
     setIsPending(false);
   }, [url, url2]);
 
-  console.log(questionData);
-  console.log(answerData);
+  // console.log(questionData);
+  // console.log(answerData);
 
   return (
     <>

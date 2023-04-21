@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import MDEditor from "@uiw/react-md-editor";
 import UserInfo from "./UserInfo";
 import Button from "../../components/ui/Button";
 import Vote from "./Vote";
+import { elapsedText } from "../../utils/elapsedText";
 
 // 잘문 컨텐츠 전체 내용 래퍼
 const StyledContentWrapper = styled.div`
@@ -12,6 +14,7 @@ const StyledContentWrapper = styled.div`
 
   .content-container {
     flex: 1 0 0;
+    width: 20rem; // 이부분 너비가 1rem만 되어도 꽉참 -> 의문
   }
 `;
 
@@ -80,7 +83,9 @@ function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, 
     <StyledContentWrapper>
       <Vote />
       <div className="content-container">
-        <StyledBodyWrapper>{body}</StyledBodyWrapper>
+        <StyledBodyWrapper data-color-mode="light">
+          <MDEditor.Markdown source={body} style={{ padding: "1.5rem" }} />
+        </StyledBodyWrapper>
         <StyledTagsWrapper>{tags && tags.map(tag => <TagButton>{tag}</TagButton>)}</StyledTagsWrapper>
         <StyledUtilsWrapper>
           <UtilsOptions>
@@ -88,7 +93,7 @@ function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, 
             <button type="button">Edit</button>
             <button type="button">Delete</button>
           </UtilsOptions>
-          {modifiedAt && <span className="modified-date">edited {modifiedAt}</span>}
+          {modifiedAt && <span className="modified-date">edited {elapsedText(new Date(modifiedAt))}</span>}
           <UserInfo type={type} userId={userId} createAt={createAt} />
         </StyledUtilsWrapper>
       </div>
