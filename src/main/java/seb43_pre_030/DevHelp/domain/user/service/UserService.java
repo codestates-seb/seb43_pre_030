@@ -79,6 +79,9 @@ public class UserService {
         return userRepository.save(findUser);
     }
 
+    public Object getLogin() {
+    }
+
 
     @Transactional(readOnly = true)
     public Page<User> getUserList(int page) {

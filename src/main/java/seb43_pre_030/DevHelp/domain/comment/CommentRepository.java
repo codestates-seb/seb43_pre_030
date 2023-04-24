@@ -1,4 +1,4 @@
-package seb43_pre_030.DevHelp.commet.domain;
+package seb43_pre_030.DevHelp.domain.comment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

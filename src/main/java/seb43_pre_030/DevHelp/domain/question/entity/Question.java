@@ -1,55 +1,60 @@
 package seb43_pre_030.DevHelp.domain.question.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import seb43_pre_030.DevHelp.domain.tag.entity.QuestionTag;
+import seb43_pre_030.DevHelp.domain.tag.entity.TagEntity;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+
+@Entity
+@Table(name = "question")
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "question")
-public class Question extends Auditable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long question_Id;
+public class QuestionEntity extends BaseEntity {
 
-    @Column(length = 100, nullable = false)
+    @Column(nullable = false)
     private String title;
 
-    @Lob  // "Large OBject"를 데이터베이스에 적절하게 저장하기 위한 애노테이션
+    @Lob
+    @Column(nullable = false)
     private String body;
 
-    @Column(nullable = false)
-    private LocalDateTime created_At = LocalDateTime.now();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-    @Column(nullable = false)
-    private LocalDateTime updated_At = LocalDateTime.now();
+    @Id
+    private Long id;
 
-    @Column(nullable = false)
-    private int viewCount;  // 조회수
-
-
-    @ManyToOne(targetEntity = Member.class, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
-
-    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    private Set<Answer> answers = new HashSet<>();
-    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private Set<QuestionTag> questionTags = new HashSet<>();
-
-  /*  public void voteUp(int num) {
-        this.score += num;
+    @Builder
+    public QuestionEntity(Long id, String title, String body, Timestamp createdAt, Timestamp updatedAt, Long userId) {
+        super(createdAt, updatedAt);
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.userId = userId;
     }
-    public void voteDown(int num) {
-        this.score -= num;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    */
+
+    public Long getId() {
+        return id;
+    }
+
+    public <E> List<E> getTags() {
+        return null;
+    }
 }
+
+

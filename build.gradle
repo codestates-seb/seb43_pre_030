@@ -42,21 +42,19 @@ dependencies {
 	implementation group: 'com.auth0', name: 'java-jwt', version: '3.10.2'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // CRUD를 위해 추가.
-	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final' // Hibernate Validator 라이브러리
-	implementation 'org.springframework.boot:spring-boot-starter-security' // 스프링 시큐리티
-	implementation 'com.example:mymodule:1.0.0' //getAmount();
+	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
+	implementation 'org.springframework:spring-tx:5.3.10'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.modelmapper:modelmapper:2.4.4'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5',
 			'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
@@ -65,6 +63,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
+
 
 tasks.named('test') {
 	outputs.dir snippetsDir
