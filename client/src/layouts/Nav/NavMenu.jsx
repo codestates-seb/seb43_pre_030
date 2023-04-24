@@ -47,6 +47,12 @@ const MenuContainer = styled.li`
   }
 `;
 
+const checkPath = path => {
+  if (document.location.pathname === "/") return document.location.pathname === path;
+
+  return new Set(document.location.pathname.split("/").filter(a => a !== "")).has(path.slice(1));
+};
+
 function NavMenu({ el }) {
   const navigation = useNavigate();
   // 클릭된 매뉴의 값을 menuFoucs에 적용하는 함수
@@ -57,9 +63,7 @@ function NavMenu({ el }) {
   return (
     // 클릭 시 menuFoucs에 따라서 액티브 클래스 적용
     <MenuContainer
-      className={`${el.route === document.location.pathname && el.isContent ? "active" : ""} ${
-        el.isContent ? "content" : "title"
-      }`}
+      className={`${checkPath(el.route) ? "active" : ""} ${el.isContent ? "content" : "title"}`}
       onClick={_ => {
         setActive();
       }}

@@ -116,6 +116,18 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
   // 로그인 요청
   const handleSubmit = async () => {
     // 아래 코드는 먼저 유효성을 체크하고 올바른 값을 api post요청을 보내게 로직을 짜야 불필요한 요청을 계속해서 보내지 않기 때문에 더 효율적이게 된다.
+    // 이미 브라우저에 토큰있다면 로그인 할 필요가 없으니까 그냥 데이터를 서버에서 받아서 상태를 변경
+    // 자동 로그인을 하고 싶은거다
+    // 쿠키에 토큰이 있다면 => 로그인이 필요한가? 아니요
+    // 그러면 어디에 요청을 보내야 되지? 로그인이 필요없이 유저 정보를 받고싶어
+    // userinfo인거다
+    // 근데 왜 항상 처음 켜질 때 요청을 보내냐
+    // 일단 보내놓고 유저정보를 못받았다 => 로그인을 못했다 => 그러면 로그인 창 띄우면 되지?
+    // 유저정보를 받았다? => 로그인 필요없이 정보를 MyPage에 넘기면 된다.
+    // 자동 로그인 => 서버에서 로그인 요청이 있고 -> 유효하다면 -> 토큰을 쿠키에 담아서 준다. -> 이때 쿠키의 유효 기간. -> 유효 기간이 살아있다면 -> 자동로그인
+    // 자동 로그인 -> 자동으로 로그인 요청을 하는 게 아니다. -> 서버에서 로그인요청이 왔다. 쿠키에 토큰이 없다. => 유효하다 -> 토큰을 만들고
+    // 쿠키에 넣고 -> 유저 정보를 응답으로 주는 라우터로 리다이렉트 // 유저 정보를 달라고 요청한다.
+    // 쿠키에 토큰이 없는 데 -> 그냥 해도
     if (!handleCheckLoginForm()) return;
     // api 요청(post)
     const response = await axios
@@ -124,7 +136,9 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
         password: passwordProps,
       })
       .then(res => {
+        // 백엔드에서 민감한 정보 ->
         // setUserInfo(res.data); // 서버에서 받은 유저 데이터를 렌더링 할때 보여주는 유저
+        // dispatch(setUser(res.data))
         setIsLogin(true);
       })
       .catch(err => {

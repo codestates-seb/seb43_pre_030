@@ -5,6 +5,7 @@ const navSlice = createSlice({
   initialState: false,
   reducers: {
     setNav(state) {
+      console.log(state);
       return !state;
     },
   },

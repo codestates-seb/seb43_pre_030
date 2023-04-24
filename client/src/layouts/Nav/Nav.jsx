@@ -61,20 +61,22 @@ function Nav() {
       { isContent: true, title: `Companies`, route: `/companies`, emoji: `` },
       { isContent: false, title: `COLLECTIVES`, route: `/404`, emoji: `` },
       { isContent: true, title: `Explore Collectives`, route: `/404`, emoji: `` },
-      { isContent: false, title: `TEAMS`, route: ``, emoji: `/404` },
+      { isContent: false, title: `TEAMS`, route: `/404`, emoji: `` },
       { isContent: true, title: `Create free Team`, route: `/404`, emoji: `` },
     ],
     []
   );
 
-  const onOutSideClick = () => nav && dispatch(setNav());
+  const onOutSideClick = () => {
+    if (nav) dispatch(setNav());
+  };
 
   useEffect(() => {
     window.addEventListener("click", onOutSideClick);
     return () => {
       window.removeEventListener("click", onOutSideClick);
     };
-  }, []);
+  }, [nav]);
 
   return (
     <NavContainer display={nav.toString()}>
