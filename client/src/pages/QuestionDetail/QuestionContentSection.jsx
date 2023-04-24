@@ -38,11 +38,13 @@ const StyledTagsWrapper = styled.div`
 const StyledUtilsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 5rem;
+  /* gap: 5rem; */
   margin: 1rem 0;
   padding-top: 0.25rem;
 
   .modified-date {
+    min-width: 60px;
+    flex: 1 0 0;
     padding-top: 0.3rem;
     font-size: 0.75rem;
     color: var(--font-color-light);
@@ -54,7 +56,7 @@ const UtilsOptions = styled.div`
   display: flex;
   color: var(--font-color-light);
   font-size: 0.7rem;
-
+  flex: 2 0 0;
   button {
     height: 1rem;
     color: var(--font-color-light);
