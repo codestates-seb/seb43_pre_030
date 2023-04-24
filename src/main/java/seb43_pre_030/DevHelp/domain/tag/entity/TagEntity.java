@@ -32,7 +32,8 @@ public class TagEntity {
     @Size(max = 255)
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
+    @OneToMany
+    @JoinColumn(name ="tag.id")
     private List<QuestionEntity> questions = new ArrayList<>();
 
     public TagEntity(String name) {

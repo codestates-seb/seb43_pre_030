@@ -10,10 +10,11 @@ spring:
     include: common
     active: dev
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${datasource_url}
     username: ${datasource_username}
     password: ${datasource_password}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
 
 
   jpa:
