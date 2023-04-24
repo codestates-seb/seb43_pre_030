@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.*;
+import seb43_pre_030.DevHelp.domain.user.entity.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,7 +31,7 @@ public class QuestionEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private UserEntity user;
+    private User user;
 
     @Id
     private Long id;
@@ -41,7 +42,7 @@ public class QuestionEntity extends BaseEntity {
         this.id = id;
         this.title = title;
         this.body = body;
-        this.userId = userId;
+        this.user = user;
     }
 
     public void setId(Long id) {

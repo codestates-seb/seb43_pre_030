@@ -1,6 +1,5 @@
 package seb43_pre_030.DevHelp.domain.question.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,8 +19,14 @@ public class QuestionDTO {
     private List<String> tag;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String question;
+    private String answer;
+    private String type;
 
-    public QuestionDto(Long id, String title, String body, List<String> tags, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public QuestionDTO(TypePatternQuestions.Question question) {
+    }
+
+    public void QuestionDto(Long id, String title, String body, List<String> tags, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.title = title;
         this.body = body;

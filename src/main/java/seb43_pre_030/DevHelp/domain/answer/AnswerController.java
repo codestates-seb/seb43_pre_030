@@ -41,8 +41,8 @@ public class AnswerController {
             dto.setBody(answer.getBody());
             dto.setCreated_at(answer.getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUpdated_at(answer.getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-            dto.setUserId(answer.getUserId().getUserId());
-            dto.setQuestionId(answer.getQuestionId().getQuestion_Id());
+            dto.setUserId(answer.getAnswerId());
+            dto.setQuestionId(answer.getQuestion().getId());
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(answerDtos);
@@ -57,8 +57,8 @@ public class AnswerController {
             dto.setBody(answer.get().getBody());
             dto.setCreated_at(answer.get().getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUpdated_at(answer.get().getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-            dto.setUserId(answer.get().getUserId().getUserId());
-            dto.setQuestionId(answer.get().getQuestionId().getQuestion_Id());
+            dto.setUserId(answer.get().getUser().getUserId());
+            dto.setQuestionId(answer.get().getQuestion().getId());
             return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();

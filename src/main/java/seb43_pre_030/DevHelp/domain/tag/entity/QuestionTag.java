@@ -1,12 +1,13 @@
 package seb43_pre_030.DevHelp.domain.tag.entity;
 
 import lombok.*;
+import seb43_pre_030.DevHelp.domain.QuestionTag.QuestionTagId;
 import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "question_tag")
+@Table(name = "question_Tag")
 @Getter
 @Setter
 @NoArgsConstructor
