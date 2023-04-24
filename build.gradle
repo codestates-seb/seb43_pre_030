@@ -40,16 +40,12 @@ dependencies {
 	implementation group: 'com.auth0', name: 'java-jwt', version: '3.10.2'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // CRUD를 위해 추가.
-	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final' // Hibernate Validator 라이브러리
-	implementation 'org.springframework.boot:spring-boot-starter-security' // 스프링 시큐리티
-	implementation 'com.example:mymodule:1.0.0' //getAmount();
+	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
+//	implementation 'com.example:mymodule:1.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
@@ -63,6 +59,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
+
 
 tasks.named('test') {
 	outputs.dir snippetsDir
