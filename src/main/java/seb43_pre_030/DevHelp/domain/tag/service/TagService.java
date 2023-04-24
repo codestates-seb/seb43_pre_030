@@ -21,7 +21,7 @@ public interface TagService {
 
     void deleteTags(List<Long> tagIds);
 
-    void updateTag(Long tagId, TagDto tagDto);
+    void updateTag(Long tagId, TagEntity tagDto);
 
     TagEntity getTagById(Long id);
 

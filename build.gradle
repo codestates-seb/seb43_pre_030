@@ -1,3 +1,11 @@
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0"
+	}
+}
+
+
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.10'
@@ -28,6 +36,14 @@ ext {
 	set('profile', (!project.hasProperty('profile') || !profile) ? 'local' : profile)
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+
+
 dependencies {
 	implementation 'com.querydsl:querydsl-jpa:5.0.0'
 	annotationProcessor 'com.querydsl:querydsl-apt:5.0.0'
@@ -46,9 +62,14 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
 	implementation 'org.springframework:spring-tx:5.3.10'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws-parameter-store-config:2.2.6.RELEASE'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 	compileOnly 'org.projectlombok:lombok'
 	implementation 'org.modelmapper:modelmapper:2.4.4'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
@@ -62,6 +83,43 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	implementation 'com.google.code.gson:gson'
+	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+}
+
+
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+	jpa = true
+	querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir querydslDir
+		}
+		resources {
+			srcDirs "src/main/resources-env/${profile}"
+		}
+	}
+}
+
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+
+tasks.named('test') {
+	outputs.dir snippetsDir
+	useJUnitPlatform()
+}
+
+tasks.named('asciidoctor') {
+	configurations "asciidoctorExtensions"
+	inputs.dir snippetsDir
+	dependsOn test
 }
 
 
