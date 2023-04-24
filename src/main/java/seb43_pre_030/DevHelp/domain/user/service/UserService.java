@@ -79,8 +79,8 @@ public class UserService {
         return userRepository.save(findUser);
     }
 
-    public Object getLogin() {
-    }
+//    public Object getLogin() {
+//    };
 
 
     @Transactional(readOnly = true)
