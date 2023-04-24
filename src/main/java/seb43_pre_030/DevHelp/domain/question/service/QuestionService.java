@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface QuestionService {
     List<QuestionDTO> getAllQuestions();
-    QuestionDTO getQuestionById(Long questionId);
+    QuestionDTO getQuestionById(Long questionId) throws NotFoundException;
     QuestionDTO createQuestion(QuestionDTO questionDTO);
     QuestionDTO updateQuestion(Long questionId, QuestionDTO questionDTO) throws NotFoundException;
     void deleteQuestion(Long questionId) throws NotFoundException;
