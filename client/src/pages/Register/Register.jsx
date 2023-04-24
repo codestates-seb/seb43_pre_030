@@ -2,22 +2,23 @@ import styled from "styled-components";
 import SignupInfo from "./SignupInfo";
 import SOInfo from "./SoInfo";
 import SocialSignup from "./SocialSignup";
+import InvisibleText from "./InvisibleText";
 
 const StyledSoinfoSection =styled.div`
    .body{
     width: 100%;
-    max-width: 1264px;
+    max-width: 90.285rem;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px;
+    padding: 1.714rem;
    }  
 
    .container{
-    margin-top: 57px;
+    margin-top: 4.071rem;
     width: 100%;
-    height: 1024px;
+    height: 73.142rem;
     background-color: rgb(248, 249, 249);
     display: flex;
     min-width: auto;
@@ -29,7 +30,7 @@ const StyledSoinfoSection =styled.div`
    }
 
    .info{
-    padding: 0 48px 128px 0;
+    padding: 0 3.428rem 9.142rem 0;
     align-items: center;
    }
 `
@@ -43,7 +44,8 @@ function Signup() {
                       
         <SOInfo className="info"/>
 
-        <div className="formContainer" style={{ width: "316px", height: "100%" }}>
+        <div className="formContainer" style={{ width: "421px", height: "100%" }}>
+        <InvisibleText />
         <SocialSignup className="socialLogo" />
         <SignupInfo />
         </div>

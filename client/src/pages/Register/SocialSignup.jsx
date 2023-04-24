@@ -5,6 +5,7 @@ import { AiFillGithub, AiFillFacebook } from "react-icons/ai";
 
 // 소셜로그인 버튼 래퍼
 const StyledSocialLoginWrapper = styled.div`
+    align-items: center;
   display: flex;
   flex-direction: column;
   margin: 1.2rem 0 1rem;
@@ -17,15 +18,15 @@ const SocialButton = styled.button`
   align-items: center;
   padding: 0.6rem;
   margin: 0.25rem 0;
-  border: 1px solid ${props => props.border || "var(--border-default-color)"};
+  border: 0.0714rem solid ${props => props.border || "var(--border-default-color)"};
   border-radius: 0.3rem;
   background-color: ${props => props.bg || "#fff"};
   color: ${props => props.color || "var(--font-color-bold)"};
   font-size: 2rem;
   outline: none;
   cursor: pointer;
-  width: 316px;
-  height: 38px;
+  width: 22.571rem;
+  height: 2.714rem;
 
   &:hover {
     box-shadow: inset 0.3rem 0.4rem 1rem rgba(0, 0, 0, 0.03);

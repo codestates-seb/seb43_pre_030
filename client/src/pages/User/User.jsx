@@ -9,18 +9,18 @@ const StyledUser = styled.div`
 
   .container {
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: 1.142rem;
     box-sizing: inherit;
     text-align: left;
     display: flex;
   }
   .userLogo {
-    margin: 8px;
-    border-radius: 4px;
+    margin: 0.571rem;
+    border-radius: 0.285rem;
     box-sizing: inherit;
   }
   .userProfile {
-    margin: 8px;
+    margin: 0.571rem;
     box-sizing: inherit;
   }
   .editButton {
@@ -42,14 +42,14 @@ const StyledUser = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin: -4px;
+    margin: -0.285rem;
   }
   .userNaming {
-    height: 34px;
-    margin: 4px;
-    line-height: 1px;
+    height: 2.428rem;
+    margin: 0.285rem;
+    line-height: 0.0714rem;
     font-size: 2.61538461rem;
-    margin-bottom: 12px;
+    margin-bottom: 0.857rem;
   }
 
   .items {
@@ -63,21 +63,31 @@ const StyledUser = styled.div`
   }
   .userTop {
     /* width: 100%; */
-    height: 68px;
+    height: 4.857rem;
   }
   .itemContents {
     display: flex;
-    margin: 2px;
-    font-size: 13px;
+    margin: 0.142rem;
+    font-size: 0.928rem;
   }
   .item {
-    margin: 4px;
+    margin: 0.285rem;
     display: flex;
   }
 `;
 
 function User() {
   const questions = useSelector(s => s.data);
+  // const dispatch = useDispatch();
+  
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const { data } = await axios("http://localhost:3001/users");
+  //     dispatch(setData(data));
+      
+  //   })();
+  // });
 
   // useEffect(() => {
   //   (async () => {
@@ -162,6 +172,12 @@ function User() {
           <Button className="editBt">Edit profile</Button>
         </div>
       </div>
+      <div className="editButton">
+        <svg aria-hidden="true" className="svg-icon iconPencil" width="18" height="18" viewBox="0 0 18 18">
+        <path d="m13.68 2.15 2.17 2.17c.2.2.2.51 0 .71L14.5 6.39l-2.88-2.88 1.35-1.36c.2-.2.51-.2.71 0ZM2 13.13l8.5-8.5 2.88 2.88-8.5 8.5H2v-2.88Z" />
+        </svg>
+        <Button className="editBt">Edit profile</Button>
+      </div>     
       {questions && questions.map(question => <MainItem data={question} />)}
     </StyledUser>
   );
