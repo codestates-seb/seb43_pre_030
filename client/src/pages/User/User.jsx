@@ -77,8 +77,6 @@ const StyledUser = styled.div`
     margin: 4px;
     display: flex;
   }
-  .mypage {
-  }
 `;
 
 function User() {
@@ -167,7 +165,7 @@ function User() {
           <Button className="editBt">Edit profile</Button>
         </div>
       </div>
-      <div className="mypage">{questions && questions.map(question => <MainItem data={question} />)}</div>
+      {questions && questions.map(question => <MainItem data={question} />)}
     </StyledUser>
   );
 }
