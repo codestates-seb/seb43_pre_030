@@ -144,7 +144,7 @@ function VersatileForm({idx, el, askController}) {
   }
 
   // 버튼 제어 
-  const nextButton = !isDoneYet ? <VersatileBlueButton text={idx === 5 ? `Post your question` : `Next`} idx={idx} askController={askController}/> : null;
+  const nextButton = !isDoneYet ? <VersatileBlueButton text={idx === 4 ? `Post your question` : `Next`} idx={idx} askController={askController}/> : null;
   const formBlocker = isFormBlocked ? <ContentBlocker /> : null;
   const buttonBlocker = isButtonBlocked ? <ContentBlocker /> : null;
 
