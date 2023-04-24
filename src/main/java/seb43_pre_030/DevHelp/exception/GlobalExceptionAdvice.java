@@ -25,3 +25,4 @@ public class GlobalExceptionAdvice {
         return ErrorResponse.of(HttpStatus.METHOD_NOT_ALLOWED);
     }
 }
+

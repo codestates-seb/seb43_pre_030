@@ -1,31 +1,51 @@
 package seb43_pre_030.DevHelp.domain.tag.entity;
 
+import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import seb43_pre_030.DevHelp.domain.question.entity.QuestionTag;
+import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
+
+
+@Entity
+@Table(name = "tag")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Entity(name = "TAG")
-public class TagEntity extends Auditable {
+public class TagEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long tagId;
+    private Long id;
 
-    @Column(unique = true)
+    @NotBlank
+    @Size(max = 255)
     private String name;
 
-    // 해당 태그가 있는 질문의 갯수
-    private Integer count = 1; // 처음 생성했을 때 1
+    @ManyToMany(mappedBy = "tags")
+    private List<QuestionEntity> questions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tag")
-    private Set<QuestionTag> questionTagSet = new HashSet<>();
+    public TagEntity(String name) {
+        this.name = name;
+    }
+
+    public void addQuestion(QuestionEntity question) {
+        questions.add(question);
+        question.getTags().add(this);
+    }
+
+    public void removeQuestion(QuestionEntity question) {
+        questions.remove(question);
+        question.getTags().remove(this);
+    }
 }

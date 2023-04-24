@@ -1,4 +1,4 @@
-package seb43_pre_030.DevHelp.commet.domain;
+package seb43_pre_030.DevHelp.domain.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/comments")
@@ -21,7 +23,7 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.save(comment));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{comment-id}")
     public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody Comment updatedComment) {
         try {
             return ResponseEntity.ok(commentService.update(id, updatedComment));
@@ -31,20 +33,39 @@ public class CommentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Comment>> findAllComment() {
-        return ResponseEntity.ok(commentService.findAll());
+    public ResponseEntity<List<CommentDto>> findAllComment() {
+        List<Comment> comments = commentService.findAll();
+        List<CommentDto> commentDtos = comments.stream().map(comment -> {
+            CommentDto dto = new CommentDto();
+            dto.setCommentId(comment.getCommentId());
+            dto.setBody(comment.getBody());
+            dto.setCreated_at(comment.getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUpdated_at(comment.getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUsersId(comment.getUser().getUserId());
+            dto.setQuestionId(comment.getQuestion().getId());
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(commentDtos);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Comment> findCommentById(@PathVariable Long id) {
+    @GetMapping("/{comment-id}")
+    public ResponseEntity<CommentDto> findCommentById(@PathVariable Long id) {
         Optional<Comment> comment = commentService.findById(id);
         if (comment.isPresent()) {
-            return ResponseEntity.ok(comment.get());
+            CommentDto dto = new CommentDto();
+            dto.setCommentId(comment.get().getCommentId());
+            dto.setBody(comment.get().getBody());
+            dto.setCreated_at(comment.get().getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUpdated_at(comment.get().getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUsersId(comment.get().getUser().getUserId());
+            dto.setQuestionId(comment.get().getQuestion().getId());
+            return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("/{comment-id}")
     public ResponseEntity<Void> deleteCommentById(@PathVariable Long id) {
         commentService.deleteById(id);
         return ResponseEntity.noContent().build();
