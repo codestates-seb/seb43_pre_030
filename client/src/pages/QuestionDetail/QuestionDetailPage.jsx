@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import axios from "axios";
 import Main from "../../layouts/Main/Main";
@@ -41,6 +42,9 @@ function QuestionDetailPage() {
   const [answerData, setAnswerData] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
+  const { user } = useSelector(state => state.data);
+
+  // 데이터 패칭
   useEffect(() => {
     (async () => {
       setIsPending(true);
@@ -55,8 +59,21 @@ function QuestionDetailPage() {
     setIsPending(false);
   }, [url, url2]);
 
-  // console.log(questionData);
-  // console.log(answerData);
+  // 새로운 답변 추가하기
+  const handleAnswerSubmit = content => {
+    const data = { body: content }; // 새로운 답변글 body에 추가
+    axios(`http://localhost:3001/answers/${id}`, {
+      method: "post",
+      headers: {
+        Authorization: user.token, // 인증받은 토큰 보내기
+      },
+      data,
+    })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.error(err));
+  };
 
   return (
     <>
@@ -98,7 +115,7 @@ function QuestionDetailPage() {
             </>
           )}
           {/* 답변 작성폼 */}
-          <AnswerCreateSection />
+          <AnswerCreateSection handleAnswerSubmit={handleAnswerSubmit} />
         </Main>
       )}
     </>
