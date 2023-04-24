@@ -12,16 +12,17 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler
     public ResponseEntity<?> handleBusinessLogicException(BusinessLogicException e) {
-        final ExceptionCode response = ExceptionCode.of(e.getExceptionCode());
+        final ErrorResponse response = ErrorResponse.of(e.getExceptionCode());
 
         return new ResponseEntity<>(response, HttpStatus.valueOf(e.getExceptionCode().getStatus()));
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public ExceptionCode handleHttpRequestMethodNotSupportedException(
+    public ErrorResponse handleHttpRequestMethodNotSupportedException(
             HttpRequestMethodNotSupportedException e) {
 
-        return ExceptionCode.of(HttpStatus.METHOD_NOT_ALLOWED);
+        return ErrorResponse.of(HttpStatus.METHOD_NOT_ALLOWED);
     }
 }
+
