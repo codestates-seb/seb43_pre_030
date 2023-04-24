@@ -1,4 +1,4 @@
-package seb43_pre_030.DevHelp.answer.domain;
+package seb43_pre_030.DevHelp.domain.answer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -6,11 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/answers")
+@RequestMapping("/answers")
 public class AnswerController {
 
     @Autowired
@@ -21,7 +23,7 @@ public class AnswerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(answerService.save(answer));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{answer-id}")
     public ResponseEntity<Answer> updateAnswer(@PathVariable Long id, @RequestBody Answer updatedAnswer) {
         try {
             return ResponseEntity.ok(answerService.update(id, updatedAnswer));
@@ -31,20 +33,39 @@ public class AnswerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Answer>> findAllAnswer() {
-        return ResponseEntity.ok(answerService.findAll());
+    public ResponseEntity<List<AnswerDto>> findAllAnswer() {
+        List<Answer> answers = answerService.findAll();
+        List<AnswerDto> answerDtos = answers.stream().map(answer -> {
+            AnswerDto dto = new AnswerDto();
+            dto.setAnswerId(answer.getAnswerId());
+            dto.setBody(answer.getBody());
+            dto.setCreated_at(answer.getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUpdated_at(answer.getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUserId(answer.getUserId().getUserId());
+            dto.setQuestionId(answer.getQuestionId().getQuestion_Id());
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(answerDtos);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Answer> findAnswerById(@PathVariable Long id) {
+    @GetMapping("/{answer-id}")
+    public ResponseEntity<AnswerDto> findAnswerById(@PathVariable Long id) {
         Optional<Answer> answer = answerService.findById(id);
         if (answer.isPresent()) {
-            return ResponseEntity.ok(answer.get());
+            AnswerDto dto = new AnswerDto();
+            dto.setAnswerId(answer.get().getAnswerId());
+            dto.setBody(answer.get().getBody());
+            dto.setCreated_at(answer.get().getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUpdated_at(answer.get().getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUserId(answer.get().getUserId().getUserId());
+            dto.setQuestionId(answer.get().getQuestionId().getQuestion_Id());
+            return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("/{answer-id}")
     public ResponseEntity<Void> deleteAnswerById(@PathVariable Long id) {
         answerService.deleteById(id);
         return ResponseEntity.noContent().build();

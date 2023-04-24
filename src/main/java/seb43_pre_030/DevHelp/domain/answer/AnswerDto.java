@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 public class AnswerDto {
     private Long answerId;
     private String body;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
-//    private Integer score;
-    // private Long usersId;
-    // private Long questionId;
+    private String created_at;
+    private String updated_at;
+    private Long userId;
+    private Long questionId;
 }
+

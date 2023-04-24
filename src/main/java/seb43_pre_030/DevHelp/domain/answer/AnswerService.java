@@ -1,4 +1,4 @@
-package seb43_pre_030.DevHelp.answer.domain;
+package seb43_pre_030.DevHelp.domain.answer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
