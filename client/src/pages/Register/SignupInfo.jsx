@@ -5,55 +5,82 @@ import identicon1 from "../../images/icon1.jpeg";
 
 
 const StyledSignupSection =styled.div`
+    width: 316px;
+    margin: 0 auto;
   #main{
-    box-shadow: 0 10px 24px hsla(0,0%,0%,0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
-    padding: 24px;
+    box-shadow: 0 0.714rem 1.714rem hsla(0,0%,0%,0.05), 0 1.428rem 3.428rem hsla(0, 0%, 0%, 0.05), 0 0.0714rem 0.285rem hsla(0, 0%, 0%, 0.1);
+    padding: 1.714rem;
     background-color: white;
-    margin-bottom: 30px;
+    margin-bottom: 2.142rem;
     width: 100%;
     height: 100%;
   }
   .text{
-    font-size: 12px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    font-size: 0.857rem;
+    margin-top: 0.285rem;
+    margin-bottom: 0.285rem;
   }
 
   .inputLI{
-    font-size: 15px;
-    margin: 2px 0;
-    padding: 0 2px;
+    font-size: 1.071rem;
+    margin: 0.142rem 0;
+    padding: 0 .142rem;
     display: grid;
   }
   .inputText{
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 0.571rem;
+    margin-bottom: 0.571rem;
     width: 100%;
-    padding: 24px;
   }
   .img{
-    margin-top: 10px;
-    margin-bottom: 6px;
-    padding-left: 30px;
+    margin-top: 0.714rem;
+    margin-bottom: 0.428rem;
+    padding-left: 2.142rem;
   }
   .mainFooter{
-    font-size: 12px;
-    margin-top: 32px;
+    font-size: 0.857rem;
+    margin-top: 2.285rem;
   }
   .gotoLoginWrapper{
     display: flex;
     justify-content: center;
   }
   .gotoLogin{
-    margin-left: 10px;
+    margin-left: 0.714rem;
   }
   .textError{
-    font-size: 12px;
+    font-size: 0.857rem;
     color: red;
-    margin: 2px 0;
-    padding: 2px;
+    margin: 0.142rem 0;
+    padding: 0.142rem;
   }
-`
+  .inputC{
+    width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: 1px solid ${props => props.border || "var(--border-default-color)"};
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  }
+  
+  .submitBt{
+    border: none;
+    color: white;
+    background-color: var(--btn-bg-color);    
+    cursor: pointer;
+  font-size: ${props => props.fontSize || "1rem"};
+  text-align: center;
+  background-color: ${props => props.bg};
+  color: ${props => props.fontColor};
+  padding: ${props => props.padding || "0.5rem 0.7rem"};
+  border-radius: 0.214rem;
+  }
+  .gtl{
+    color: var(--question-foem-focus-color);
+  }
+  `
 
 
 function SignupInfo() {
@@ -195,22 +222,22 @@ function SignupInfo() {
         <form className="form" onSubmit={onSubmit}>
             <div className="inputLI">Display name
             <div className="inputText">
-            <input type="text" onChange={handleUserName} className={borderColor[!!usernameError]} />
+            <input className="inputC" type="text" onChange={handleUserName} />
             {usernameError && (
               <p className="textError">4자 이상부터 가능하며 특수 문자가 없어야 합니다.</p>
             )}</div></div>
             <div className="inputLI">Email
             <div className="inputText">
-            <input type="Email" value={email} onChange={handleEmail} className={borderColor[!!emailError]} />
+            <input className="inputC" type="Email" value={email} onChange={handleEmail}/>
             {emailError && <p className="textError">이메일 형식에 맞지 않습니다.</p>}</div>
           </div>
             <div className="inputLI">Password
             <div className="inputText">
-            <input
+            <input className="inputC"
               type="password"
               value={password}
               onChange={handlePassword}
-              className={borderColor[!!passwordError]}/>
+              />
             {passwordError && (
               <p className="textError">영어와 숫자를 최소 1개 포함하여 8자 이상이어야합니다.</p>
             )}</div></div>
@@ -220,7 +247,7 @@ function SignupInfo() {
           <div className="img">
           <img src={identicon1} ref={defaultImage} alt="default-profile" />
           </div>
-          <button type="submit" style={{ width: "268px", height: "38px" }}>
+          <button type="submit" style={{ width: "268px", height: "38px" }} className="submitBt" >
             Sign up
           </button>
           <div className="mainFooter">

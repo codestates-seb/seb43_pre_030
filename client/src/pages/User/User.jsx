@@ -9,18 +9,18 @@ const StyledUser = styled.div`
 
   .container {
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: 1.142rem;
     box-sizing: inherit;
     text-align: left;
     display: flex;
   }
   .userLogo {
-    margin: 8px;
-    border-radius: 4px;
+    margin: 0.571rem;
+    border-radius: 0.285rem;
     box-sizing: inherit;
   }
   .userProfile {
-    margin: 8px;
+    margin: 0.571rem;
     box-sizing: inherit;
   }
   .editButton {
@@ -42,14 +42,14 @@ const StyledUser = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin: -4px;
+    margin: -0.285rem;
   }
   .userNaming {
-    height: 34px;
-    margin: 4px;
-    line-height: 1px;
+    height: 2.428rem;
+    margin: 0.285rem;
+    line-height: 0.0714rem;
     font-size: 2.61538461rem;
-    margin-bottom: 12px;
+    margin-bottom: 0.857rem;
   }
 
   .items {
@@ -63,15 +63,15 @@ const StyledUser = styled.div`
   }
   .userTop {
     /* width: 100%; */
-    height: 68px;
+    height: 4.857rem;
   }
   .itemContents {
     display: flex;
-    margin: 2px;
-    font-size: 13px;
+    margin: 0.142rem;
+    font-size: 0.928rem;
   }
   .item {
-    margin: 4px;
+    margin: 0.285rem;
     display: flex;
   }
 `;
