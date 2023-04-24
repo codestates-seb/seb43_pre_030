@@ -1,14 +1,24 @@
-import React, { useState, memo, useMemo } from "react";
-import styled from "styled-components";
+import React, { useMemo, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import NavMenu from "./NavMenu";
+import { setNav } from "../../features/navSlice";
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(-100%);
+  }
+  to{
+    transform: translate(0);
+  }
+`;
 
 const NavContainer = styled.nav`
   border-right: 1px solid var(--border-default-color);
   width: 100%;
   max-width: 164px;
-
   font-size: 0.8rem;
-
+  z-index: 10;
   //Looking for your Teams?
   #looking {
     display: flex;
@@ -21,6 +31,15 @@ const NavContainer = styled.nav`
     border-radius: 5px;
     margin: 5%;
   }
+  @media screen and (max-width: 768px) {
+    display: ${props => (props.display === "true" ? "block" : "none")};
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: #f8f9f9;
+    height: 100%;
+    animation: ${slideIn} 0.2s;
+  }
 `;
 
 const StyledStickyBox = styled.div`
@@ -30,6 +49,8 @@ const StyledStickyBox = styled.div`
 
 function Nav() {
   // 메뉴 목록
+  const { nav } = useSelector(s => s);
+  const dispatch = useDispatch();
   const menus = useMemo(
     () => [
       { isContent: false, title: `PUBLIC`, route: `/404`, emoji: ``, contentsNav: true },
@@ -46,8 +67,17 @@ function Nav() {
     []
   );
 
+  const onOutSideClick = () => nav && dispatch(setNav());
+
+  useEffect(() => {
+    window.addEventListener("click", onOutSideClick);
+    return () => {
+      window.removeEventListener("click", onOutSideClick);
+    };
+  }, [nav]);
+
   return (
-    <NavContainer>
+    <NavContainer display={nav.toString()}>
       <StyledStickyBox>
         <ul>
           {menus.map(el => (

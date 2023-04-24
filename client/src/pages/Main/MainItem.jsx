@@ -64,7 +64,7 @@ function MainItem({ data }) {
         <StyledContentDescription>{data.body}</StyledContentDescription>
         <StyledTagSection>
           {data.tags.map(tag => (
-            <TagButton>{tag}</TagButton>
+            <TagButton key={tag}>{tag}</TagButton>
           ))}
         </StyledTagSection>
         <StyledAuthorSection>

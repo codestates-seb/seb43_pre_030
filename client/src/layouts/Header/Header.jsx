@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import HeaderButtonContainer from "./HeaderButtonContainer";
 import HeaderMenu from "./HeaderMenu";
+import NavButton from "./NavButton";
+import { setNav } from "../../features/navSlice";
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -24,9 +27,15 @@ const StyledHeader = styled.header`
   gap: 1rem;
 `;
 function Header({ logIn, currentUser }) {
+  const dispatch = useDispatch();
+  const onNavClick = e => {
+    e.stopPropagation();
+    dispatch(setNav());
+  };
   return (
     <StyledWrapper>
       <StyledHeader>
+        <NavButton onNavBtnClick={onNavClick} />
         <Logo />
         <SearchBar />
         {currentUser ? <HeaderMenu /> : <HeaderButtonContainer logIn={logIn} />}
