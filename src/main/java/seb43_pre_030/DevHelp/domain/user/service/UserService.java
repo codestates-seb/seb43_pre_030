@@ -1,7 +1,7 @@
 package seb43_pre_030.DevHelp.domain.user.service;
 
 
-import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
+import javax.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@Slf4j
+@Service //서비스 빈으로 등록
+@Slf4j // 로깅 진행
 public class UserService {
-
+    // 유저 생성, 수정, 조회, 이메일 인증 etc..
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils customAuthorityUtils;
@@ -38,6 +38,7 @@ public class UserService {
         this.confirmationTokenService = confirmationTokenService;
     }
 
+    // 유저 생성
     public User createUser(User user) throws MessagingException {
 
         validateDuplicateUser(user.getEmail());
@@ -66,6 +67,8 @@ public class UserService {
         return createdUser;
     }
 
+    // 유저 수정
+
     public User updateUser(User user) {
 
         User findUser = verifyUser(user.getUserId());
@@ -81,12 +84,14 @@ public class UserService {
     public Page<User> getUserList(int page) {
         return userRepository.findAll(PageRequest.of(page,36, Sort.by(Sort.Direction.DESC, "reputation")));
     }
-
+    // 페이지 네이션을 위한 메소드
     public User getUser(Long userId) {
 
         Optional<User> optional = userRepository.findById(userId);
         return optional.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USERS_NOT_VALID));
     }
+
+    // 중복 이메일 검사
 
     private void validateDuplicateUser(String email) {
 
@@ -96,6 +101,7 @@ public class UserService {
         }
     }
 
+    // 이메일 인증 처리 로직.
     public void confirmEmail(String token) {
         ConfirmationToken findConfirmationToken = confirmationTokenService.findByIdAndExpired(token);
         Optional<User> optionalUser = userRepository.findById(findConfirmationToken.getUserId());
@@ -107,6 +113,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    //입력된 id에 해당하는 유저가 존재하는지 검증.
     public User verifyUser(Long userId) {
         Optional<User> optional = userRepository.findById(userId);
         return optional.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USERS_NOT_VALID));

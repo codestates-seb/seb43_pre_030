@@ -1,7 +1,7 @@
 package seb43_pre_030.DevHelp.domain.user.controller;
 
 
-import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
+import javax.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,7 @@ import seb43_pre_030.DevHelp.domain.user.entity.Reputation;
 import seb43_pre_030.DevHelp.domain.user.entity.User;
 import seb43_pre_030.DevHelp.domain.user.mapper.UserMapper;
 import seb43_pre_030.DevHelp.domain.user.service.UserService;
+import seb43_pre_030.DevHelp.response.ApiResponse;
 import seb43_pre_030.DevHelp.utils.UriUtil;
 
 import javax.validation.Valid;
