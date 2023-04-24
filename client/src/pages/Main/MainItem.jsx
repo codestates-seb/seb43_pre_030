@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { AiOutlineUser } from "react-icons/ai";
 import { elapsedText } from "../../utils/elapsedText";
 import TagButton from "../../components/ui/TagButton";
 
@@ -45,6 +46,7 @@ const StyledTagSection = styled.div`
 const StyledAuthorSection = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 0.5rem 1.5rem;
   color: var(--font-color-light);
 `;
@@ -68,6 +70,7 @@ function MainItem({ data }) {
           ))}
         </StyledTagSection>
         <StyledAuthorSection>
+          <AiOutlineUser size="2rem" color="var(--font-color-light)" />
           {data.user_id} 9765 asked {elapsedText(new Date(data.created_at))}
         </StyledAuthorSection>
       </StyledContentContainer>

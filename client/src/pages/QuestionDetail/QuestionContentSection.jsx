@@ -37,12 +37,13 @@ const StyledTagsWrapper = styled.div`
 // 컨텐츠 안 util기능들 래퍼
 const StyledUtilsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 5rem;
+  /* justify-content: space-between; */
+  /* gap: 5rem; */
   margin: 1rem 0;
   padding-top: 0.25rem;
 
   .modified-date {
+    flex: 0.5 0 0;
     padding-top: 0.3rem;
     font-size: 0.75rem;
     color: var(--font-color-light);
@@ -54,6 +55,7 @@ const UtilsOptions = styled.div`
   display: flex;
   color: var(--font-color-light);
   font-size: 0.7rem;
+  flex: 1 0 0;
 
   button {
     height: 1rem;
@@ -86,7 +88,7 @@ function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, 
         <StyledBodyWrapper data-color-mode="light">
           <MDEditor.Markdown source={body} style={{ padding: "1.5rem" }} />
         </StyledBodyWrapper>
-        <StyledTagsWrapper>{tags && tags.map(tag => <TagButton>{tag}</TagButton>)}</StyledTagsWrapper>
+        <StyledTagsWrapper>{tags && tags.map(tag => <TagButton key={tag}>{tag}</TagButton>)}</StyledTagsWrapper>
         <StyledUtilsWrapper>
           <UtilsOptions>
             <button type="button">Share</button>
