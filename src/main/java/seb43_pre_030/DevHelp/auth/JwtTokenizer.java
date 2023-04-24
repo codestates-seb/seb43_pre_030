@@ -19,7 +19,7 @@ import java.util.Map;
 @Component
 public class JwtTokenizer {
     @Getter
-    @Value("${jwt.secret}")
+    @Value("${jwt.secret-key}")
     private String secretKey;
 
     @Getter
@@ -35,8 +35,10 @@ public class JwtTokenizer {
     }
 
     public String generateAccessToken(Map<String, Object> claims,
-                                      String subject, Date expiration, String base64EncodedSecretKey){
-        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+                                      String subject,
+                                      Date expiration,
+                                      String base64SecretKey) {
+        Key key = getKeyFromBase64EncodedKey(base64SecretKey);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -47,16 +49,16 @@ public class JwtTokenizer {
                 .compact();
     }
 
-//    public String generateRefreshToken(String subject, Date expiration, String base64EncodedSecretKey){
-//        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
-//
-//        return Jwts.builder()
-//                .setSubject(subject)
-//                .setIssuedAt(Calendar.getInstance().getTime())
-//                .setExpiration(expiration)
-//                .signWith(key)
-//                .compact();
-//    }
+    public String generateRefreshToken(String subject, Date expiration, String base64EncodedSecretKey){
+        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+
+        return Jwts.builder()
+                .setSubject(subject)
+                .setIssuedAt(Calendar.getInstance().getTime())
+                .setExpiration(expiration)
+                .signWith(key)
+                .compact();
+    }
 
 
     public Date getTokenExpiration(int accessTokenExpirationMinutes) {
@@ -87,8 +89,15 @@ public class JwtTokenizer {
         } catch (ExpiredJwtException e) {
             throw new RuntimeException("Expired JWT");
         }
-
-
     }
 
+    public Jws<Claims> getClaims(String jws, String base64EncodedSecretKey) {
+        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+
+        Jws<Claims> claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jws);
+        return claims;
+    }
 }
