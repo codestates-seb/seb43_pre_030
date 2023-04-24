@@ -72,3 +72,36 @@ export function elapsedText(date) {
 
   return elapsedText;
 }
+
+// 매개변수로 들어온 날짜 ~ 오늘까지 경과한 날짜(일, 월, 연도)를 반환하는 함수
+export function getDays(dateObj) {
+  if (dateObj === undefined) return "--";
+  const date = new Date(dateObj.replace(/"/g, "'"));
+  const now = new Date();
+  const days = Math.floor((now.getTime() - date.getTime()) / 8.64e7);
+  // 31일 미만은 날짜 단위로 반환
+  if (days < 31) {
+    if (days <= 0) {
+      return "today";
+    } else if (days === 1) {
+      return "yesterday";
+    } else {
+      return `${days} days ago`;
+    }
+  }
+
+  // 12달 미만은 개월 단위로 반환
+  const months = Math.floor(days / 30);
+  if (months < 12) return months + (months === 1 ? "month ago" : "months ago");
+
+  // 그 이상은 연도 수와 개월 수(연도 계산하고 남은 개월 수가 0 이상일 때)를 반환
+  const years = Math.floor(months / 12); // 연도 계산
+  const monthsLeft = Math.floor(months % 12); // 그 후 남은 개월수
+
+  let yearsAndMonth = years + (years === 1 ? " year" : " years"); // 몇년도 몇월까지 나오는 수
+  // 남은 개월수가 있다면
+  if (monthsLeft > 0) {
+    yearsAndMonth += `, ${monthsLeft} ${monthsLeft === 1 ? " month" : " months"}`;
+  }
+  return `${yearsAndMonth} ago`;
+}
