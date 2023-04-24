@@ -74,7 +74,7 @@ function Nav() {
     return () => {
       window.removeEventListener("click", onOutSideClick);
     };
-  }, [nav]);
+  }, []);
 
   return (
     <NavContainer display={nav.toString()}>
