@@ -86,16 +86,7 @@ function AskPage() {
       isButtonBlocked: false,
       isFormBlocked: true,
     },
-    {
-      component: VersatileForm,
-      title: `Review questions already on Stack Overflow to see if your question is a duplicate.`,
-      content: `Clicking on these questions will open them in a new tab for you to review. Your progress here will be saved so you can come back and continue.`,
-      tipTitle: `Make sure we don’t already have an answer for your question`,
-      tipContent: `Stack Overflow is a huge database of knowledge.\nPlease make sure your question isn’t already answered before posting, or your question might be closed as a duplicate.`,
-      isDoneYet: true,
-      isButtonBlocked: false,
-      isFormBlocked: true,
-    },
+
   ]);
 
   const askController = {
@@ -137,6 +128,8 @@ function AskPage() {
         setInfoArr(newInfoArr);
       }
     },
+
+    
   };
 
   return (
