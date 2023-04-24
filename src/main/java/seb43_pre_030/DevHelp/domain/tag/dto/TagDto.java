@@ -1,25 +1,38 @@
 package seb43_pre_030.DevHelp.domain.tag.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import seb43_pre_030.DevHelp.domain.tag.entity.TagEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagDto {
 
-    @Getter
-    @Setter
-    public static class Information{
-        private String name;
+@Getter
+@Setter
+public class TagDto extends TagEntity {
+    private String name;
+    public TagDto() {}
 
-        private int count;
+    public TagDto(Long id, String name) {
+        super(String.valueOf(id));
+        this.name = name;
     }
 
-    @Getter
-    @Setter
-    public static class Response {
-        private PageInfo pageInfo;
-        private List<Information> tags = new ArrayList<>();
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
+
+
+
+
+
+
+

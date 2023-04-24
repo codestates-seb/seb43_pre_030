@@ -1,4 +1,4 @@
-package seb43_pre_030.DevHelp.answer.domain;
+package seb43_pre_030.DevHelp.domain.answer;
 
 import lombok.Getter;
 import lombok.Setter;
