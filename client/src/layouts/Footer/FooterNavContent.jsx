@@ -15,7 +15,7 @@ const StyledList = styled.ul`
   vertical-align: top;
   font-size: 0.8125rem;
   padding: 0.25rem 0;
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1024px) {
     display: flex;
     flex-wrap: wrap;
   }
@@ -32,7 +32,7 @@ function FooterNavContent({ title, items }) {
       <StyledNavTitle>{title}</StyledNavTitle>
       <StyledList>
         {items.map(item => (
-          <FooterItem text={item} link={item} />
+          <FooterItem key={item} text={item} link={item} />
         ))}
       </StyledList>
     </StyledNavContent>

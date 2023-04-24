@@ -18,7 +18,7 @@ const StyledFooterContainer = styled.div`
   box-sizing: border-box;
   flex-wrap: wrap;
   gap: 5rem;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 768px) {
     gap: 0;
   }
 `;
@@ -31,12 +31,12 @@ const StyledLogo = styled.div`
 const StyledNav = styled.nav`
   display: flex;
   gap: 5rem;
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1024px) {
     width: 80%;
     flex-direction: column;
     gap: 0;
   }
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 768px) {
     width: 100%;
     flex-direction: column;
     gap: 0;

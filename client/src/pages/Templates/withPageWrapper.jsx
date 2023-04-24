@@ -11,6 +11,7 @@ const StyledMainSection = styled.div`
   display: flex;
   width: 97.2307692rem;
   max-width: 97vw;
+  position: relative;
 `;
 
 function withPageWrapper(Component) {

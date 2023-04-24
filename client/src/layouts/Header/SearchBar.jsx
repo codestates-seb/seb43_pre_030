@@ -16,6 +16,9 @@ const StyledInputContainer = styled.div`
     top: 15%;
     left: 0.5rem;
     font-size: 1.5rem;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 const StyledForm = styled.form`
@@ -27,6 +30,9 @@ const StyledInput = styled.input`
   width: 100%;
   border-radius: 3px;
   padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem;
+  }
 `;
 function SearchBar() {
   const [valProps, setValue] = useInput("");
