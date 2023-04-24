@@ -41,8 +41,8 @@ public class CommentController {
             dto.setBody(comment.getBody());
             dto.setCreated_at(comment.getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUpdated_at(comment.getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-            dto.setUsersId(comment.getUsersId().getUserId());
-            dto.setQuestionId(comment.getQuestionId().getQuestion_Id());
+            dto.setUsersId(comment.getUser().getUserId());
+            dto.setQuestionId(comment.getQuestion().getId());
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(commentDtos);
@@ -57,8 +57,8 @@ public class CommentController {
             dto.setBody(comment.get().getBody());
             dto.setCreated_at(comment.get().getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUpdated_at(comment.get().getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-            dto.setUsersId(comment.get().getUsersId().getUserId());
-            dto.setQuestionId(comment.get().getQuestionId().getQuestion_Id());
+            dto.setUsersId(comment.get().getUser().getUserId());
+            dto.setQuestionId(comment.get().getQuestion().getId());
             return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();
