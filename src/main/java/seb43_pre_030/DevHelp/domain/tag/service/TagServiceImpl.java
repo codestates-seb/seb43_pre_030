@@ -74,7 +74,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public void updateTag(Long tagId, TagDto tagDto) {
+    public void updateTag(Long tagId, TagEntity tagDto) {
         TagEntity tagEntity = tagRepository.findById(tagId)
                 .orElseThrow(() -> new EntityNotFoundException("Tag not found with ID: " + tagId));
 

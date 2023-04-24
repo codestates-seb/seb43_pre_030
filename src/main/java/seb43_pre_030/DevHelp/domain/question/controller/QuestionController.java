@@ -35,7 +35,7 @@ public class QuestionController {
     }
 
     @GetMapping("/{questionId}")
-    public ResponseEntity<QuestionDTO> getQuestionById(@PathVariable Long questionId) {
+    public ResponseEntity<QuestionDTO> getQuestionById(@PathVariable Long questionId) throws NotFoundException {
         QuestionDTO question = questionService.getQuestionById(questionId);
         return ResponseEntity.ok(question);
     }
