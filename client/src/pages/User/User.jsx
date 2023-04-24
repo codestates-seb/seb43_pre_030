@@ -60,6 +60,9 @@ const StyledUser = styled.div`
   }
   .userInfo {
     display: flex;
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+    }
   }
   .userTop {
     /* width: 100%; */
@@ -73,6 +76,8 @@ const StyledUser = styled.div`
   .item {
     margin: 4px;
     display: flex;
+  }
+  .mypage {
   }
 `;
 
@@ -162,7 +167,7 @@ function User() {
           <Button className="editBt">Edit profile</Button>
         </div>
       </div>
-      {questions && questions.map(question => <MainItem data={question} />)}
+      <div className="mypage">{questions && questions.map(question => <MainItem data={question} />)}</div>
     </StyledUser>
   );
 }
