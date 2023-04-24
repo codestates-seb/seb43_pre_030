@@ -74,7 +74,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public void updateTag(Long tagId, TagEntity tagDto) {
+    public TagEntity updateTag(Long tagId, TagEntity tagDto) {
         TagEntity tagEntity = tagRepository.findById(tagId)
                 .orElseThrow(() -> new EntityNotFoundException("Tag not found with ID: " + tagId));
 
@@ -84,7 +84,7 @@ public class TagServiceImpl implements TagService {
         }
 
         modelMapper.map(tagDto, tagEntity);
-        tagRepository.save(tagEntity);
+       return tagRepository.save(tagEntity);
     }
 
     @Override
