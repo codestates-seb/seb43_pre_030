@@ -5,7 +5,6 @@ import org.modelmapper.TypeToken;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import seb43_pre_030.DevHelp.domain.tag.dto.TagDto;
-import seb43_pre_030.DevHelp.domain.tag.mapper.TagMapper;
 import seb43_pre_030.DevHelp.domain.tag.service.TagService;
 import seb43_pre_030.DevHelp.domain.tag.entity.TagEntity;
 

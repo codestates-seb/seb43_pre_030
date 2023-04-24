@@ -15,6 +15,8 @@ import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @Entity
 @Table(name = "tag")
 @Getter

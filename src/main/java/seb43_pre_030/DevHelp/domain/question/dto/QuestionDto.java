@@ -13,19 +13,19 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-class QuestionDTO {
+public class QuestionDTO {
     private Long id;
     private String title;
     private String body;
-    private List<String> tags;
+    private List<String> tag;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public QuestionDTO(Long id, String title, String body, List<String> tags, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public QuestionDto(Long id, String title, String body, List<String> tags, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.title = title;
         this.body = body;
-        this.tags = tags;
+        this.tag = tags;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

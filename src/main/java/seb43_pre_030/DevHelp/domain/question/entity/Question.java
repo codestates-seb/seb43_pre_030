@@ -15,8 +15,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "question")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@NoArgsConstructor
 public class QuestionEntity extends BaseEntity {
 
     @Column(nullable = false)
@@ -50,6 +52,9 @@ public class QuestionEntity extends BaseEntity {
         return id;
     }
 
+    public <E> List<E> getTags() {
+        return null;
+    }
 }
 
 

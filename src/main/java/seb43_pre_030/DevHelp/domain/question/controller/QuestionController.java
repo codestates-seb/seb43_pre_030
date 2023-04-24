@@ -1,5 +1,6 @@
 package seb43_pre_030.DevHelp.domain.question.controller;
 
+import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.aspectj.apache.bcel.generic.Tag;
 import org.modelmapper.ModelMapper;
@@ -27,11 +28,6 @@ public class QuestionController {
     private final QuestionService questionService;
     private final ModelMapper modelMapper;
 
-    public QuestionController(QuestionService questionService, ModelMapper modelMapper) {
-        this.questionService = questionService;
-        this.modelMapper = modelMapper;
-    }
-
     @GetMapping
     public ResponseEntity<List<QuestionDTO>> getAllQuestions() {
         List<QuestionDTO> questions = questionService.getAllQuestions();
@@ -51,13 +47,13 @@ public class QuestionController {
     }
 
     @PutMapping("/{questionId}")
-    public ResponseEntity<QuestionDTO> updateQuestion(@PathVariable Long questionId, @RequestBody QuestionDTO questionDTO) {
+    public ResponseEntity<QuestionDTO> updateQuestion(@PathVariable Long questionId, @RequestBody QuestionDTO questionDTO) throws NotFoundException {
         QuestionDTO updatedQuestion = questionService.updateQuestion(questionId, questionDTO);
         return ResponseEntity.ok(updatedQuestion);
     }
 
     @DeleteMapping("/{questionId}")
-    public ResponseEntity<Void> deleteQuestion(@PathVariable Long questionId) {
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long questionId) throws NotFoundException {
         questionService.deleteQuestion(questionId);
         return ResponseEntity.noContent().build();
     }

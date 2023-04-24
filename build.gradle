@@ -41,16 +41,18 @@ dependencies {
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
-//	implementation 'com.example:mymodule:1.0.0'
+	implementation 'org.springframework:spring-tx:5.3.10'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+	implementation 'org.modelmapper:modelmapper:2.4.4'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5',
 			'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
