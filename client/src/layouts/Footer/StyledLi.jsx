@@ -8,7 +8,7 @@ export const StyledLi = styled.li`
   &:hover {
     color: #9fa6ad;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1024px) {
     margin-right: 1rem;
   }
 `;

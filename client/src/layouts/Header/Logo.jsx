@@ -20,7 +20,7 @@ const StyledLogoText = styled.div`
   & strong {
     font-weight: bold;
   }
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;

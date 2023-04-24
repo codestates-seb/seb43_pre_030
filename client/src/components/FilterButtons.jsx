@@ -17,7 +17,7 @@ function FilterButtons({ buttons }) {
   return (
     <StyledButtonContainer>
       {buttons.map(btn => (
-        <FilterButton>{btn}</FilterButton>
+        <FilterButton key={btn}>{btn}</FilterButton>
       ))}
     </StyledButtonContainer>
   );

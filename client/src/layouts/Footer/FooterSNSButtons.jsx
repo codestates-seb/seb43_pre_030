@@ -17,7 +17,7 @@ function FooterSNSButtons() {
   return (
     <StyledSnsLinkContainer>
       {links.map(link => (
-        <FooterItem {...link} />
+        <FooterItem key={link.text} {...link} />
       ))}
     </StyledSnsLinkContainer>
   );
