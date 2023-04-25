@@ -39,46 +39,80 @@ function QuestionDetailPage() {
 
   // 서버에서 받아온 질문과 답변 데이터 상태
   const [questionData, setQuestionData] = useState({});
-  const [answerData, setAnswerData] = useState([]);
+  // const [answerData, setAnswerData] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
   const { user } = useSelector(state => state.data);
 
   // 데이터 패칭
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       setIsPending(true);
-      const res = await axios(url); // 질문데이터
-      const res2 = await axios(url2); // 답변데이터
-
-      const resQuestion = res.data;
-      const resAnswer = res2.data;
-      setQuestionData(resQuestion);
-      setAnswerData(resAnswer);
+      const res = await axios(`${process.env.REACT_APP_API_URL}/questions/${id}`); // 질문데이터
+      console.log(res);
+      setQuestionData(res.data);
     })();
     setIsPending(false);
-  }, [url, url2]);
+  }, []);
 
   // 새로운 답변 추가하기
-  const handleAnswerSubmit = content => {
-    const data = { body: content }; // 새로운 답변글 body에 추가
-    axios(`http://localhost:3001/answers/${id}`, {
-      method: "post",
-      headers: {
-        Authorization: user.token, // 인증받은 토큰 보내기
-      },
-      data,
-    })
-      .then(res => {
-        console.log(res.data);
+  // const handleAnswerSubmit = content => {
+  //   const data = { body: content }; // 새로운 답변글 body에 추가
+  //   axios(`http://localhost:3001/answers/${id}`, {
+  //     method: "post",
+  //     headers: {
+  //       Authorization: user.token, // 인증받은 토큰 보내기
+  //     },
+  //     data,
+  //   })
+  //     .then(res => {
+  //       console.log(res.data);
+  //     })
+  //     .catch(err => console.error(err));
+  // };
+  const updateAnswer = (id, data) => {
+    axios
+      .patch(`${process.env.REACT_APP_API_URL}/answer/${id}`, data)
+      .then(_ => {
+        setQuestionData(prev => {
+          const answerInd = prev.answers.findIndex(a => a.id === id);
+          const newAnswerArr = [
+            ...prev.answers.slice(0, answerInd),
+            { ...prev.answers[answerInd], body: data },
+            ...prev.answers.slice(answerInd + 1),
+          ];
+          return { ...prev, answers: newAnswerArr };
+        });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        setQuestionData(prev => {
+          const answerInd = prev.answers.findIndex(a => a.id === id);
+          const newAnswerArr = [
+            ...prev.answers.slice(0, answerInd),
+            { ...prev.answers[answerInd], body: data },
+            ...prev.answers.slice(answerInd + 1),
+          ];
+          return { ...prev, answers: newAnswerArr };
+        });
+      });
+  };
+
+  const updateQuestion = (id, data) => {
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/questions/${id}`, { ...questionData, body: data })
+      .then(_ => {
+        setQuestionData(prev => ({ ...prev, body: data }));
+      })
+      .catch(err => {
+        setQuestionData(prev => ({ ...prev, body: data }));
+      });
   };
 
   return (
     <>
       {isPending && <Loading />}
-      {questionData && answerData && (
+      {Object.keys(questionData).length > 0 && (
         <Main>
           <QuestionHeaderSection
             title={questionData.title}
@@ -94,12 +128,13 @@ function QuestionDetailPage() {
             tags={questionData.tags}
             createdAt={questionData.created_at}
             modifiedAt={questionData.modified_at}
+            updateHandler={updateQuestion}
           />
           {/* 답변들 */}
-          {answerData.length > 0 && (
+          {questionData.answers.length > 0 && (
             <>
-              <AnswersHeader count={answerData.length} />
-              {answerData.map(answer => {
+              <AnswersHeader count={questionData.answers.length} />
+              {questionData.answers.map(answer => {
                 return (
                   <QuestionContentSection
                     type="answer"
@@ -109,13 +144,14 @@ function QuestionDetailPage() {
                     body={answer.body}
                     createAt={answer.created_at}
                     modifiedAt={answer.modified_at}
+                    updateHandler={updateAnswer}
                   />
                 );
               })}
             </>
           )}
           {/* 답변 작성폼 */}
-          <AnswerCreateSection handleAnswerSubmit={handleAnswerSubmit} />
+          <AnswerCreateSection setQuestionData={setQuestionData} />
         </Main>
       )}
     </>

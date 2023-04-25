@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { useEffect } from "react";
 import MainItem from "../Main/MainItem";
 import Button from "../../components/ui/Button";
 
 const StyledUser = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 63px);
 
   .container {
     position: relative;
@@ -27,10 +28,14 @@ const StyledUser = styled.div`
     position: absolute;
     display: flex;
     right: 0;
-    top: 0;
+    top: 1rem;
     border-color: black;
   }
-
+  .editBt {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
   .header {
     display: flex;
     align-items: center;
@@ -78,17 +83,22 @@ const StyledUser = styled.div`
     display: flex;
   }
 `;
+const EditButton = Button({
+  bg: "#fff",
+  fontColor: "var(--font-color-light)",
+  border: "1px solid #BABFC4",
+  hoverBg: "#E3E5E8",
+});
 
 function User() {
   const questions = useSelector(s => s.data);
   // const dispatch = useDispatch();
-  
 
   // useEffect(() => {
   //   (async () => {
   //     const { data } = await axios("http://localhost:3001/users");
   //     dispatch(setData(data));
-      
+
   //   })();
   // });
 
@@ -99,7 +109,9 @@ function User() {
   //     console.log(data);
   //   })();
   // }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <StyledUser>
       <div className="container">
@@ -169,19 +181,23 @@ function User() {
           </div>
         </div>
         <div className="editButton">
-          <svg aria-hidden="true" className="svg-icon iconPencil" width="18" height="18" viewBox="0 0 18 18">
-            <path d="m13.68 2.15 2.17 2.17c.2.2.2.51 0 .71L14.5 6.39l-2.88-2.88 1.35-1.36c.2-.2.51-.2.71 0ZM2 13.13l8.5-8.5 2.88 2.88-8.5 8.5H2v-2.88Z" />
-          </svg>
-          <Button className="editBt">Edit profile</Button>
+          <EditButton className="editBt">
+            <div className="editBt">
+              <svg aria-hidden="true" className="svg-icon iconPencil" width="18" height="18" viewBox="0 0 18 18">
+                <path d="m13.68 2.15 2.17 2.17c.2.2.2.51 0 .71L14.5 6.39l-2.88-2.88 1.35-1.36c.2-.2.51-.2.71 0ZM2 13.13l8.5-8.5 2.88 2.88-8.5 8.5H2v-2.88Z" />
+              </svg>
+              Edit profile
+            </div>
+          </EditButton>
         </div>
       </div>
-      <div className="editButton">
+      {/* <div className="editButton">
         <svg aria-hidden="true" className="svg-icon iconPencil" width="18" height="18" viewBox="0 0 18 18">
-        <path d="m13.68 2.15 2.17 2.17c.2.2.2.51 0 .71L14.5 6.39l-2.88-2.88 1.35-1.36c.2-.2.51-.2.71 0ZM2 13.13l8.5-8.5 2.88 2.88-8.5 8.5H2v-2.88Z" />
+          <path d="m13.68 2.15 2.17 2.17c.2.2.2.51 0 .71L14.5 6.39l-2.88-2.88 1.35-1.36c.2-.2.51-.2.71 0ZM2 13.13l8.5-8.5 2.88 2.88-8.5 8.5H2v-2.88Z" />
         </svg>
-        <Button className="editBt">Edit profile</Button>
-      </div>     
-      {questions && questions.map(question => <MainItem data={question} />)}
+        <EditButton className="editBt">Edit profile</EditButton>
+      </div> */}
+      {/* {questions && questions.map(question => <MainItem data={question} />)} */}
     </StyledUser>
   );
 }

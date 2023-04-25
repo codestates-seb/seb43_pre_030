@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize"; // npm i rehype-sanitize 묘듈 설치 필요
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Button from "../../components/ui/Button";
 
 // 답변 작성 폼
@@ -36,15 +38,24 @@ const ButtonSubmit = Button({
 });
 
 // 마크다운 답변 생성 폼
-function AnswerForm({ handleAnswerSubmit }) {
+function AnswerForm({ setQuestionData }) {
   const [answerValue, setAnswerValue] = useState("");
-
-  const handledAnswerValue = newValue => {
-    setAnswerValue(newValue);
-  };
-
+  const currentUser = useSelector(s => s.user);
+  const { id } = useParams();
   const onSubmit = () => {
-    handleAnswerSubmit(answerValue);
+    const newAnswer = {
+      body: answerValue,
+      user_id: currentUser.id,
+      question_id: id,
+    };
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/answer`, newAnswer)
+      .then(res => {
+        setQuestionData(prev => ({ ...prev, answers: [...prev.answers, newAnswer] }));
+      })
+      .catch(err => {
+        setQuestionData(prev => ({ ...prev, answers: [...prev.answers, newAnswer] }));
+      });
   };
   return (
     <StyledAnswerForm>
@@ -53,7 +64,7 @@ function AnswerForm({ handleAnswerSubmit }) {
           <MDEditor
             className="md-editor"
             value={answerValue}
-            onChange={handledAnswerValue}
+            onChange={setAnswerValue}
             previewOptions={{
               rehypePlugins: [[rehypeSanitize]],
             }}
@@ -61,9 +72,7 @@ function AnswerForm({ handleAnswerSubmit }) {
         </div>
       </MarkDownEditor>
       <div className="answer-submit">
-        <ButtonSubmit onClick={onSubmit}>
-          <Link to="/">Post Your Answer</Link>
-        </ButtonSubmit>
+        <ButtonSubmit onClick={onSubmit}>Post Your Answer</ButtonSubmit>
       </div>
     </StyledAnswerForm>
   );

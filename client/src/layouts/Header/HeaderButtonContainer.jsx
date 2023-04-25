@@ -4,7 +4,7 @@ import { ButtonSub } from "../../components/ui/ButtonSub";
 
 function HeaderButtonContainer({ logIn }) {
   const logInClickHandler = e => {
-    logIn();
+    console.log("test");
   };
   // const navigate = useNavigate();
 

@@ -56,9 +56,9 @@ function Login() {
       .catch(err => console.log(err));
   };
 
-  // useEffect(() => {
-  //   authUserHandler();
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <StyledLoginPage>

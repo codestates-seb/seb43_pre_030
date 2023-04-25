@@ -12,6 +12,7 @@ function MainPage() {
   const [curPage, setCurPage] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       const { data } = await axios("http://localhost:3001/questions");
       dispatch(setData(data));

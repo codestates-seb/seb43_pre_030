@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import WritingGuideBox from "./WritingGuideBox";
 import VersatileForm from "./VersatileForm";
@@ -37,12 +37,12 @@ function AskPage() {
   // 현재 페이지 state
   const [currentForm, setCurrentForm] = useState(1);
   const [postValue, setPostValue] = useState({
-    id : ``,
-    title : ``,
-    body1 : ``,
-    body2 : ``,
-    tags : ``,
-  })
+    id: ``,
+    title: ``,
+    body1: ``,
+    body2: ``,
+    tags: ``,
+  });
 
   const [infoArr, setInfoArr] = useState([
     {
@@ -92,7 +92,6 @@ function AskPage() {
       isButtonBlocked: false,
       isFormBlocked: true,
     },
-
   ]);
 
   const askController = {
@@ -136,9 +135,10 @@ function AskPage() {
         setInfoArr(newInfoArr);
       }
     },
-
-    
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <QuestionPageWrapper>
