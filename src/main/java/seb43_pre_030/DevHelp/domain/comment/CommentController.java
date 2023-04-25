@@ -42,7 +42,7 @@ public class CommentController {
             dto.setCreated_at(comment.getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUpdated_at(comment.getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUsersId(comment.getUser().getUserId());
-            dto.setQuestionId(comment.getQuestion().getId());
+            dto.setQuestionId(comment.getQuestion().getQuestionId());
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(commentDtos);
@@ -58,7 +58,7 @@ public class CommentController {
             dto.setCreated_at(comment.get().getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUpdated_at(comment.get().getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUsersId(comment.get().getUser().getUserId());
-            dto.setQuestionId(comment.get().getQuestion().getId());
+            dto.setQuestionId(comment.get().getQuestion().getQuestionId());
             return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();

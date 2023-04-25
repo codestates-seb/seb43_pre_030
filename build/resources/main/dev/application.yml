@@ -34,17 +34,16 @@ spring:
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            clientId: ${google_client_id}
-#            clientSecret: ${google_client_secret}
-#            scope:
-#              -email
-#              -profile
-
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${google_client_id}
+            clientSecret: ${google_client_secret}
+            scope:
+              -email
+              -profile
 
 logging:
   level:
