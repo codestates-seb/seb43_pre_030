@@ -17,7 +17,7 @@ JpaRepository 주요 조작 기능 6가지
 public interface UserRepository extends JpaRepository <User, Long> {
     Optional<User> findByEmail(String email); //email로 user찾기
 
-    Optional<User> findByUsername(String username); // username으로 user찾기
+//    Optional<User> findByUsername(String username); // username으로 user찾기
 
     Optional<User> findById(Long id); // 데이터에서 id값에 해당하는 사용자를 찾아 그 정보를 optional<user>로 감까서 전달하기.
 

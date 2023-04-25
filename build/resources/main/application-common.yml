@@ -1,0 +1,11 @@
+server:
+  servlet:
+    encoding:
+      force-response: true
+  error:
+    include-exception: true
+
+
+mail:
+  address:
+    admin:  seb43pre030@gmail.com
