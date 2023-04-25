@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
 
 const VersatileBlueButtonContainer = styled.div`
   button{
@@ -14,18 +14,28 @@ const VersatileBlueButtonContainer = styled.div`
 `
 
 
-function VersatileBlueButton({text, idx, askController}) {
+function VersatileBlueButton({text, idx, askController, data}) {
 
-  let clickForm;
-  let clickButton;
+  const { id, title, body1, body2, tags} = data;
 
-  if(askController !== undefined){
-    ({ clickForm, clickButton } = askController);
-  } 
+  const body = body1 + body2;
+  const user_id = null;
+  const created_at = new Date();
+  const modified_at = new Date()
+
+
+  const postData = async() => {
+    console.log(data)
+    await axios.post(`http://localhost:3001/questions`, {id, title, body, created_at, modified_at, user_id, tags})
+  }
+
+
+  const { clickForm, clickButton } = askController;
+  
 
   return (
     <VersatileBlueButtonContainer>
-      <button type="button" onClick={()=>{clickForm(idx); clickButton(idx);}}>{text}</button>
+      <button type="button" onClick={() => { clickForm(idx); clickButton(idx); idx === 4 && postData() }}>{text}</button>
     </VersatileBlueButtonContainer>
   );
 }
