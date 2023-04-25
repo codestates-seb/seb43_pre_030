@@ -1,7 +1,6 @@
 running: local
 domain: http://localhost:8080
-S3domain: http://localhost:3000
-
+S3domain : http://localhost:3000
 
 spring:
   profiles:
@@ -19,11 +18,10 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create  # (1) 스키마 자동 생성
-    show-sql: true      # (2) SQL 쿼리 출력
+      ddl-auto: create
     properties:
       hibernate:
-        format_sql: true  # (3) SQL pretty print
+        format_sql: true
         highlight_sql: true
         use_sql_comments: true
   mail:
@@ -46,22 +44,25 @@ spring:
       client:
         registration:
           google:
-            clientId: 759272438227-e8o3ofaekd3d6svf6i8tinfp09pbdtap.apps.googleusercontent.com
-            clientSecret: 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
+            clientId: ${google_client_id}
+            clientSecret: ${google_client_secret}
             scope:
               - email
               - profile
-  sql:
-    init:
-      data-locations: classpath*:db/h2/data.sql
+  thymeleaf:
+    prefix: classpath:/mail-templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    check-template-location: true
 
 logging:
   level:
     org.hibernate.SQL: trace
-    org.hibernate.typedescriptor.sql.BasicBinder: trace
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 jwt:
-  key: ${JWT_SECRET_KEY}
+  secret: ${secret_key}
   access-token-expiration-minutes: 1800000
   refresh-token-expiration-minutes: 604800000
 

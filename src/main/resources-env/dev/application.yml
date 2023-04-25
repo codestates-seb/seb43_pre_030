@@ -1,6 +1,6 @@
 running: dev
-domain: htpp://ec2-43-201-203-72.ap-northeast-2.compute.amazonaws.com
-S3domain: http://crowwan-pre-project.s3-website.ap-northeast-2.amazonaws.com/
+domain: http://ec2-43-201-203-72.ap-northeast-2.compute.amazonaws.com:8080
+S3domain: http://http://seb43-pre-030.s3-website.ap-northeast-2.amazonaws.com:80
 
 spring:
   profiles:
@@ -17,7 +17,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
 
   mail:
     host: smtp.gmail.com
@@ -42,8 +41,14 @@ spring:
             clientId: ${google_client_id}
             clientSecret: ${google_client_secret}
             scope:
-              -email
-              -profile
+              - email
+              - profile
+  thymeleaf:
+    prefix: classpath:/mail-templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    check-template-location: true
 
 logging:
   level:
@@ -53,7 +58,6 @@ jwt:
   secret: ${secret_key}
   access-token-expiration-minutes: 1800000
   refresh-token-expiration-minutes: 604800000
-
 
 mail:
   address:
