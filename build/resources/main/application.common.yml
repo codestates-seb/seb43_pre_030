@@ -4,4 +4,8 @@ server:
       force-response: true
   error:
     include-exception: true
-    include-stacktrace: always
+
+
+mail:
+  address:
+    admin:  ${admin_mail}

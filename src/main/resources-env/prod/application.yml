@@ -1,6 +1,0 @@
-running: prod
-
-spring:
-  profiles:
-    include: common
-    active: prod
