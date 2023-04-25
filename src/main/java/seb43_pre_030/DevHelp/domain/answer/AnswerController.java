@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/answers")
+@RequestMapping("/answer")
 public class AnswerController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class AnswerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(answerService.save(answer));
     }
 
-    @PutMapping("/{answer-id}")
+    @PutMapping("/{answer_id}")
     public ResponseEntity<Answer> updateAnswer(@PathVariable Long id, @RequestBody Answer updatedAnswer) {
         try {
             return ResponseEntity.ok(answerService.update(id, updatedAnswer));
@@ -48,7 +48,7 @@ public class AnswerController {
         return ResponseEntity.ok(answerDtos);
     }
 
-    @GetMapping("/{answer-id}")
+    @GetMapping("/{answer_id}")
     public ResponseEntity<AnswerDto> findAnswerById(@PathVariable Long id) {
         Optional<Answer> answer = answerService.findById(id);
         if (answer.isPresent()) {
@@ -65,7 +65,7 @@ public class AnswerController {
     }
 
 
-    @DeleteMapping("/{answer-id}")
+    @DeleteMapping("/{answer_id}")
     public ResponseEntity<Void> deleteAnswerById(@PathVariable Long id) {
         answerService.deleteById(id);
         return ResponseEntity.noContent().build();

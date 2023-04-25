@@ -19,7 +19,7 @@ import java.util.Map;
 @Component
 public class JwtTokenizer {
     @Getter
-    @Value("${jwt.secret-key}")
+    @Value("${mail.address.admin}")
     private String secretKey;
 
     @Getter

@@ -29,12 +29,16 @@ public class QQuestionEntity extends EntityPathBase<QuestionEntity> {
     //inherited
     public final DateTimePath<java.sql.Timestamp> createdAt = _super.createdAt;
 
+    public final NumberPath<Integer> downvotes = createNumber("downvotes", Integer.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath title = createString("title");
 
     //inherited
     public final DateTimePath<java.sql.Timestamp> updatedAt = _super.updatedAt;
+
+    public final NumberPath<Integer> upvotes = createNumber("upvotes", Integer.class);
 
     public final seb43_pre_030.DevHelp.domain.user.entity.QUser user;
 

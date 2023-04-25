@@ -39,7 +39,7 @@ import java.util.List;
 
 public class SecurityConfiguration{
 
-    // Google OAuth2 클라이언트 ID와 클라이언트 비밀번호
+//     Google OAuth2 클라이언트 ID와 클라이언트 비밀번호
     @Value("${spring.security.oauth2.client.registration.google.clientId}")
     private String clientId;
 

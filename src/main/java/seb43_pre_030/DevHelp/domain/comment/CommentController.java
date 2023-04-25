@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/comment")
 public class CommentController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.save(comment));
     }
 
-    @PutMapping("/{comment-id}")
+    @PutMapping("/{comment_id}")
     public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody Comment updatedComment) {
         try {
             return ResponseEntity.ok(commentService.update(id, updatedComment));
@@ -48,7 +48,7 @@ public class CommentController {
         return ResponseEntity.ok(commentDtos);
     }
 
-    @GetMapping("/{comment-id}")
+    @GetMapping("/{comment_id}")
     public ResponseEntity<CommentDto> findCommentById(@PathVariable Long id) {
         Optional<Comment> comment = commentService.findById(id);
         if (comment.isPresent()) {
@@ -65,7 +65,7 @@ public class CommentController {
     }
 
 
-    @DeleteMapping("/{comment-id}")
+    @DeleteMapping("/{comment_id}")
     public ResponseEntity<Void> deleteCommentById(@PathVariable Long id) {
         commentService.deleteById(id);
         return ResponseEntity.noContent().build();
