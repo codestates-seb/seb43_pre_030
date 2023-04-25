@@ -2,6 +2,7 @@ package seb43_pre_030.DevHelp.domain.question.service;
 
 import javassist.NotFoundException;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
+import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<QuestionDTO> getAllQuestions() {
-        List<TypePatternQuestions.Question> questions = questionRepository.findAll();
+        List<QuestionEntity> questions = questionRepository.findAll();
         List<QuestionDTO> collect = questions.stream()
                 .map(questionEntity -> modelMapper.map(questionEntity, QuestionDTO.class))
                 .collect(Collectors.toList());
@@ -37,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionDTO getQuestionById(Long questionId) throws NotFoundException {
-        TypePatternQuestions.Question question = questionRepository.findById(questionId)
+        QuestionEntity question = questionRepository.findById(questionId)
                 .orElseThrow(() -> new NotFoundException("Question not found with id: " + questionId));
         return new QuestionDTO(question);
     }
@@ -50,15 +51,15 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionDTO updateQuestion(Long questionId, QuestionDTO questionDTO) throws NotFoundException {
-        Optional<TypePatternQuestions.Question> questionEntityOpt = questionRepository.findById(questionId);
+        Optional<QuestionEntity> questionEntityOpt = questionRepository.findById(questionId);
         if (questionEntityOpt.isEmpty()) {
             throw new NotFoundException("Question not found with id: " + questionId);
         }
 
-        TypePatternQuestions.Question questionEntity = questionEntityOpt.get();
+        QuestionEntity questionEntity = questionEntityOpt.get();
         modelMapper.map(questionDTO, questionEntity);
 
-        TypePatternQuestions.Question updatedQuestion = questionRepository.save(questionEntity);
+        QuestionEntity updatedQuestion = questionRepository.save(questionEntity);
         return modelMapper.map(updatedQuestion, QuestionDTO.class);
     }
 
@@ -68,6 +69,34 @@ public class QuestionServiceImpl implements QuestionService {
             throw new NotFoundException("Question not found with id: " + questionId);
         }
         questionRepository.deleteById(questionId);
+
+    }
+    @Override
+    public QuestionDTO upvoteQuestion(Long questionId) throws NotFoundException {
+        Optional<QuestionEntity> questionEntityOpt = questionRepository.findById(questionId);
+        if (questionEntityOpt.isEmpty()) {
+            throw new NotFoundException("Question not found with id: " + questionId);
+        }
+
+        QuestionEntity questionEntity = questionEntityOpt.get();
+        questionEntity.upvote();
+
+        QuestionEntity updatedQuestion = questionRepository.save(questionEntity);
+        return modelMapper.map(updatedQuestion, QuestionDTO.class);
+    }
+
+    @Override
+    public QuestionDTO downvoteQuestion(Long questionId) throws NotFoundException {
+        Optional<QuestionEntity> questionEntityOpt = questionRepository.findById(questionId);
+        if (questionEntityOpt.isEmpty()) {
+            throw new NotFoundException("Question not found with id: " + questionId);
+        }
+
+        QuestionEntity questionEntity = questionEntityOpt.get();
+        questionEntity.downvote();
+
+        QuestionEntity updatedQuestion = questionRepository.save(questionEntity);
+        return modelMapper.map(updatedQuestion, QuestionDTO.class);
     }
 }
 

@@ -35,26 +35,38 @@ public class QuestionController {
     }
 
     @GetMapping("/{questionId}")
-    public ResponseEntity<QuestionDTO> getQuestionById(@PathVariable Long questionId) throws NotFoundException {
-        QuestionDTO question = questionService.getQuestionById(questionId);
-        return ResponseEntity.ok(question);
+    public ResponseEntity<QuestionDTO> getQuestionById(@PathVariable Long questionId) {
+        try {
+            QuestionDTO question = questionService.getQuestionById(questionId);
+            return ResponseEntity.ok(question);
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PostMapping
-    public ResponseEntity<QuestionDTO> createQuestion(@RequestBody QuestionDTO questionDTO) {
+    public ResponseEntity<QuestionDTO> createQuestion(@RequestBody @Valid QuestionDTO questionDTO) {
         QuestionDTO createdQuestion = questionService.createQuestion(questionDTO);
         return ResponseEntity.created(URI.create("/api/questions/" + createdQuestion.getId())).body(createdQuestion);
     }
 
     @PutMapping("/{questionId}")
-    public ResponseEntity<QuestionDTO> updateQuestion(@PathVariable Long questionId, @RequestBody QuestionDTO questionDTO) throws NotFoundException {
-        QuestionDTO updatedQuestion = questionService.updateQuestion(questionId, questionDTO);
-        return ResponseEntity.ok(updatedQuestion);
+    public ResponseEntity<QuestionDTO> updateQuestion(@PathVariable Long questionId, @RequestBody @Valid QuestionDTO questionDTO) {
+        try {
+            QuestionDTO updatedQuestion = questionService.updateQuestion(questionId, questionDTO);
+            return ResponseEntity.ok(updatedQuestion);
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @DeleteMapping("/{questionId}")
-    public ResponseEntity<Void> deleteQuestion(@PathVariable Long questionId) throws NotFoundException {
-        questionService.deleteQuestion(questionId);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long questionId) {
+        try {
+            questionService.deleteQuestion(questionId);
+            return ResponseEntity.noContent().build();
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }

@@ -11,4 +11,8 @@ public interface QuestionService {
     QuestionDTO createQuestion(QuestionDTO questionDTO);
     QuestionDTO updateQuestion(Long questionId, QuestionDTO questionDTO) throws NotFoundException;
     void deleteQuestion(Long questionId) throws NotFoundException;
+
+    QuestionDTO upvoteQuestion(Long questionId) throws NotFoundException;
+
+    QuestionDTO downvoteQuestion(Long questionId) throws NotFoundException;
 }
