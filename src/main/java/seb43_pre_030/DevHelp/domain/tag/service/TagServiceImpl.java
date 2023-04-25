@@ -84,7 +84,7 @@ public class TagServiceImpl implements TagService {
         }
 
         modelMapper.map(tagDto, tagEntity);
-       return tagRepository.save(tagEntity);
+        return tagRepository.save(tagEntity);
     }
 
     @Override

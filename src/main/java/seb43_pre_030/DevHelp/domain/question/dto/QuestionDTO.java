@@ -3,7 +3,7 @@ package seb43_pre_030.DevHelp.domain.question.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
+import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,7 +23,7 @@ public class QuestionDTO {
     private String answer;
     private String type;
 
-    public QuestionDTO(TypePatternQuestions.Question question) {
+    public QuestionDTO(QuestionEntity question) {
     }
 
     public void QuestionDto(Long id, String title, String body, List<String> tags, LocalDateTime createdAt, LocalDateTime updatedAt) {

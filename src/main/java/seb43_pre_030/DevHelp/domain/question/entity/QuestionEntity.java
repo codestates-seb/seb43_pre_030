@@ -36,6 +36,12 @@ public class QuestionEntity extends BaseEntity {
     @Id
     private Long id;
 
+    @Column(nullable = false)
+    private int upvotes = 0;
+
+    @Column(nullable = false)
+    private int downvotes = 0;
+
     @Builder
     public QuestionEntity(Long id, String title, String body, Timestamp createdAt, Timestamp updatedAt, Long userId) {
         super(createdAt, updatedAt);
@@ -56,6 +62,13 @@ public class QuestionEntity extends BaseEntity {
     public <E> List<E> getTags() {
         return null;
     }
-}
 
+    public void upvote() {
+        this.upvotes++;
+    }
+
+    public void downvote() {
+        this.downvotes++;
+    }
+}
 
