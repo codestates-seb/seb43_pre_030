@@ -33,12 +33,6 @@ public class QuestionEntity extends BaseEntity {
     @Column(nullable = false)
     private String body;
 
-    @Column(name = "CREATED_AT")
-    private LocalDateTime created_at;
-
-    @Column(name = "UPDATED_AT")
-    private LocalDateTime updated_at;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
