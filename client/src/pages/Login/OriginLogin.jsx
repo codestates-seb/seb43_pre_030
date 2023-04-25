@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { ButtonLogin } from "./ButtonLogin";
 import { LoginInput } from "./InputLogin";
 import useInput from "../../hooks/useInput";
+import { setUser } from "../../features/userSlice";
 // import { useDispatch, useSelector } from "react-redux";
 
 // dummy user data
@@ -37,7 +39,7 @@ const StyledOriginLoginWrapper = styled.div`
 `;
 
 // 로그인 폼 컨테이너
-const StyledLoginForm = styled.div`
+const StyledLoginForm = styled.form`
   margin-top: 0.5rem;
   div {
     width: 100%;
@@ -73,8 +75,8 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
   const [isPwEmpty, setIsPwEmpty] = useState(false);
 
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const { user } = useSelector(s => s.data)
+  const dispatch = useDispatch();
+  const { user } = useSelector(s => s.data);
 
   useEffect(() => {}, []);
 
@@ -114,7 +116,7 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
   };
 
   // 로그인 요청
-  const handleSubmit = async () => {
+  const handleSubmit = async e => {
     // 아래 코드는 먼저 유효성을 체크하고 올바른 값을 api post요청을 보내게 로직을 짜야 불필요한 요청을 계속해서 보내지 않기 때문에 더 효율적이게 된다.
     // 이미 브라우저에 토큰있다면 로그인 할 필요가 없으니까 그냥 데이터를 서버에서 받아서 상태를 변경
     // 자동 로그인을 하고 싶은거다
@@ -128,27 +130,50 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
     // 자동 로그인 -> 자동으로 로그인 요청을 하는 게 아니다. -> 서버에서 로그인요청이 왔다. 쿠키에 토큰이 없다. => 유효하다 -> 토큰을 만들고
     // 쿠키에 넣고 -> 유저 정보를 응답으로 주는 라우터로 리다이렉트 // 유저 정보를 달라고 요청한다.
     // 쿠키에 토큰이 없는 데 -> 그냥 해도
-    if (!handleCheckLoginForm()) return;
-    // api 요청(post)
-    const response = await axios
-      .post("http://localhost:3001/login", {
+    e.preventDefault();
+    if (!handleCheckLoginForm()) return false;
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/confirm-email`, {
         email: emailProps,
         password: passwordProps,
-      })
-      .then(res => {
-        // 백엔드에서 민감한 정보 ->
-        // setUserInfo(res.data); // 서버에서 받은 유저 데이터를 렌더링 할때 보여주는 유저
-        // dispatch(setUser(res.data))
-        setIsLogin(true);
-      })
-      .catch(err => {
-        console.log(err);
       });
+
+      const token = res.headers.get("Authorization");
+
+      if (token) localStorage.setItem("token", token);
+
+      dispatch(setUser(emailProps));
+      navigate("/");
+    } catch (err) {
+      dispatch(
+        setUser({
+          id: 1,
+          name: "crowwan",
+        })
+      );
+      navigate("/");
+    }
+
+    // api 요청(post)
+    // const response = await axios
+    //   .post("http://localhost:3001/login", {
+    //     email: emailProps,
+    //     password: passwordProps,
+    //   })
+    //   .then(res => {
+    //     // 백엔드에서 민감한 정보 ->
+    //     // setUserInfo(res.data); // 서버에서 받은 유저 데이터를 렌더링 할때 보여주는 유저
+    //     // dispatch(setUser(res.data))
+    //     setIsLogin(true);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   return (
     <StyledOriginLoginWrapper>
-      <StyledLoginForm>
+      <StyledLoginForm onSubmit={handleSubmit}>
         <div className="email">
           <label htmlFor="email">Email</label>
           <LoginInput
@@ -206,3 +231,14 @@ export default OriginLogin;
 //   setEmail("");
 //   setPassword("");
 // }
+
+// useEffect(() => {
+//   // 첫 랜더링 시 질문 조회
+// },[]);
+
+// useEffect(() => {
+//   // 페이지 번호를 눌렀을 때 해당 페이지의 질문 목록을 가져옴
+//   axios.post(`localhost:8080/?page=${currentPage}&size=10`).then(res => {
+//     setCurruntPosts(res.data.data);
+//   })
+// },[currentPage])

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import MDEditor from "@uiw/react-md-editor";
 import TipBox from "./TipBox";
 import VersatileBlueButton from "./VersatileBlueButton";
 import ContentBlocker from "./ContentBlocker";
+
 
 const VersatileFormWrapper = styled.div`
   position: relative;
@@ -123,7 +125,7 @@ function VersatileForm({idx, el, askController}) {
 
   // 받아온 프롭스 구조분해 할당
   const { title, content, placeholder, isDoneYet, isButtonBlocked, isFormBlocked, tipTitle, tipContent } = el;
-  const { currentForm, focusForm} = askController;
+  const { currentForm, focusForm, changeWord, postValue, setPostValue} = askController;
 
   // 폼 value 관리 state
   const [QuestionFormValue, setQuestionFormValue] = useState(``)
@@ -131,8 +133,36 @@ function VersatileForm({idx, el, askController}) {
   // 타이틀 검사 state
   const [ isTitleOk, setTitle ] = useState(true);
 
+  const setData = (data) => {
+    switch (title) {
+      case `Title`:
+        setPostValue({ ...postValue, title: data });
+        break;
+      case `What are the details of your problem?`:
+        setPostValue({ ...postValue, body1: data });
+        break;
+      case `What did you try and what were you expecting?`:
+        setPostValue({ ...postValue, body2: data });
+        break;
+      case `Tags`:
+        setPostValue({ ...postValue, tags: data });
+        break;
+      default:
+        break;
+    }
+  }
+
+  // 일반 폼 value 설정
   const setFormValue = (e) => {
     setQuestionFormValue(e.target.value)
+    setData(e.target.value)
+  }
+
+  // 작성 폼 value 설정
+  const setMDValue = (e) => {
+    setQuestionFormValue(e)
+    changeWord(idx, QuestionFormValue);
+    setData(e)
   }
 
   const focusOut = () => {
@@ -144,7 +174,7 @@ function VersatileForm({idx, el, askController}) {
   }
 
   // 버튼 제어 
-  const nextButton = !isDoneYet ? <VersatileBlueButton text={idx === 5 ? `Post your question` : `Next`} idx={idx} askController={askController}/> : null;
+  const nextButton = !isDoneYet ? <VersatileBlueButton text={idx === 4 ? `Post your question` : `Next`} idx={idx} askController={askController} data={postValue}/> : null;
   const formBlocker = isFormBlocked ? <ContentBlocker /> : null;
   const buttonBlocker = isButtonBlocked ? <ContentBlocker /> : null;
 
@@ -154,6 +184,7 @@ function VersatileForm({idx, el, askController}) {
     if (e.key === "Enter") {
       setTags([...tags, e.target.value]);
       setQuestionFormValue("");
+      setData(tags)
     }
   }
 
@@ -161,50 +192,95 @@ function VersatileForm({idx, el, askController}) {
     setTags(tags.filter((tag) => tag !== tagToDelete));
   }
 
+
+  // 일반 박스일 때
+  let box = (
+    <input
+      type="text"
+      placeholder={placeholder}
+      value={QuestionFormValue}
+      onChange={(e) => setFormValue(e)}
+      onFocus={() => focusForm(idx)}
+      onBlur={idx === 1 ? () => focusOut() : null}
+    />
+  );
+
+    // 편집 박스 일 때
+    const isEditBox = idx === 2 || idx === 3;
+    if (isEditBox) {
+      box = (
+        <div data-color-mode="light">
+          <MDEditor
+            className="MDEditor"
+            value={QuestionFormValue}
+            onChange={setMDValue}
+            onFocus={() => focusForm(idx)}
+          />
+        </div>
+      );
+    }
+
+  // 태그 박스일 때
+  const isTagBox = title === 'Tags';
+  if (isTagBox) {
+    box = (
+      <div className="tagContainer">
+        <div className="tagDiv">
+          <ul>
+            {tags.map((tag, idx) => (
+              <li key={idx}>
+                {tag} <button type="button" onClick={() => handleDelete(tag)}>x</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={QuestionFormValue}
+          onKeyDown={handleInput}
+          onChange={(e) => setFormValue(e)}
+          onFocus={() => focusForm(idx)}
+          onBlur={idx === 1 ? () => focusOut() : null}
+        />
+      </div>
+    );
+  }
+  
+
+  
+
+
   return (
 
     <VersatileFormWrapper>
       {currentForm === idx ? <TipBox tipTitle={tipTitle} tipContent={tipContent} /> : null}    
       <VersatileFormContainer isTitleOk={isTitleOk}>
+
+        {/* 블럭박스 */}
         {formBlocker}
+
+        {/* 제목 */}
         <h1>{title}</h1>
-        {content ? content.split(`\n`).map((innerEl, index) => (
-          <div key={index}>{innerEl}</div>
-        ))
-        : null}
 
-        {title === 'Tags' ? 
-          <div className="tagContainer">
+        {/* 콘텐츠 */}
+        {content ? content.split(`\n`).map((innerEl, index) => (<div key={index}>{innerEl}</div>)) : null}
 
-            <div className="tagDiv">
-              <ul>
-                {tags.map((tag) => (
-                  <li key={tag}>
-                    {tag} <button type="button" onClick={() => handleDelete(tag)}>x</button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* 폼 */}
+        {box}
 
-            <input type="text" placeholder={placeholder}
-            value={QuestionFormValue} onKeyDown={handleInput} onChange={(e) => (setFormValue(e))} 
-            onFocus={() => {focusForm(idx)}} onBlur={idx === 1 ? () => focusOut() : null} />
-
-          </div>
-        :
-          <input type="text" placeholder={placeholder}
-          value={QuestionFormValue} onChange={(e) => (setFormValue(e))} 
-          onFocus={() => {focusForm(idx)}} onBlur={idx === 1 ? () => focusOut() : null} />
-        }
-
-        {!isTitleOk ? (
+        {
+        // 제목의 글자수가 15글자 미만일 때
+        !isTitleOk ? (
         <>
           <span className="isTitleOk">Title must be at least 15 characters.</span>
           <span className="exclamationMark">!</span>
         </>
         ) : null}
 
-        {currentForm === idx ? (
+        {
+        // 클릭된 페이지에만 버튼이 보일 수 있도록
+        currentForm === idx ? (
             <div className="buttonDiv">
               {buttonBlocker}
               {nextButton}

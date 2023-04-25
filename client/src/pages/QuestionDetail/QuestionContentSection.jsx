@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
+import { useSelector } from "react-redux";
 import UserInfo from "./UserInfo";
 import Button from "../../components/ui/Button";
 import Vote from "./Vote";
@@ -79,21 +81,64 @@ const TagButton = Button({
   fontSize: ".8rem",
 });
 
+const ButtonSubmit = Button({
+  bg: "var(--btn-bg-color)",
+  fontColor: "#fff",
+  border: "none",
+  hoverBg: "var(--al-color)",
+  padding: "0.7rem 0.7rem",
+});
+
 // 컨텐츠 내용
-function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, tags }) {
+function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, tags, updateHandler }) {
+  const currentUser = useSelector(s => s.user);
+  const [isEdit, setIsEdit] = useState(false);
+  const [value, setValue] = useState(body);
+
+  // useEffect(() => {
+  //   setValue(body);
+  // }, [body]);
+  console.log(currentUser.id, userId);
   return (
     <StyledContentWrapper>
       <Vote />
       <div className="content-container">
         <StyledBodyWrapper data-color-mode="light">
-          <MDEditor.Markdown source={body} style={{ padding: "1.5rem" }} />
+          {!isEdit ? (
+            <MDEditor.Markdown source={body} style={{ padding: "1.5rem" }} />
+          ) : (
+            <>
+              <MDEditor
+                className="md-editor"
+                value={value}
+                onChange={setValue}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+              <ButtonSubmit
+                onClick={() => {
+                  updateHandler(id, value);
+                  setIsEdit(false);
+                }}
+              >
+                Post Your Answer
+              </ButtonSubmit>
+            </>
+          )}
         </StyledBodyWrapper>
         <StyledTagsWrapper>{tags && tags.map(tag => <TagButton key={tag}>{tag}</TagButton>)}</StyledTagsWrapper>
         <StyledUtilsWrapper>
           <UtilsOptions>
             <button type="button">Share</button>
-            <button type="button">Edit</button>
-            <button type="button">Delete</button>
+            {currentUser.id === userId && (
+              <>
+                <button type="button" onClick={() => setIsEdit(true)}>
+                  Edit
+                </button>
+                <button type="button">Delete</button>
+              </>
+            )}
           </UtilsOptions>
           {modifiedAt && <span className="modified-date">edited {elapsedText(new Date(modifiedAt))}</span>}
           <UserInfo type={type} userId={userId} createAt={createAt} />

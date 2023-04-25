@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import HeaderButtonContainer from "./HeaderButtonContainer";
@@ -26,7 +26,8 @@ const StyledHeader = styled.header`
   max-width: 97vw;
   gap: 1rem;
 `;
-function Header({ logIn, currentUser }) {
+function Header() {
+  const currentUser = useSelector(s => s.user);
   const dispatch = useDispatch();
   const onNavClick = e => {
     e.stopPropagation();
@@ -38,7 +39,7 @@ function Header({ logIn, currentUser }) {
         <NavButton onNavBtnClick={onNavClick} />
         <Logo />
         <SearchBar />
-        {currentUser ? <HeaderMenu /> : <HeaderButtonContainer logIn={logIn} />}
+        {currentUser ? <HeaderMenu /> : <HeaderButtonContainer />}
       </StyledHeader>
     </StyledWrapper>
   );
