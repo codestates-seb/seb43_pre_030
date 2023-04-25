@@ -25,8 +25,9 @@ public class QuestionTag {
     private TagEntity tag;
 
     public QuestionTag(QuestionEntity question, TagEntity tag) {
+
         this.question = question;
         this.tag = tag;
-        this.questionTagId = new QuestionTagId(question.getId(), tag.get());
+        this.questionTagId = new QuestionTagId(question.getId(), tag.getId());
     }
 }
