@@ -39,4 +39,10 @@ public class CommentService {
     public void deleteById(Long id) {
         commentRepository.deleteById(id);
     }
+
+    public List<Comment> findQuestionComments(Long questionId) {
+        return commentRepository.findQuestionComments(questionId);
+    }
+
+
 }

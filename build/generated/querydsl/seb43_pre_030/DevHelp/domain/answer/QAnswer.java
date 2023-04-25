@@ -28,7 +28,7 @@ public class QAnswer extends EntityPathBase<Answer> {
 
     public final DateTimePath<java.time.LocalDateTime> created_at = createDateTime("created_at", java.time.LocalDateTime.class);
 
-    public final seb43_pre_030.DevHelp.domain.question.entity.QQuestionEntity question;
+    public final seb43_pre_030.DevHelp.domain.question.entity.QQuestion question;
 
     public final DateTimePath<java.time.LocalDateTime> updated_at = createDateTime("updated_at", java.time.LocalDateTime.class);
 
@@ -52,7 +52,7 @@ public class QAnswer extends EntityPathBase<Answer> {
 
     public QAnswer(Class<? extends Answer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.question = inits.isInitialized("question") ? new seb43_pre_030.DevHelp.domain.question.entity.QQuestionEntity(forProperty("question"), inits.get("question")) : null;
+        this.question = inits.isInitialized("question") ? new seb43_pre_030.DevHelp.domain.question.entity.QQuestion(forProperty("question"), inits.get("question")) : null;
         this.user = inits.isInitialized("user") ? new seb43_pre_030.DevHelp.domain.user.entity.QUser(forProperty("user"), inits.get("user")) : null;
     }
 
