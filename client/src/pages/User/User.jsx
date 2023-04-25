@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { useEffect } from "react";
 import MainItem from "../Main/MainItem";
 import Button from "../../components/ui/Button";
 
 const StyledUser = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 63px);
 
   .container {
     position: relative;
@@ -108,7 +109,9 @@ function User() {
   //     console.log(data);
   //   })();
   // }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <StyledUser>
       <div className="container">

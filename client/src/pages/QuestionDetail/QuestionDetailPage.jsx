@@ -46,6 +46,7 @@ function QuestionDetailPage() {
 
   // 데이터 패칭
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       setIsPending(true);
       const res = await axios(`${process.env.REACT_APP_API_URL}/questions/${id}`); // 질문데이터

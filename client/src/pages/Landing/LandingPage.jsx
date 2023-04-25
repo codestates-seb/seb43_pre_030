@@ -5,7 +5,7 @@ import Content from "./Content";
 import Record from "./Record";
 import BigBubble from "./BigBubbleContainer";
 
-  const rotate = keyframes`
+const rotate = keyframes`
   0%{
       opacity: 0;
   }
@@ -22,34 +22,33 @@ const LandingPageContainer = styled.div`
   background-color: var(--question-page-bg-color);
   overflow: hidden;
 
-  .grayBox{
+  .grayBox {
     position: relative;
     margin: 0 auto;
     max-width: 1854px;
     width: 100%;
     padding: 2rem;
     border-radius: 1rem;
-    background: linear-gradient(#232629, #464B51);
+    background: linear-gradient(#232629, #464b51);
 
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
 
-  .box{
+  .box {
     height: 50rem;
   }
 
-  .hr{
+  .hr {
     width: 5rem;
     height: 0.6rem;
     margin: 4.5rem;
-    background-color: #69727C;
+    background-color: #69727c;
     border-radius: 0.5rem;
   }
 
-  .circle{
+  .circle {
     position: absolute;
     top: 88%;
     background-color: var(--question-page-bg-color);
@@ -58,27 +57,28 @@ const LandingPageContainer = styled.div`
     border-radius: 50%;
   }
 
-  @media (max-width: 768px){
-    .box{
+  @media (max-width: 768px) {
+    .box {
       height: 100rem;
     }
   }
 
-  @media (max-width: 650px){
+  @media (max-width: 650px) {
     padding: 5rem 1rem 1rem 1rem;
 
-    .grayBox{
+    .grayBox {
       border-radius: 0.5rem;
       padding: 0rem;
-
     }
   }
-`
+`;
 
-function LandingPage(){
+function LandingPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-
-  return(
+  return (
     <LandingPageContainer>
       <div className="grayBox">
         <SmallBubble />

@@ -1,15 +1,17 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Provider, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Template from "./pages/Templates/Template";
 import Header from "./layouts/Header/Header";
 import LandingPage from "./pages/Landing/LandingPage";
 import { routerData } from "./data/routerData";
 
+// axios.defaults.headers.common['Athorization'] = localStorage.getItem('token');
+
 function App() {
   const currentUser = useSelector(s => s.user);
-  console.log(document.location.pathname);
+
   return (
     <>
       <GlobalStyles />

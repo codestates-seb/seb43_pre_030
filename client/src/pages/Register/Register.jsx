@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import SignupInfo from "./SignupInfo";
 import SOInfo from "./SoInfo";
 import SocialSignup from "./SocialSignup";
@@ -36,6 +37,9 @@ const StyledSoinfoSection = styled.div`
 `;
 
 function Signup() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <StyledSoinfoSection>
       <div className="container">

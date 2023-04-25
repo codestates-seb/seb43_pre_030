@@ -55,9 +55,7 @@ function MainItem({ data }) {
   return (
     <StyledContainer>
       <StyledCountContainer>
-        <div>0 votes</div>
-        <div>0 votes</div>
-        <div>0 votes</div>
+        <div>{data.answers.length} answers</div>
       </StyledCountContainer>
       <StyledContentContainer>
         <Link to={`/questions/${data.id}`}>
@@ -70,8 +68,8 @@ function MainItem({ data }) {
           ))}
         </StyledTagSection>
         <StyledAuthorSection>
-          <AiOutlineUser size="2rem" color="var(--font-color-light)" />
-          {data.user_id} 9765 asked {elapsedText(new Date(data.created_at))}
+          user: <span style={{ color: "var(--al-color)", marginRight: "1rem" }}>{data.user_id}</span>{" "}
+          {elapsedText(new Date(data.created_at))}
         </StyledAuthorSection>
       </StyledContentContainer>
     </StyledContainer>
