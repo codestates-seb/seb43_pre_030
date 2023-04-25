@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import WritingGuideBox from "./WritingGuideBox";
 import VersatileForm from "./VersatileForm";
-import ContentForm from "./ContentForm";
 import askBackground from "./askBackground.svg";
 
 const QuestionPageWrapper = styled.main`
@@ -37,6 +36,13 @@ const QuestionPageContainer = styled.main`
 function AskPage() {
   // 현재 페이지 state
   const [currentForm, setCurrentForm] = useState(1);
+  const [postValue, setPostValue] = useState({
+    id : ``,
+    title : ``,
+    body1 : ``,
+    body2 : ``,
+    tag : ``,
+  })
 
   const [infoArr, setInfoArr] = useState([
     {
@@ -56,7 +62,7 @@ function AskPage() {
       isFormBlocked: false,
     },
     {
-      component: ContentForm,
+      component: VersatileForm,
       title: `What are the details of your problem?`,
       content: `Introduce the problem and expand on what you put in the title. Minimum 20 characters.`,
       tipTitle: `Introduce the problem`,
@@ -66,7 +72,7 @@ function AskPage() {
       isFormBlocked: true,
     },
     {
-      component: ContentForm,
+      component: VersatileForm,
       title: `What did you try and what were you expecting?`,
       content: `Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters.`,
       tipTitle: `Expand on the problem`,
@@ -92,8 +98,10 @@ function AskPage() {
   const askController = {
     currentForm,
     infoArr,
+    postValue,
     setCurrentForm,
     setInfoArr,
+    setPostValue,
 
     // 폼을 클릭했을 때 클릭 한 폼을 현재 폼으로 변경하는 함수
     focusForm: idx => {
