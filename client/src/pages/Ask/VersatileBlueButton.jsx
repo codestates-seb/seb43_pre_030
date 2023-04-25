@@ -16,15 +16,17 @@ const VersatileBlueButtonContainer = styled.div`
 
 function VersatileBlueButton({text, idx, askController, data}) {
 
-  const { id, title, body1, body2, tag} = data;
+  const { id, title, body1, body2, tags} = data;
 
+  const body = body1 + body2;
   const user_id = null;
   const created_at = new Date();
+  const modified_at = new Date()
 
 
   const postData = async() => {
     console.log(data)
-    await axios.post(`http://localhost:3001/questions`, {id, title, body1, body2, tag, user_id, created_at})
+    await axios.post(`http://localhost:3001/questions`, {id, title, body, created_at, modified_at, user_id, tags})
   }
 
 

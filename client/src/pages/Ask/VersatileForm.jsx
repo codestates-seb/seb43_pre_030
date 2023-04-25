@@ -145,7 +145,7 @@ function VersatileForm({idx, el, askController}) {
         setPostValue({ ...postValue, body2: data });
         break;
       case `Tags`:
-        setPostValue({ ...postValue, tag: data });
+        setPostValue({ ...postValue, tags: data });
         break;
       default:
         break;

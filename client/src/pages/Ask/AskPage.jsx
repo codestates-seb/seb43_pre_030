@@ -41,7 +41,7 @@ function AskPage() {
     title : ``,
     body1 : ``,
     body2 : ``,
-    tag : ``,
+    tags : ``,
   })
 
   const [infoArr, setInfoArr] = useState([
