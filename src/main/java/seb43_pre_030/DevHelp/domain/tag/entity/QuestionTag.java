@@ -7,14 +7,14 @@ import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "question_Tag")
+@Table(name = "QUESTION_TAG")
 @Getter
 @Setter
 @NoArgsConstructor
 public class QuestionTag {
 
     @EmbeddedId
-    private QuestionTagId id;
+    private QuestionTagId questionTagId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("questionId")
@@ -27,6 +27,6 @@ public class QuestionTag {
     public QuestionTag(QuestionEntity question, TagEntity tag) {
         this.question = question;
         this.tag = tag;
-        this.id = new QuestionTagId(question.getId(), tag.getId());
+        this.questionTagId = new QuestionTagId(question.getId(), tag.get());
     }
 }

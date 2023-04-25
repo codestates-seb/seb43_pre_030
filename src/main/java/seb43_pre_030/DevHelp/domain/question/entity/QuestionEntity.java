@@ -16,11 +16,15 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "question")
+@Table(name = "QUESTION")
 @Getter
 @Setter
 @NoArgsConstructor
 public class QuestionEntity extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long questionId;
 
     @Column(nullable = false)
     private String title;
@@ -29,12 +33,15 @@ public class QuestionEntity extends BaseEntity {
     @Column(nullable = false)
     private String body;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "CREATED_AT")
+    private LocalDateTime created_at;
 
-    @Id
-    private Long id;
+    @Column(name = "UPDATED_AT")
+    private LocalDateTime updated_at;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
     @Column(nullable = false)
     private int upvotes = 0;
@@ -45,18 +52,18 @@ public class QuestionEntity extends BaseEntity {
     @Builder
     public QuestionEntity(Long id, String title, String body, Timestamp createdAt, Timestamp updatedAt, Long userId) {
         super(createdAt, updatedAt);
-        this.id = id;
+        this.questionId = id;
         this.title = title;
         this.body = body;
         this.user = user;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.questionId = id;
     }
 
     public Long getId() {
-        return id;
+        return questionId;
     }
 
     public <E> List<E> getTags() {
