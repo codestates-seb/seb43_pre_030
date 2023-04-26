@@ -18,6 +18,7 @@ const StyledTopSection = styled.div`
 const StyledBottomSection = styled.div`
   display: flex;
   width: 100%;
+  justify-content: space-between;
 `;
 function HeaderContentSection({ title, children }) {
   return (

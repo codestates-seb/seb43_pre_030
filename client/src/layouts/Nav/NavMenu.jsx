@@ -49,7 +49,7 @@ const MenuContainer = styled.li`
 
 const checkPath = path => {
   if (document.location.pathname === "/") return document.location.pathname === path;
-
+  if (document.location.pathname === "/search") return path === "/questions";
   return new Set(document.location.pathname.split("/").filter(a => a !== "")).has(path.slice(1));
 };
 
