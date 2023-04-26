@@ -35,9 +35,9 @@ function QuestionDetailPage() {
   const { id } = useParams();
 
   // 서버에서 받아온 질문과 답변 데이터 상태
-  const data = useSelector(s => s.data);
   const navigation = useNavigate();
   const dispatch = useDispatch();
+  const data = useSelector(s => s.data);
   const questionData = data.find(a => a.question_id === +id);
   const [isPending, setIsPending] = useState(false);
 
