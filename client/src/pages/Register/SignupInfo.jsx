@@ -93,7 +93,7 @@ function SignupInfo() {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-  const [isValidate, setIsValidate] = useState(false);
+  const [isValidate, setIsValidate] = useState(true);
 
   function handleUserName(e) {
     setUsername(e.target.value);
@@ -170,12 +170,6 @@ function SignupInfo() {
     return new File([u8arr], fileName, { type: mime });
   };
 
-  const getImage = async () => {
-    const b64data = defaultImage.current.currentSrc;
-    const imagefile = dataURLtoFile(b64data, "defaultImage.jpeg");
-    return imagefile;
-  };
-
   function onSubmit(event) {
     event.preventDefault();
 
@@ -189,7 +183,11 @@ function SignupInfo() {
         .then(_ => {
           navigate("/login");
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.error(err);
+          setIsValidate(false);
+          setPasswordError(false);
+        });
     }
   }
 
@@ -217,6 +215,7 @@ function SignupInfo() {
               <div className="inputText">
                 <input className="inputC" type="password" value={password} onChange={handlePassword} />
                 {passwordError && <p className="textError">영어와 숫자를 최소 1개 포함하여 8자 이상이어야합니다.</p>}
+                {!isValidate && <p className="textError">회원가입에 실패했습니다.</p>}
               </div>
             </div>
             <p className="text">

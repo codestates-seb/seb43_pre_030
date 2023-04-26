@@ -69,11 +69,14 @@ function OriginLogin() {
     // early return
     if (!email) {
       setIsEmailEmpty(true);
+      setEmailValid(true);
+      setIsLogin(true);
       return;
     } else if (!regexEmail.test(email)) {
       // email 유효하지 않으면
       setIsEmailEmpty(false);
       setEmailValid(false); // 유효하지 않게
+      setIsLogin(true);
       setEmail("");
       setPassword("");
       return;
@@ -81,12 +84,14 @@ function OriginLogin() {
     // password가 비어있으면
     if (!password) {
       setIsPwEmpty(true);
+      setIsLogin(true);
+      setPwValid(true);
       return;
     } else if (!regexPw.test(password)) {
       // pw 유효하지 않으면
       setIsEmailEmpty(false);
       setPwValid(false); // 유효하지 않게
-      setEmail("");
+      setIsLogin(true);
       setPassword("");
       return;
     }
@@ -116,7 +121,7 @@ function OriginLogin() {
         email: emailProps.value,
         password: passwordProps.value,
       });
-
+      console.log(res);
       const token = res.headers.get("Authorization");
       if (token) localStorage.setItem("token", token.split(" ")[1]);
       const user = await axios(`${process.env.REACT_APP_API_URL}/user/userinfo`, {
@@ -130,6 +135,10 @@ function OriginLogin() {
     } catch (err) {
       console.error(err);
       setIsLogin(false);
+      setPwValid(true);
+      setIsPwEmpty(false);
+      setIsEmailEmpty(false);
+      setEmailValid(true);
     }
   };
 
