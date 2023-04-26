@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import seb43_pre_030.DevHelp.domain.question.entity.Question;
+import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 import seb43_pre_030.DevHelp.domain.user.entity.User;
 
 import javax.persistence.*;
@@ -37,7 +37,7 @@ public class Answer {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "QUESTION_ID")
-    private Question question;
+    private QuestionEntity question;
 
     @PrePersist
     public void prePersist() {

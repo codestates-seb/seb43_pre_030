@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import seb43_pre_030.DevHelp.domain.question.entity.Question;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.format.DateTimeFormatter;
@@ -18,16 +17,6 @@ public class AnswerController {
 
     @Autowired
     private AnswerService answerService;
-
-    private static AnswerDto apply(Answer answer) {
-        AnswerDto dto = new AnswerDto();
-        dto.setAnswerId(answer.getAnswerId());
-        dto.setBody(answer.getBody());
-        dto.setCreated_at(answer.getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        dto.setUpdated_at(answer.getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        dto.setUserId(answer.getAnswerId());
-        return dto;
-    }
 
     @PostMapping
     public ResponseEntity<Answer> saveAnswer(@RequestBody Answer answer) {
@@ -46,7 +35,16 @@ public class AnswerController {
     @GetMapping
     public ResponseEntity<List<AnswerDto>> findAllAnswer() {
         List<Answer> answers = answerService.findAll();
-        List<AnswerDto> answerDtos = answers.stream().map(AnswerController::apply).collect(Collectors.toList());
+        List<AnswerDto> answerDtos = answers.stream().map(answer -> {
+            AnswerDto dto = new AnswerDto();
+            dto.setAnswerId(answer.getAnswerId());
+            dto.setBody(answer.getBody());
+            dto.setCreated_at(answer.getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUpdated_at(answer.getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            dto.setUserId(answer.getAnswerId());
+            dto.setQuestionId(answer.getQuestion().getId());
+            return dto;
+        }).collect(Collectors.toList());
         return ResponseEntity.ok(answerDtos);
     }
 
@@ -60,6 +58,7 @@ public class AnswerController {
             dto.setCreated_at(answer.get().getCreated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUpdated_at(answer.get().getUpdated_at().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             dto.setUserId(answer.get().getUser().getUserId());
+            dto.setQuestionId(answer.get().getQuestion().getId());
             return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();

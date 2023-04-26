@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import seb43_pre_030.DevHelp.domain.answer.Answer;
-import seb43_pre_030.DevHelp.domain.question.entity.Question;
+import seb43_pre_030.DevHelp.domain.question.entity.QuestionEntity;
 import seb43_pre_030.DevHelp.domain.user.entity.User;
 
 import javax.persistence.*;
@@ -37,7 +36,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "QUESTION_ID")
-    private Question question;
+    private QuestionEntity question;
 
     @PrePersist
     public void prePersist() {
@@ -45,15 +44,8 @@ public class Comment {
         this.updated_at = LocalDateTime.now();
     }
 
-
     @PreUpdate
     public void preUpdate() {
         this.updated_at = LocalDateTime.now();
-    }
-
-    public void addQuestion(Question question) {
-    }
-
-    public void addAnswer(Answer answer) {
     }
 }
