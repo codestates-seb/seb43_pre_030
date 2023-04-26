@@ -5,18 +5,6 @@ import Content from "./Content";
 import Record from "./Record";
 import BigBubble from "./BigBubbleContainer";
 
-const rotate = keyframes`
-  0%{
-      opacity: 0;
-  }
-  50%{
-    opacity: 1;
-  }
-  100%{
-
-  }
-  `;
-
 const LandingPageContainer = styled.div`
   padding: 6rem 3rem 3rem 3rem;
   background-color: var(--question-page-bg-color);

@@ -104,6 +104,7 @@ function SignupInfo() {
   function handlePassword(e) {
     setPassword(e.target.value);
   }
+
   function checkUsername() {
     const usernameRegexp = /^[a-zA-Z가-헿0-9]{4,}$/;
 
@@ -141,34 +142,8 @@ function SignupInfo() {
   }
 
   function validation() {
-    if (!checkUsername()) {
-      return false;
-    }
-    if (!checkEmail()) {
-      return false;
-    }
-    if (!checkPassword()) {
-      return false;
-    }
-    if (checkUsername() && checkEmail() && checkPassword()) {
-      return true;
-    }
-    return false;
+    return checkUsername() && checkEmail() && checkPassword();
   }
-
-  const dataURLtoFile = (dataurl, fileName) => {
-    const arr = dataurl.split(",");
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    const n = bstr.length;
-    const u8arr = new Uint8Array(n);
-
-    for (let i = 0; i < n; i += 1) {
-      u8arr[i] = bstr.charCodeAt(i);
-    }
-
-    return new File([u8arr], fileName, { type: mime });
-  };
 
   function onSubmit(event) {
     event.preventDefault();

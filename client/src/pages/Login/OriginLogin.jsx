@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ButtonLogin } from "./ButtonLogin";
 import { LoginInput } from "./InputLogin";
 import useInput from "../../hooks/useInput";
