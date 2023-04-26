@@ -1,5 +1,5 @@
 running: dev
-domain: htpp://ec2-43-201-203-72.ap-northeast-2.compute.amazonaws.com
+domain: http://ec2-43-201-203-72.ap-northeast-2.compute.amazonaws.com
 S3domain: http://crowwan-pre-project.s3-website.ap-northeast-2.amazonaws.com/
 
 spring:
@@ -34,17 +34,16 @@ spring:
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            clientId: ${google_client_id}
-#            clientSecret: ${google_client_secret}
-#            scope:
-#              -email
-#              -profile
-
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${google_client_id}
+            clientSecret: ${google_client_secret}
+            scope:
+              -email
+              -profile
 
 logging:
   level:

@@ -8,4 +8,4 @@ server:
 
 mail:
   address:
-    admin:  seb43pre030@gmail.com
+    admin:  ${admin_mail}

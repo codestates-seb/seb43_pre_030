@@ -13,7 +13,7 @@ spring:
       path: /h2
   datasource:
     url: jdbc:h2:mem:testdb;NON_KEYWORDS=USER
-    username: ani
+    username: sa
     password:
     driver-class-name: org.h2.Driver
   jpa:
@@ -26,8 +26,6 @@ spring:
         format_sql: true  # (3) SQL pretty print
         highlight_sql: true
         use_sql_comments: true
-
-
   mail:
     host: smtp.gmail.com
     port: 587
@@ -53,11 +51,10 @@ spring:
             scope:
               - email
               - profile
-
-
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
+
 logging:
   level:
     org.hibernate.SQL: trace
@@ -70,4 +67,4 @@ jwt:
 
 mail:
   address:
-    admin: seb43pre030@gmail.com
+    admin: ${admin_mail}
