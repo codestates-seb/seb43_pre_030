@@ -52,7 +52,6 @@ const StyledAuthorSection = styled.div`
 `;
 
 function MainItem({ data }) {
-  console.log(data);
   return (
     <StyledContainer>
       <StyledCountContainer>

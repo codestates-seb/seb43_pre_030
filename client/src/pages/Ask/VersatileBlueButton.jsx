@@ -24,9 +24,8 @@ function VersatileBlueButton({ text, idx, askController, data }) {
   const user_id = currentUser.id;
   const user_name = currentUser.name;
   const answers = [];
-  console.log(tags);
+
   const postData = async () => {
-    console.log("test");
     await axios.post(
       `${process.env.REACT_APP_API_URL}/questions`,
       {

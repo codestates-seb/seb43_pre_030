@@ -106,10 +106,6 @@ function QuestionContentSection({
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(body);
 
-  // useEffect(() => {
-  //   setValue(body);
-  // }, [body]);
-  console.log(currentUser.id, userId);
   return (
     <StyledContentWrapper>
       <Vote />

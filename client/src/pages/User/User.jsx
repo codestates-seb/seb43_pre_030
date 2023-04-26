@@ -94,23 +94,6 @@ const EditButton = Button({
 
 function User() {
   const currentUser = useSelector(s => s.user);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const { data } = await axios("http://localhost:3001/users");
-  //     dispatch(setData(data));
-
-  //   })();
-  // });
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const { data } = await axios("http://localhost:3001/questions");
-  //     dispatch(setData(data));
-  //     console.log(data);
-  //   })();
-  // }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

@@ -59,7 +59,7 @@ function AnswerForm({ question_id }) {
       })
       .then(res => {
         const ind = data.findIndex(a => a.question_id === question_id);
-        console.log(question_id);
+
         const newData = [
           ...data.slice(0, ind),
           { ...data[ind], answers: [...data[ind].answers, res.data] },
@@ -67,10 +67,9 @@ function AnswerForm({ question_id }) {
         ];
         dispatch(setData(newData));
         setAnswerValue("");
-        console.log("test");
       })
       .catch(err => {
-        // setQuestionData(prev => ({ ...prev, answers: [...prev.answers, newAnswer] }));
+        console.error(err);
       });
   };
   return (

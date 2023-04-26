@@ -106,62 +106,51 @@ function SignupInfo() {
   }
   function checkUsername() {
     const usernameRegexp = /^[a-zA-Z가-헿0-9]{4,}$/;
-    let flag = true;
+
     if (!username || !usernameRegexp.test(username)) {
       setUsernameError(true);
-      flag = false;
+      return false;
     } else {
       setUsernameError(false);
-      flag = true;
+      return true;
     }
-    return flag;
   }
 
   function checkEmail() {
     const emailRegexp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    let flag = true;
+
     if (!email || !emailRegexp.test(email)) {
       setEmailError(true);
-      flag = false;
+      return false;
     } else {
       setEmailError(false);
-      flag = true;
+      return true;
     }
-    return flag;
   }
 
   function checkPassword() {
     const passwordRegexp = /^(?=.*[A-Za-z])(?=.*\d)[a-zA-Z\\d`~!@#$%^&*()-_=+]{8,}$/;
-    let flag = true;
+
     if (!password || !passwordRegexp.test(password)) {
       setPasswordError(true);
-      flag = false;
+      return false;
     } else {
       setPasswordError(false);
-      flag = true;
+      return true;
     }
-    return flag;
   }
 
   function validation() {
-    if (checkUsername()) {
-      console.log("username 유효");
-    } else {
-      console.log("username 유효하지않음");
+    if (!checkUsername()) {
+      return false;
     }
-    if (checkEmail()) {
-      console.log("email 유효");
-    } else {
-      console.log("email 유효하지않음");
+    if (!checkEmail()) {
+      return false;
     }
-    if (checkPassword()) {
-      console.log("password 유효");
-    } else {
-      console.log("password 유효하지않음");
+    if (!checkPassword()) {
+      return false;
     }
-
     if (checkUsername() && checkEmail() && checkPassword()) {
-      console.log("signup ready");
       return true;
     }
     return false;
@@ -187,25 +176,10 @@ function SignupInfo() {
     return imagefile;
   };
 
-  // const onUpload = async () => {
-  //   const formData = new FormData();
-  //   const finalImage = await getImage();
-  //   formData.append("profile", finalImage);
-  //   formData.append("email", email);
-  //   formData.append("password", password);
-  //   formData.append("nickname", username);
-
-  //   const goLogin = () => {
-  //     navigate("/login");
-  //   };
-  // };
-
   function onSubmit(event) {
     event.preventDefault();
 
     if (validation()) {
-      console.log("✅ Form submitted.");
-      // onUpload();
       axios
         .post(`${process.env.REACT_APP_API_URL}/user/signup`, {
           email,
@@ -218,11 +192,6 @@ function SignupInfo() {
         .catch(err => console.error(err));
     }
   }
-
-  const borderColor = {
-    true: "w-full px-2 py-1 border rounded border-danger-500",
-    false: "w-full px-2 py-1 border rounded border-soGray-light",
-  };
 
   return (
     <StyledSignupSection>

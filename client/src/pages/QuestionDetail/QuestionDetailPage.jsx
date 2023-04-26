@@ -109,7 +109,7 @@ function QuestionDetailPage() {
       })
       .then(_ => {
         const ind = data.findIndex(a => a.question_id === +id);
-        console.log(ind);
+
         const newAnswers = data[ind].answers.filter(a => a.id !== answer_id);
         const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind)];
         dispatch(setData(newData));

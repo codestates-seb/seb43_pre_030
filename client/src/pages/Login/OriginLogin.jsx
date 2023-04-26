@@ -157,22 +157,6 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
       );
       navigate("/");
     }
-
-    // api 요청(post)
-    // const response = await axios
-    //   .post("http://localhost:3001/login", {
-    //     email: emailProps,
-    //     password: passwordProps,
-    //   })
-    //   .then(res => {
-    //     // 백엔드에서 민감한 정보 ->
-    //     // setUserInfo(res.data); // 서버에서 받은 유저 데이터를 렌더링 할때 보여주는 유저
-    //     // dispatch(setUser(res.data))
-    //     setIsLogin(true);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   };
 
   return (
