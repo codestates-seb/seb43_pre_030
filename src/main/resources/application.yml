@@ -1,29 +1,36 @@
-running: dev
-domain: http://ec2-43-201-203-72.ap-northeast-2.compute.amazonaws.com
-S3domain: http://crowwan-pre-project.s3-website.ap-northeast-2.amazonaws.com/
+running: local
+domain: http://localhost:8080
+S3domain: http://localhost:3000
+
 
 spring:
   profiles:
     include: common
-    active: dev
+    active: local
+  h2:
+    console:
+      enabled: true
+      path: /h2
   datasource:
-#    url: ${datasource_url}
-#    username: ${datasource_username}
-#    password: ${datasource_password}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:mem:testdb;NON_KEYWORDS=USER
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update
-    show-sql: true
-
-
+      ddl-auto: create  # (1) 스키마 자동 생성
+    show-sql: true      # (2) SQL 쿼리 출력
+    properties:
+      hibernate:
+        format_sql: true  # (3) SQL pretty print
+        highlight_sql: true
+        use_sql_comments: true
   mail:
     host: smtp.gmail.com
     port: 587
-#    username: ${gmail_username}
-#    password: ${gmail_password}
+    username: ${gmail_username}
+    password: ${gmail_password}
     properties:
       mail:
         smtp:
@@ -39,22 +46,25 @@ spring:
       client:
         registration:
           google:
-#            clientId: ${google_client_id}
-#            clientSecret: ${google_client_secret}
+            clientId: 759272438227-e8o3ofaekd3d6svf6i8tinfp09pbdtap.apps.googleusercontent.com
+            clientSecret: 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
             scope:
-              -email
-              -profile
+              - email
+              - profile
+  sql:
+    init:
+      data-locations: classpath*:db/h2/data.sql
 
 logging:
   level:
     org.hibernate.SQL: trace
+    org.hibernate.typedescriptor.sql.BasicBinder: trace
 
 jwt:
-#  secret: ${secret_key}
+  key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 1800000
   refresh-token-expiration-minutes: 604800000
 
-
-#mail:
-#  address:
-#    admin: ${admin_mail}
+mail:
+  address:
+    admin: ${admin_mail}
