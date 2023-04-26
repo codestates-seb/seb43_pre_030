@@ -41,11 +41,11 @@ function QuestionDetailPage() {
   const questionData = data.find(a => a.question_id === +id);
   const [isPending, setIsPending] = useState(false);
 
-  // 데이터 패칭
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // 답변수정
   const updateAnswer = (answer_id, answer_data) => {
     axios
       .patch(
@@ -81,6 +81,7 @@ function QuestionDetailPage() {
       });
   };
 
+  // 질문 수정
   const updateQuestion = (id, body) => {
     axios
       .post(
@@ -104,6 +105,7 @@ function QuestionDetailPage() {
       });
   };
 
+  // 답변 삭제
   const deleteAnswer = answer_id => {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/answer/${answer_id}`, {
@@ -119,6 +121,8 @@ function QuestionDetailPage() {
         dispatch(setData(newData));
       });
   };
+
+  // 질문 삭제
   const deleteQuestion = id => {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/questions/${id}`, {
