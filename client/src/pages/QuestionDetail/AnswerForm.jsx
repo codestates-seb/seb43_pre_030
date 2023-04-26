@@ -63,7 +63,7 @@ function AnswerForm({ question_id }) {
         const newData = [
           ...data.slice(0, ind),
           { ...data[ind], answers: [...data[ind].answers, res.data] },
-          ...data.slice(ind),
+          ...data.slice(ind + 1),
         ];
         dispatch(setData(newData));
         setAnswerValue("");

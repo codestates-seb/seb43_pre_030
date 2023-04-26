@@ -39,6 +39,7 @@ const MenuContainer = styled.li`
     font-size: 0.6rem;
     font-weight: bold;
     color: var(--font-color-bold);
+    cursor: auto;
   }
 
   &.content:hover {
@@ -64,7 +65,7 @@ function NavMenu({ el }) {
     <MenuContainer
       className={`${checkPath(el.route) ? "active" : ""} ${el.isContent ? "content" : "title"}`}
       onClick={_ => {
-        setActive();
+        el.isContent && setActive();
       }}
     >
       <span>{el.title}</span>

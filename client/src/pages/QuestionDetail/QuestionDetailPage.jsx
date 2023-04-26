@@ -46,22 +46,26 @@ function QuestionDetailPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const updateAnswer = (answer_id, data) => {
+  const updateAnswer = (answer_id, answer_data) => {
     axios
-      .patch(`${process.env.REACT_APP_API_URL}/answer/${answer_id}`, data, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
+      .patch(
+        `${process.env.REACT_APP_API_URL}/answer/${answer_id}`,
+        { body: answer_data },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
       .then(_ => {
         const ind = data.findIndex(a => a.question_id === +id);
         const answer_ind = data[ind].answers.findIndex(a => a.id === answer_id);
         const newAnswers = [
-          ...data[ind].slice(0, answer_ind),
-          { ...data[ind].answers[answer_ind], body: data },
-          ...data[ind].slice(answer_ind),
+          ...data[ind].answers.slice(0, answer_ind),
+          { ...data[ind].answers[answer_ind], body: answer_data },
+          ...data[ind].answers.slice(answer_ind + 1),
         ];
-        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind)];
+        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
         dispatch(setData(newData));
       })
       .catch(err => {
@@ -70,9 +74,9 @@ function QuestionDetailPage() {
         const newAnswers = [
           ...data[ind].slice(0, answer_ind),
           { ...data[ind].answers[answer_ind], body: data },
-          ...data[ind].slice(answer_ind),
+          ...data[ind].slice(answer_ind + 1),
         ];
-        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind)];
+        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
         dispatch(setData(newData));
       });
   };
@@ -90,12 +94,12 @@ function QuestionDetailPage() {
       )
       .then(_ => {
         const ind = data.findIndex(a => a.question_id === id);
-        const newData = [...data.slice(0, ind), { ...data[ind], body }, ...data.slice(ind)];
+        const newData = [...data.slice(0, ind), { ...data[ind], body }, ...data.slice(ind + 1)];
         dispatch(setData(newData));
       })
       .catch(err => {
         const ind = data.findIndex(a => a.question_id === id);
-        const newData = [...data.slice(0, ind), { ...data[ind], body }, ...data.slice(ind)];
+        const newData = [...data.slice(0, ind), { ...data[ind], body }, ...data.slice(ind + 1)];
         dispatch(setData(newData));
       });
   };
@@ -111,7 +115,7 @@ function QuestionDetailPage() {
         const ind = data.findIndex(a => a.question_id === +id);
 
         const newAnswers = data[ind].answers.filter(a => a.id !== answer_id);
-        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind)];
+        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
         dispatch(setData(newData));
       });
   };

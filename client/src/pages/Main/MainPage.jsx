@@ -37,7 +37,7 @@ function MainPage() {
       ) : (
         questions
           .slice((curPage - 1) * 10, (curPage - 1) * 10 + 10)
-          .map(question => <MainItem key={question.id} data={question} />)
+          .map(question => <MainItem key={question.question_id} data={question} />)
       )}
       {/* <Pagination curPage={curPage} onPageChange={onPageChange} /> */}
     </Main>
