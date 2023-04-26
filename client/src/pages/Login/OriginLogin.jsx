@@ -130,7 +130,6 @@ function OriginLogin() {
     } catch (err) {
       console.error(err);
       setIsLogin(false);
-      navigate("/");
     }
   };
 
