@@ -27,6 +27,10 @@ const StyledBodyWrapper = styled.div`
   color: var(--font-color-light);
   overflow: hidden;
   line-height: 1.4;
+
+  .md-editor {
+    margin-bottom: 1rem;
+  }
 `;
 
 // 태그 래퍼
@@ -106,6 +110,10 @@ function QuestionContentSection({
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(body);
 
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
   return (
     <StyledContentWrapper>
       <Vote />
@@ -140,7 +148,7 @@ function QuestionContentSection({
             <button type="button">Share</button>
             {currentUser.id === userId && (
               <>
-                <button type="button" onClick={() => setIsEdit(true)}>
+                <button type="button" onClick={handleEdit}>
                   Edit
                 </button>
                 <button type="button" onClick={() => deleteHandler(id)}>
