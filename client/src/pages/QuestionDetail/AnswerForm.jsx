@@ -4,8 +4,9 @@ import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize"; // npm i rehype-sanitize 묘듈 설치 필요
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/ui/Button";
+import { setData } from "../../features/dataSlice";
 
 // 답변 작성 폼
 const StyledAnswerForm = styled.div`
@@ -38,23 +39,38 @@ const ButtonSubmit = Button({
 });
 
 // 마크다운 답변 생성 폼
-function AnswerForm({ setQuestionData }) {
+function AnswerForm({ question_id }) {
   const [answerValue, setAnswerValue] = useState("");
+  const data = useSelector(s => s.data);
+  const dispatch = useDispatch();
   const currentUser = useSelector(s => s.user);
   const { id } = useParams();
   const onSubmit = () => {
     const newAnswer = {
       body: answerValue,
       user_id: currentUser.id,
-      question_id: id,
+      question_id: +id,
     };
     axios
-      .post(`${process.env.REACT_APP_API_URL}/answer`, newAnswer)
+      .post(`${process.env.REACT_APP_API_URL}/answer`, newAnswer, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
       .then(res => {
-        setQuestionData(prev => ({ ...prev, answers: [...prev.answers, newAnswer] }));
+        const ind = data.findIndex(a => a.question_id === question_id);
+        console.log(question_id);
+        const newData = [
+          ...data.slice(0, ind),
+          { ...data[ind], answers: [...data[ind].answers, res.data] },
+          ...data.slice(ind),
+        ];
+        dispatch(setData(newData));
+        setAnswerValue("");
+        console.log("test");
       })
       .catch(err => {
-        setQuestionData(prev => ({ ...prev, answers: [...prev.answers, newAnswer] }));
+        // setQuestionData(prev => ({ ...prev, answers: [...prev.answers, newAnswer] }));
       });
   };
   return (

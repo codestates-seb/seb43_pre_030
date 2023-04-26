@@ -207,9 +207,9 @@ function SignupInfo() {
       console.log("✅ Form submitted.");
       // onUpload();
       axios
-        .post(`${process.env.REACT_APP_API_URL}/users`, {
+        .post(`${process.env.REACT_APP_API_URL}/user/signup`, {
           email,
-          username,
+          name: username,
           password,
         })
         .then(_ => {
@@ -239,7 +239,7 @@ function SignupInfo() {
             <div className="inputLI">
               Email
               <div className="inputText">
-                <input className="inputC" type="Email" value={email} onChange={handleEmail} />
+                <input className="inputC" type="text" value={email} onChange={handleEmail} />
                 {emailError && <p className="textError">이메일 형식에 맞지 않습니다.</p>}
               </div>
             </div>

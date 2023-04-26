@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { GlobalStyles } from "./styles/GlobalStyles";
@@ -6,12 +6,16 @@ import Template from "./pages/Templates/Template";
 import Header from "./layouts/Header/Header";
 import LandingPage from "./pages/Landing/LandingPage";
 import { routerData } from "./data/routerData";
+import Loading from "./components/ui/Loading";
 
 // axios.defaults.headers.common['Athorization'] = localStorage.getItem('token');
 
 function App() {
   const currentUser = useSelector(s => s.user);
-
+  const navigation = useNavigate();
+  useEffect(() => {
+    if (!currentUser) navigation("/");
+  }, []);
   return (
     <>
       <GlobalStyles />

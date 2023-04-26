@@ -131,18 +131,22 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
     // 쿠키에 넣고 -> 유저 정보를 응답으로 주는 라우터로 리다이렉트 // 유저 정보를 달라고 요청한다.
     // 쿠키에 토큰이 없는 데 -> 그냥 해도
     e.preventDefault();
-    if (!handleCheckLoginForm()) return false;
+    // if (!handleCheckLoginForm()) return false;
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/confirm-email`, {
-        email: emailProps,
-        password: passwordProps,
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, {
+        email: emailProps.value,
+        password: passwordProps.value,
       });
 
       const token = res.headers.get("Authorization");
+      if (token) localStorage.setItem("token", token.split(" ")[1]);
+      const user = await axios(`${process.env.REACT_APP_API_URL}/user/userinfo`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
 
-      if (token) localStorage.setItem("token", token);
-
-      dispatch(setUser(emailProps));
+      dispatch(setUser({ ...user.data }));
       navigate("/");
     } catch (err) {
       dispatch(

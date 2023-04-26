@@ -12,11 +12,11 @@ const YourAnswerHeader = styled.h2`
 `;
 
 // 답변 작성 섹션
-function AnswerCreateSection({ setQuestionData }) {
+function AnswerCreateSection({ question_id }) {
   return (
     <>
       <YourAnswerHeader>Your Answer</YourAnswerHeader>
-      <AnswerForm setQuestionData={setQuestionData} />
+      <AnswerForm question_id={question_id} />
     </>
   );
 }

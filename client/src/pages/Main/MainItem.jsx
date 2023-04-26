@@ -52,13 +52,14 @@ const StyledAuthorSection = styled.div`
 `;
 
 function MainItem({ data }) {
+  console.log(data);
   return (
     <StyledContainer>
       <StyledCountContainer>
         <div>{data.answers.length} answers</div>
       </StyledCountContainer>
       <StyledContentContainer>
-        <Link to={`/questions/${data.id}`}>
+        <Link to={`/questions/${data.question_id}`}>
           <StyledContentTitle>{data.title}</StyledContentTitle>
         </Link>
         <StyledContentDescription>{data.body}</StyledContentDescription>
@@ -68,7 +69,7 @@ function MainItem({ data }) {
           ))}
         </StyledTagSection>
         <StyledAuthorSection>
-          user: <span style={{ color: "var(--al-color)", marginRight: "1rem" }}>{data.user_id}</span>{" "}
+          user: <span style={{ color: "var(--al-color)", marginRight: "1rem" }}>{data.user_name}</span>{" "}
           {elapsedText(new Date(data.created_at))}
         </StyledAuthorSection>
       </StyledContentContainer>

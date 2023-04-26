@@ -1,10 +1,13 @@
 import { AiOutlineUser } from "react-icons/ai";
 import { BsMenuUp, BsSun, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 import { StyledDropDown } from "../../styles/StyledDropDown";
 import { useDropDown } from "../../hooks/useDropDown";
 import { ButtonMain } from "../../components/ui/ButtonMain";
+import { setUser } from "../../features/userSlice";
 
 const StyledMenuContainer = styled.div`
   display: flex;
@@ -38,6 +41,21 @@ const StyledWrapper = styled.div`
 
 function HeaderMenu() {
   const [menuDropDown, _, onMenuClick] = useDropDown(false);
+  const dispatch = useDispatch();
+  const navigation = useNavigate();
+  const logOut = () => {
+    axios(`${process.env.REACT_APP_API_URL}/user/logout`, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then(res => {
+        localStorage.removeItem("token");
+        dispatch(setUser(""));
+        navigation("/");
+      })
+      .catch(err => console.error(err));
+  };
   return (
     <StyledMenuContainer>
       <Link to="/users">
@@ -48,7 +66,7 @@ function HeaderMenu() {
         {menuDropDown && (
           <StyledMenuDropDown onClick={e => e.stopPropagation()}>
             <StyledFlexBox>
-              <ButtonMain>log out</ButtonMain>
+              <ButtonMain onClick={logOut}>log out</ButtonMain>
               <BsSunFill size="1.5rem" cursor="pointer" />
             </StyledFlexBox>
           </StyledMenuDropDown>

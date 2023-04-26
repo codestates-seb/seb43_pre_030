@@ -90,7 +90,18 @@ const ButtonSubmit = Button({
 });
 
 // 컨텐츠 내용
-function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, tags, updateHandler }) {
+function QuestionContentSection({
+  type,
+  id,
+  userId,
+  userName,
+  body,
+  createdAt,
+  updatedAt,
+  tags,
+  updateHandler,
+  deleteHandler,
+}) {
   const currentUser = useSelector(s => s.user);
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(body);
@@ -136,12 +147,14 @@ function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, 
                 <button type="button" onClick={() => setIsEdit(true)}>
                   Edit
                 </button>
-                <button type="button">Delete</button>
+                <button type="button" onClick={() => deleteHandler(id)}>
+                  Delete
+                </button>
               </>
             )}
           </UtilsOptions>
-          {modifiedAt && <span className="modified-date">edited {elapsedText(new Date(modifiedAt))}</span>}
-          <UserInfo type={type} userId={userId} createAt={createAt} />
+          {updatedAt && <span className="modified-date">edited {elapsedText(new Date(updatedAt))}</span>}
+          <UserInfo type={type} userName={userName} createdAt={createdAt} />
         </StyledUtilsWrapper>
       </div>
     </StyledContentWrapper>
