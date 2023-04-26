@@ -121,7 +121,6 @@ function OriginLogin() {
         email: emailProps.value,
         password: passwordProps.value,
       });
-      console.log(res);
       const token = res.headers.get("Authorization");
       if (token) localStorage.setItem("token", token.split(" ")[1]);
       const user = await axios(`${process.env.REACT_APP_API_URL}/user/userinfo`, {

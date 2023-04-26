@@ -29,7 +29,7 @@ const StyledBodyWrapper = styled.div`
   line-height: 1.4;
 
   .md-editor {
-    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -110,9 +110,8 @@ function QuestionContentSection({
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(body);
 
-  const handleEdit = prev => {
-    console.log(prev);
-    setIsEdit(!prev);
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
   };
 
   return (
