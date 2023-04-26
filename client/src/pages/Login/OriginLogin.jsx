@@ -44,7 +44,7 @@ const StyledLoginForm = styled.form`
   }
 `;
 
-function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
+function OriginLogin() {
   const [emailProps, setEmail] = useInput("");
   const [passwordProps, setPassword] = useInput("");
 
@@ -52,10 +52,10 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
   const [pwValid, setPwValid] = useState(true);
   const [isEmailEmpty, setIsEmailEmpty] = useState(false); // 비어있는게 true
   const [isPwEmpty, setIsPwEmpty] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector(s => s.data);
 
   useEffect(() => {}, []);
 
@@ -129,6 +129,7 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
       navigate("/");
     } catch (err) {
       console.error(err);
+      setIsLogin(false);
       navigate("/");
     }
   };
@@ -143,13 +144,13 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
             name="email"
             type="email"
             {...emailProps}
-            border={isEmailEmpty || isLogin ? "var(--primary-color)" : null}
-            focusBorder={isEmailEmpty || isLogin ? "var(--primary-color)" : null}
-            shadow={isEmailEmpty || isLogin ? "var(--primary-color)" : null}
+            border={isEmailEmpty || !isLogin ? "var(--primary-color)" : null}
+            focusBorder={isEmailEmpty || !isLogin ? "var(--primary-color)" : null}
+            shadow={isEmailEmpty || !isLogin ? "var(--primary-color)" : null}
           />
           {isEmailEmpty && <p>Email cannot be empty.</p>}
           {!emailValid && <p>The email is not a valid email address.</p>}
-          {isLogin && <p>The email or password is incorrect.</p>}
+          {!isLogin && <p>The email or password is incorrect.</p>}
         </div>
         <div className="password">
           <label htmlFor="password">Password</label>
@@ -158,13 +159,13 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
             name="password"
             type="password"
             {...passwordProps}
-            border={isPwEmpty || isLogin ? "var(--primary-color)" : null}
-            focusBorder={isPwEmpty || isLogin ? "var(--primary-color)" : null}
-            shadow={isPwEmpty || isLogin ? "var(--primary-color)" : null}
+            border={isPwEmpty || !isLogin ? "var(--primary-color)" : null}
+            focusBorder={isPwEmpty || !isLogin ? "var(--primary-color)" : null}
+            shadow={isPwEmpty || !isLogin ? "var(--primary-color)" : null}
           />
           {isPwEmpty && <p>Password cannot be empty.</p>}
           {!pwValid && <p>The password must be at least 8 characters long.</p>}
-          {isLogin && <p>The email or password is incorrect.</p>}
+          {!isLogin && <p>The email or password is incorrect.</p>}
         </div>
         <div className="button">
           <ButtonLogin onClick={handleSubmit}>Log in</ButtonLogin>
