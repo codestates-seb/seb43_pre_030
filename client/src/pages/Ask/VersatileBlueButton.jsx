@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -18,7 +17,7 @@ const VersatileBlueButtonContainer = styled.div`
 function VersatileBlueButton({ text, idx, askController, data }) {
   const currentUser = useSelector(s => s.user);
   const navigation = useNavigate();
-  const { id, title, body1, body2, tags } = data;
+  const { title, body1, body2, tags } = data;
 
   const body = body1 + body2;
   const user_id = currentUser.id;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -7,27 +7,6 @@ import { ButtonLogin } from "./ButtonLogin";
 import { LoginInput } from "./InputLogin";
 import useInput from "../../hooks/useInput";
 import { setUser } from "../../features/userSlice";
-// import { useDispatch, useSelector } from "react-redux";
-
-// dummy user data
-// const User = [
-//   {
-//     email: "suam123@gmail.com",
-//     password: "suam1234@@",
-//   },
-//   {
-//     email: "jinwan123@gmail.com",
-//     password: "jinwan1234@@",
-//   },
-//   {
-//     email: "hogyun123@naver.com",
-//     password: "hogyun1234@@",
-//   },
-//   {
-//     email: "jaeyoon123@naver.com",
-//     password: "jaeyoon1234@@",
-//   },
-// ];
 
 // 로그인박스 래퍼
 const StyledOriginLoginWrapper = styled.div`
@@ -131,7 +110,7 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
     // 쿠키에 넣고 -> 유저 정보를 응답으로 주는 라우터로 리다이렉트 // 유저 정보를 달라고 요청한다.
     // 쿠키에 토큰이 없는 데 -> 그냥 해도
     e.preventDefault();
-    // if (!handleCheckLoginForm()) return false;
+    if (!handleCheckLoginForm()) return false;
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, {
         email: emailProps.value,
@@ -149,12 +128,7 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
       dispatch(setUser({ ...user.data }));
       navigate("/");
     } catch (err) {
-      dispatch(
-        setUser({
-          id: 1,
-          name: "crowwan",
-        })
-      );
+      console.error(err);
       navigate("/");
     }
   };

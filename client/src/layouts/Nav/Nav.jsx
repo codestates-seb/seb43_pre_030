@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import NavMenu from "./NavMenu";

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Pagination from "../../components/ui/Pagination";
 import Main from "../../layouts/Main/Main";
 import MainHeaderSection from "./QuestionHeaderSection";

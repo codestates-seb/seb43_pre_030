@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-
 
 const ContentBlockerContainer = styled.div`
   position: absolute;
@@ -10,15 +8,10 @@ const ContentBlockerContainer = styled.div`
   height: 100%;
   background-color: #eeeeeebb;
   z-index: 10;
-`
-
+`;
 
 function ContentBlocker() {
-
-
-  return (
-    <ContentBlockerContainer />
-  );
+  return <ContentBlockerContainer />;
 }
 
 export default ContentBlocker;

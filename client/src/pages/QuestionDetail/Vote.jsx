@@ -1,6 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-import { BsTriangleFill } from "react-icons/bs";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 
 // 투표 기능 박스

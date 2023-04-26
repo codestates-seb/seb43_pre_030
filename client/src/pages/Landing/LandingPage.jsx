@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import SmallBubble from "./SmallBubble";
 import Content from "./Content";

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize"; // npm i rehype-sanitize 묘듈 설치 필요

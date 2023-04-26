@@ -1,11 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub, AiFillFacebook } from "react-icons/ai";
 
 // 소셜로그인 버튼 래퍼
 const StyledSocialLoginWrapper = styled.div`
-    align-items: center;
+  align-items: center;
   display: flex;
   flex-direction: column;
   margin: 1.2rem 0 1rem;

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { AiOutlineUser } from "react-icons/ai";
 import { elapsedText } from "../../utils/elapsedText";
 import TagButton from "../../components/ui/TagButton";
 

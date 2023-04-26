@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useEffect } from "react";
-import MainItem from "../Main/MainItem";
 import Button from "../../components/ui/Button";
 import { elapsedText } from "../../utils/elapsedText";
 

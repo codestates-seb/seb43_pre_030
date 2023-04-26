@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import MDEditor from "@uiw/react-md-editor";
 import TipBox from "./TipBox";

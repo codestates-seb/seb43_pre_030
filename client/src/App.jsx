@@ -6,9 +6,6 @@ import Template from "./pages/Templates/Template";
 import Header from "./layouts/Header/Header";
 import LandingPage from "./pages/Landing/LandingPage";
 import { routerData } from "./data/routerData";
-import Loading from "./components/ui/Loading";
-
-// axios.defaults.headers.common['Athorization'] = localStorage.getItem('token');
 
 function App() {
   const currentUser = useSelector(s => s.user);

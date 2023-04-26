@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import lock from './1.png'
-import glass from './2.png'
+import lock from "./1.png";
+import glass from "./2.png";
 
 const SmallBubbleContainer = styled.div`
   display: flex;
@@ -61,7 +60,7 @@ const SmallBubbleContainer = styled.div`
     }
   }
 
-  @media (max-width: 650px){
+  @media (max-width: 650px) {
     display: block;
     margin-bottom: 4rem;
 
@@ -73,8 +72,8 @@ const SmallBubbleContainer = styled.div`
   }
 `;
 
-function SmallBubble(){
-  return(
+function SmallBubble() {
+  return (
     <SmallBubbleContainer>
       <div className="lSmallBubble">
         <img src={glass} alt="" />
@@ -88,6 +87,6 @@ function SmallBubble(){
         <button type="button">Discover Teams</button>
       </div>
     </SmallBubbleContainer>
-  )
+  );
 }
 export default SmallBubble;
