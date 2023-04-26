@@ -18,7 +18,8 @@ function QuestionSearchPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (search.length === 0 || !currentUser) return navigation("/");
+    if (search.length === 0) return navigation("/");
+    if (!currentUser) return navigation("/login");
     (async () => {
       const { data } = await axios(`${process.env.REACT_APP_API_URL}/questions`, {
         headers: {
