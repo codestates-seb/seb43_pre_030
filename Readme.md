@@ -82,7 +82,7 @@
 
 
 ## :notebook: 사용자 요구사항 정의서
-[사용자 요구사항 정의서](http://)
+[사용자 요구사항 정의서](https://www.notion.so/SEB43_PRE_030-db1d21687cbc417c87c97d6375ea5bf8)
 
 
 
