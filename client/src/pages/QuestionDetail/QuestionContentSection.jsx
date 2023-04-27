@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
@@ -27,6 +27,10 @@ const StyledBodyWrapper = styled.div`
   color: var(--font-color-light);
   overflow: hidden;
   line-height: 1.4;
+
+  .md-editor {
+    margin-bottom: 1rem;
+  }
 `;
 
 // 태그 래퍼
@@ -90,15 +94,26 @@ const ButtonSubmit = Button({
 });
 
 // 컨텐츠 내용
-function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, tags, updateHandler }) {
+function QuestionContentSection({
+  type,
+  id,
+  userId,
+  userName,
+  body,
+  createdAt,
+  updatedAt,
+  tags,
+  updateHandler,
+  deleteHandler,
+}) {
   const currentUser = useSelector(s => s.user);
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(body);
 
-  // useEffect(() => {
-  //   setValue(body);
-  // }, [body]);
-  console.log(currentUser.id, userId);
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
   return (
     <StyledContentWrapper>
       <Vote />
@@ -133,15 +148,17 @@ function QuestionContentSection({ type, id, userId, body, createAt, modifiedAt, 
             <button type="button">Share</button>
             {currentUser.id === userId && (
               <>
-                <button type="button" onClick={() => setIsEdit(true)}>
+                <button type="button" onClick={handleEdit}>
                   Edit
                 </button>
-                <button type="button">Delete</button>
+                <button type="button" onClick={() => deleteHandler(id)}>
+                  Delete
+                </button>
               </>
             )}
           </UtilsOptions>
-          {modifiedAt && <span className="modified-date">edited {elapsedText(new Date(modifiedAt))}</span>}
-          <UserInfo type={type} userId={userId} createAt={createAt} />
+          {updatedAt && <span className="modified-date">edited {elapsedText(new Date(updatedAt))}</span>}
+          <UserInfo type={type} userName={userName} createdAt={createdAt} />
         </StyledUtilsWrapper>
       </div>
     </StyledContentWrapper>

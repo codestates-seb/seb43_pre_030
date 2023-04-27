@@ -93,7 +93,7 @@ function SignupInfo() {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-  const [isValidate, setIsValidate] = useState(false);
+  const [isValidate, setIsValidate] = useState(true);
 
   function handleUserName(e) {
     setUsername(e.target.value);
@@ -104,125 +104,67 @@ function SignupInfo() {
   function handlePassword(e) {
     setPassword(e.target.value);
   }
+
   function checkUsername() {
     const usernameRegexp = /^[a-zA-Z가-헿0-9]{4,}$/;
-    let flag = true;
+
     if (!username || !usernameRegexp.test(username)) {
       setUsernameError(true);
-      flag = false;
+      return false;
     } else {
       setUsernameError(false);
-      flag = true;
+      return true;
     }
-    return flag;
   }
 
   function checkEmail() {
     const emailRegexp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    let flag = true;
+
     if (!email || !emailRegexp.test(email)) {
       setEmailError(true);
-      flag = false;
+      return false;
     } else {
       setEmailError(false);
-      flag = true;
+      return true;
     }
-    return flag;
   }
 
   function checkPassword() {
     const passwordRegexp = /^(?=.*[A-Za-z])(?=.*\d)[a-zA-Z\\d`~!@#$%^&*()-_=+]{8,}$/;
-    let flag = true;
+
     if (!password || !passwordRegexp.test(password)) {
       setPasswordError(true);
-      flag = false;
+      return false;
     } else {
       setPasswordError(false);
-      flag = true;
+      return true;
     }
-    return flag;
   }
 
   function validation() {
-    if (checkUsername()) {
-      console.log("username 유효");
-    } else {
-      console.log("username 유효하지않음");
-    }
-    if (checkEmail()) {
-      console.log("email 유효");
-    } else {
-      console.log("email 유효하지않음");
-    }
-    if (checkPassword()) {
-      console.log("password 유효");
-    } else {
-      console.log("password 유효하지않음");
-    }
-
-    if (checkUsername() && checkEmail() && checkPassword()) {
-      console.log("signup ready");
-      return true;
-    }
-    return false;
+    return checkUsername() && checkEmail() && checkPassword();
   }
-
-  const dataURLtoFile = (dataurl, fileName) => {
-    const arr = dataurl.split(",");
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    const n = bstr.length;
-    const u8arr = new Uint8Array(n);
-
-    for (let i = 0; i < n; i += 1) {
-      u8arr[i] = bstr.charCodeAt(i);
-    }
-
-    return new File([u8arr], fileName, { type: mime });
-  };
-
-  const getImage = async () => {
-    const b64data = defaultImage.current.currentSrc;
-    const imagefile = dataURLtoFile(b64data, "defaultImage.jpeg");
-    return imagefile;
-  };
-
-  // const onUpload = async () => {
-  //   const formData = new FormData();
-  //   const finalImage = await getImage();
-  //   formData.append("profile", finalImage);
-  //   formData.append("email", email);
-  //   formData.append("password", password);
-  //   formData.append("nickname", username);
-
-  //   const goLogin = () => {
-  //     navigate("/login");
-  //   };
-  // };
 
   function onSubmit(event) {
     event.preventDefault();
 
     if (validation()) {
-      console.log("✅ Form submitted.");
-      // onUpload();
       axios
-        .post(`${process.env.REACT_APP_API_URL}/users`, {
+        .post(`${process.env.REACT_APP_API_URL}/user/signup`, {
           email,
-          username,
+          name: username,
           password,
         })
         .then(_ => {
           navigate("/login");
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.error(err);
+          setIsValidate(false);
+          setPasswordError(false);
+        });
     }
   }
-
-  const borderColor = {
-    true: "w-full px-2 py-1 border rounded border-danger-500",
-    false: "w-full px-2 py-1 border rounded border-soGray-light",
-  };
 
   return (
     <StyledSignupSection>
@@ -239,7 +181,7 @@ function SignupInfo() {
             <div className="inputLI">
               Email
               <div className="inputText">
-                <input className="inputC" type="Email" value={email} onChange={handleEmail} />
+                <input className="inputC" type="text" value={email} onChange={handleEmail} />
                 {emailError && <p className="textError">이메일 형식에 맞지 않습니다.</p>}
               </div>
             </div>
@@ -248,6 +190,7 @@ function SignupInfo() {
               <div className="inputText">
                 <input className="inputC" type="password" value={password} onChange={handlePassword} />
                 {passwordError && <p className="textError">영어와 숫자를 최소 1개 포함하여 8자 이상이어야합니다.</p>}
+                {!isValidate && <p className="textError">회원가입에 실패했습니다.</p>}
               </div>
             </div>
             <p className="text">

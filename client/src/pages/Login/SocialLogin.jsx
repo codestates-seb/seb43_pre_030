@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub, AiFillFacebook } from "react-icons/ai";

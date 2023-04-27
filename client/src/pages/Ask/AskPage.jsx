@@ -73,16 +73,6 @@ function AskPage() {
     },
     {
       component: VersatileForm,
-      title: `What did you try and what were you expecting?`,
-      content: `Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters.`,
-      tipTitle: `Expand on the problem`,
-      tipContent: `Show what you’ve tried, tell us what happened, and why it didn’t meet your needs.\nNot all questions benefit from including code, but if your problem is better understood with code you’ve written, you should include a minimal, reproducible example.\nPlease make sure to post code and errors as text directly to the question (and not as images), and format them appropriately.`,
-      isDoneYet: true,
-      isButtonBlocked: true,
-      isFormBlocked: true,
-    },
-    {
-      component: VersatileForm,
       title: `Tags`,
       content: `Add up to 5 tags to describe what your question is about. Start typing to see suggestions.`,
       placeholder: `e.g (.net json vba)`,

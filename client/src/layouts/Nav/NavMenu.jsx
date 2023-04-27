@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -40,6 +39,7 @@ const MenuContainer = styled.li`
     font-size: 0.6rem;
     font-weight: bold;
     color: var(--font-color-bold);
+    cursor: auto;
   }
 
   &.content:hover {
@@ -49,7 +49,7 @@ const MenuContainer = styled.li`
 
 const checkPath = path => {
   if (document.location.pathname === "/") return document.location.pathname === path;
-
+  if (document.location.pathname === "/search") return path === "/questions";
   return new Set(document.location.pathname.split("/").filter(a => a !== "")).has(path.slice(1));
 };
 
@@ -65,7 +65,7 @@ function NavMenu({ el }) {
     <MenuContainer
       className={`${checkPath(el.route) ? "active" : ""} ${el.isContent ? "content" : "title"}`}
       onClick={_ => {
-        setActive();
+        el.isContent && setActive();
       }}
     >
       <span>{el.title}</span>

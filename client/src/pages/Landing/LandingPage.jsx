@@ -1,21 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import SmallBubble from "./SmallBubble";
 import Content from "./Content";
 import Record from "./Record";
 import BigBubble from "./BigBubbleContainer";
-
-const rotate = keyframes`
-  0%{
-      opacity: 0;
-  }
-  50%{
-    opacity: 1;
-  }
-  100%{
-
-  }
-  `;
 
 const LandingPageContainer = styled.div`
   padding: 6rem 3rem 3rem 3rem;

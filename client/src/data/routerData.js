@@ -8,11 +8,13 @@ import QuestionPage from "../pages/Questions/QuestionPage";
 import User from "../pages/User/User";
 import QuestionDetailPage from "../pages/QuestionDetail/QuestionDetailPage";
 import withAside from "../pages/Templates/withAside";
+import QuestionSearchPage from "../pages/Questions/QuestionSearchPage";
 
 const AskPageWithFooter = withFooter(AskPage);
 const MainWithAside = withAside(MainPage);
 const QuestionWithAside = withAside(QuestionPage);
 const DetailPageWithAside = withAside(QuestionDetailPage);
+const SearchWithAside = withAside(QuestionSearchPage);
 
 export const routerData = [
   {
@@ -28,6 +30,11 @@ export const routerData = [
   {
     path: "/questions/:id",
     element: <DetailPageWithAside />,
+    needTemplate: true,
+  },
+  {
+    path: "/search",
+    element: <SearchWithAside />,
     needTemplate: true,
   },
   {

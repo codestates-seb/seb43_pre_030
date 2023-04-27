@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -42,19 +42,7 @@ const StyledSignUpLinkWrapper = styled.div`
 // 모든 요청에 대한 withCredentials true 설정
 axios.defaults.withCredentials = true;
 function Login() {
-  const [isLogin, setIsLogin] = useState(false); // 로그인 상태 여부
-  const [userInfo, setUserInfo] = useState(null); // 유저 정보 입력 상태
-
-  // 리렌더링 시 로그인 상태 유지시켜주는 함수
-  const authUserHandler = async () => {
-    await axios
-      .get("http://localhost:3001/login")
-      .then(res => {
-        setIsLogin(true);
-        setUserInfo(res.data);
-      })
-      .catch(err => console.log(err));
-  };
+  // const [isLogin, setIsLogin] = useState(false); // 로그인 상태 여부
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -69,7 +57,7 @@ function Login() {
           </Link>
         </div>
         <SocialLogin />
-        <OriginLogin isLogin={isLogin} setIsLogin={setIsLogin} setUserInfo={setUserInfo} />
+        <OriginLogin />
         <StyledSignUpLinkWrapper>
           {`Don't have an account?`}
           <Link to="/register">Sign up</Link>

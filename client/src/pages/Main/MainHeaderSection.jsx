@@ -3,7 +3,7 @@ import HeaderContentSection from "../../components/HeaderContentSection";
 
 function MainHeaderSection() {
   return (
-    <HeaderContentSection title="Top Questions">
+    <HeaderContentSection title="New Questions">
       <FilterButtons buttons={["hottest", "newest", "oldest"]} />
     </HeaderContentSection>
   );

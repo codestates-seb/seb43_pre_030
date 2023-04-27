@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import axios from "axios";
 import Main from "../../layouts/Main/Main";
@@ -8,6 +8,7 @@ import QuestionHeaderSection from "./QuestionHeaderSection";
 import QuestionContentSection from "./QuestionContentSection";
 import AnswerCreateSection from "./AnswerCreateSection";
 import Loading from "../../components/ui/Loading";
+import { setData } from "../../features/dataSlice";
 
 // 답변 리스트 헤더 래퍼
 const AnswerHeaderWrapper = styled.div`
@@ -32,87 +33,114 @@ function AnswersHeader({ count }) {
 // 상세페이지
 function QuestionDetailPage() {
   const { id } = useParams();
-  // 질문글 id에 따른 데이터 요청 주소
-  const url = `http://localhost:3001/questions/${id}`;
-  // 답변글 id에 따른 데이터 요청 주소
-  const url2 = `http://localhost:3001/answers`;
 
   // 서버에서 받아온 질문과 답변 데이터 상태
-  const [questionData, setQuestionData] = useState({});
-  // const [answerData, setAnswerData] = useState([]);
+  const navigation = useNavigate();
+  const dispatch = useDispatch();
+  const data = useSelector(s => s.data);
+  const questionData = data.find(a => a.question_id === +id);
   const [isPending, setIsPending] = useState(false);
 
-  const { user } = useSelector(state => state.data);
-
-  // 데이터 패칭
   useEffect(() => {
     window.scrollTo(0, 0);
-    (async () => {
-      setIsPending(true);
-      const res = await axios(`${process.env.REACT_APP_API_URL}/questions/${id}`); // 질문데이터
-      console.log(res);
-      setQuestionData(res.data);
-    })();
-    setIsPending(false);
   }, []);
 
-  // 새로운 답변 추가하기
-  // const handleAnswerSubmit = content => {
-  //   const data = { body: content }; // 새로운 답변글 body에 추가
-  //   axios(`http://localhost:3001/answers/${id}`, {
-  //     method: "post",
-  //     headers: {
-  //       Authorization: user.token, // 인증받은 토큰 보내기
-  //     },
-  //     data,
-  //   })
-  //     .then(res => {
-  //       console.log(res.data);
-  //     })
-  //     .catch(err => console.error(err));
-  // };
-  const updateAnswer = (id, data) => {
+  // 답변수정
+  const updateAnswer = (answer_id, answer_data) => {
     axios
-      .patch(`${process.env.REACT_APP_API_URL}/answer/${id}`, data)
+      .patch(
+        `${process.env.REACT_APP_API_URL}/answer/${answer_id}`,
+        { body: answer_data },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
       .then(_ => {
-        setQuestionData(prev => {
-          const answerInd = prev.answers.findIndex(a => a.id === id);
-          const newAnswerArr = [
-            ...prev.answers.slice(0, answerInd),
-            { ...prev.answers[answerInd], body: data },
-            ...prev.answers.slice(answerInd + 1),
-          ];
-          return { ...prev, answers: newAnswerArr };
-        });
+        const ind = data.findIndex(a => a.question_id === +id);
+        const answer_ind = data[ind].answers.findIndex(a => a.id === answer_id);
+        const newAnswers = [
+          ...data[ind].answers.slice(0, answer_ind),
+          { ...data[ind].answers[answer_ind], body: answer_data },
+          ...data[ind].answers.slice(answer_ind + 1),
+        ];
+        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
+        dispatch(setData(newData));
       })
       .catch(err => {
-        setQuestionData(prev => {
-          const answerInd = prev.answers.findIndex(a => a.id === id);
-          const newAnswerArr = [
-            ...prev.answers.slice(0, answerInd),
-            { ...prev.answers[answerInd], body: data },
-            ...prev.answers.slice(answerInd + 1),
-          ];
-          return { ...prev, answers: newAnswerArr };
-        });
+        const ind = data.findIndex(a => a.question_id === +id);
+        const answer_ind = data[ind].answers.findIndex(a => a.id === answer_id);
+        const newAnswers = [
+          ...data[ind].slice(0, answer_ind),
+          { ...data[ind].answers[answer_ind], body: data },
+          ...data[ind].slice(answer_ind + 1),
+        ];
+        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
+        dispatch(setData(newData));
       });
   };
 
-  const updateQuestion = (id, data) => {
+  // 질문 수정
+  const updateQuestion = (id, body) => {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/questions/${id}`, { ...questionData, body: data })
+      .post(
+        `${process.env.REACT_APP_API_URL}/questions/${id}`,
+        { ...questionData, body },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
       .then(_ => {
-        setQuestionData(prev => ({ ...prev, body: data }));
+        const ind = data.findIndex(a => a.question_id === id);
+        const newData = [...data.slice(0, ind), { ...data[ind], body }, ...data.slice(ind + 1)];
+        dispatch(setData(newData));
       })
       .catch(err => {
-        setQuestionData(prev => ({ ...prev, body: data }));
+        const ind = data.findIndex(a => a.question_id === id);
+        const newData = [...data.slice(0, ind), { ...data[ind], body }, ...data.slice(ind + 1)];
+        dispatch(setData(newData));
+      });
+  };
+
+  // 답변 삭제
+  const deleteAnswer = answer_id => {
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/answer/${answer_id}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then(_ => {
+        const ind = data.findIndex(a => a.question_id === +id);
+
+        const newAnswers = data[ind].answers.filter(a => a.id !== answer_id);
+        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
+        dispatch(setData(newData));
+      });
+  };
+
+  // 질문 삭제
+  const deleteQuestion = id => {
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/questions/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then(_ => {
+        const newData = data.filter(a => a.question_id !== +id);
+        dispatch(setData(newData));
+        navigation("/");
       });
   };
 
   return (
     <>
       {isPending && <Loading />}
-      {Object.keys(questionData).length > 0 && (
+      {questionData && (
         <Main>
           <QuestionHeaderSection
             title={questionData.title}
@@ -122,13 +150,15 @@ function QuestionDetailPage() {
           {/* 내용 */}
           <QuestionContentSection
             type="question"
-            id={questionData.id}
+            id={questionData.question_id}
             userId={questionData.user_id}
+            userName={questionData.user_name}
             body={questionData.body}
             tags={questionData.tags}
             createdAt={questionData.created_at}
-            modifiedAt={questionData.modified_at}
+            updatedAt={questionData.updated_at}
             updateHandler={updateQuestion}
+            deleteHandler={deleteQuestion}
           />
           {/* 답변들 */}
           {questionData.answers.length > 0 && (
@@ -141,17 +171,19 @@ function QuestionDetailPage() {
                     key={answer.id}
                     id={answer.id}
                     userId={answer.user_id}
+                    userName={answer.user_name}
                     body={answer.body}
-                    createAt={answer.created_at}
-                    modifiedAt={answer.modified_at}
+                    createdAt={answer.created_at}
+                    updatedAt={answer.updated_at}
                     updateHandler={updateAnswer}
+                    deleteHandler={deleteAnswer}
                   />
                 );
               })}
             </>
           )}
           {/* 답변 작성폼 */}
-          <AnswerCreateSection setQuestionData={setQuestionData} />
+          <AnswerCreateSection question_id={questionData.question_id} />
         </Main>
       )}
     </>

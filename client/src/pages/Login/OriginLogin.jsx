@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ButtonLogin } from "./ButtonLogin";
 import { LoginInput } from "./InputLogin";
 import useInput from "../../hooks/useInput";
 import { setUser } from "../../features/userSlice";
-// import { useDispatch, useSelector } from "react-redux";
-
-// dummy user data
-// const User = [
-//   {
-//     email: "suam123@gmail.com",
-//     password: "suam1234@@",
-//   },
-//   {
-//     email: "jinwan123@gmail.com",
-//     password: "jinwan1234@@",
-//   },
-//   {
-//     email: "hogyun123@naver.com",
-//     password: "hogyun1234@@",
-//   },
-//   {
-//     email: "jaeyoon123@naver.com",
-//     password: "jaeyoon1234@@",
-//   },
-// ];
 
 // 로그인박스 래퍼
 const StyledOriginLoginWrapper = styled.div`
@@ -65,7 +44,7 @@ const StyledLoginForm = styled.form`
   }
 `;
 
-function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
+function OriginLogin() {
   const [emailProps, setEmail] = useInput("");
   const [passwordProps, setPassword] = useInput("");
 
@@ -73,10 +52,10 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
   const [pwValid, setPwValid] = useState(true);
   const [isEmailEmpty, setIsEmailEmpty] = useState(false); // 비어있는게 true
   const [isPwEmpty, setIsPwEmpty] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector(s => s.data);
 
   useEffect(() => {}, []);
 
@@ -90,11 +69,14 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
     // early return
     if (!email) {
       setIsEmailEmpty(true);
+      setEmailValid(true);
+      setIsLogin(true);
       return;
     } else if (!regexEmail.test(email)) {
       // email 유효하지 않으면
       setIsEmailEmpty(false);
       setEmailValid(false); // 유효하지 않게
+      setIsLogin(true);
       setEmail("");
       setPassword("");
       return;
@@ -102,12 +84,14 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
     // password가 비어있으면
     if (!password) {
       setIsPwEmpty(true);
+      setIsLogin(true);
+      setPwValid(true);
       return;
     } else if (!regexPw.test(password)) {
       // pw 유효하지 않으면
       setIsEmailEmpty(false);
       setPwValid(false); // 유효하지 않게
-      setEmail("");
+      setIsLogin(true);
       setPassword("");
       return;
     }
@@ -133,42 +117,28 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
     e.preventDefault();
     if (!handleCheckLoginForm()) return false;
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/confirm-email`, {
-        email: emailProps,
-        password: passwordProps,
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, {
+        email: emailProps.value,
+        password: passwordProps.value,
+      });
+      const token = res.headers.get("Authorization");
+      if (token) localStorage.setItem("token", token.split(" ")[1]);
+      const user = await axios(`${process.env.REACT_APP_API_URL}/user/userinfo`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
       });
 
-      const token = res.headers.get("Authorization");
-
-      if (token) localStorage.setItem("token", token);
-
-      dispatch(setUser(emailProps));
+      dispatch(setUser({ ...user.data }));
       navigate("/");
     } catch (err) {
-      dispatch(
-        setUser({
-          id: 1,
-          name: "crowwan",
-        })
-      );
-      navigate("/");
+      console.error(err);
+      setIsLogin(false);
+      setPwValid(true);
+      setIsPwEmpty(false);
+      setIsEmailEmpty(false);
+      setEmailValid(true);
     }
-
-    // api 요청(post)
-    // const response = await axios
-    //   .post("http://localhost:3001/login", {
-    //     email: emailProps,
-    //     password: passwordProps,
-    //   })
-    //   .then(res => {
-    //     // 백엔드에서 민감한 정보 ->
-    //     // setUserInfo(res.data); // 서버에서 받은 유저 데이터를 렌더링 할때 보여주는 유저
-    //     // dispatch(setUser(res.data))
-    //     setIsLogin(true);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   };
 
   return (
@@ -181,13 +151,13 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
             name="email"
             type="email"
             {...emailProps}
-            border={isEmailEmpty || isLogin ? "var(--primary-color)" : null}
-            focusBorder={isEmailEmpty || isLogin ? "var(--primary-color)" : null}
-            shadow={isEmailEmpty || isLogin ? "var(--primary-color)" : null}
+            border={isEmailEmpty || !isLogin ? "var(--primary-color)" : null}
+            focusBorder={isEmailEmpty || !isLogin ? "var(--primary-color)" : null}
+            shadow={isEmailEmpty || !isLogin ? "var(--primary-color)" : null}
           />
           {isEmailEmpty && <p>Email cannot be empty.</p>}
           {!emailValid && <p>The email is not a valid email address.</p>}
-          {isLogin && <p>The email or password is incorrect.</p>}
+          {!isLogin && <p>The email or password is incorrect.</p>}
         </div>
         <div className="password">
           <label htmlFor="password">Password</label>
@@ -196,13 +166,13 @@ function OriginLogin({ isLogin, setIsLogin, setUserInfo }) {
             name="password"
             type="password"
             {...passwordProps}
-            border={isPwEmpty || isLogin ? "var(--primary-color)" : null}
-            focusBorder={isPwEmpty || isLogin ? "var(--primary-color)" : null}
-            shadow={isPwEmpty || isLogin ? "var(--primary-color)" : null}
+            border={isPwEmpty || !isLogin ? "var(--primary-color)" : null}
+            focusBorder={isPwEmpty || !isLogin ? "var(--primary-color)" : null}
+            shadow={isPwEmpty || !isLogin ? "var(--primary-color)" : null}
           />
           {isPwEmpty && <p>Password cannot be empty.</p>}
           {!pwValid && <p>The password must be at least 8 characters long.</p>}
-          {isLogin && <p>The email or password is incorrect.</p>}
+          {!isLogin && <p>The email or password is incorrect.</p>}
         </div>
         <div className="button">
           <ButtonLogin onClick={handleSubmit}>Log in</ButtonLogin>

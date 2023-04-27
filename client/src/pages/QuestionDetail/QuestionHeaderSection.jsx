@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import HeaderContentSection from "../../components/HeaderContentSection";
 import { elapsedText } from "../../utils/elapsedText";

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { AiOutlineUser } from "react-icons/ai";
 import { elapsedText } from "../../utils/elapsedText";
 import TagButton from "../../components/ui/TagButton";
 
@@ -58,7 +57,7 @@ function MainItem({ data }) {
         <div>{data.answers.length} answers</div>
       </StyledCountContainer>
       <StyledContentContainer>
-        <Link to={`/questions/${data.id}`}>
+        <Link to={`/questions/${data.question_id}`}>
           <StyledContentTitle>{data.title}</StyledContentTitle>
         </Link>
         <StyledContentDescription>{data.body}</StyledContentDescription>
@@ -68,7 +67,7 @@ function MainItem({ data }) {
           ))}
         </StyledTagSection>
         <StyledAuthorSection>
-          user: <span style={{ color: "var(--al-color)", marginRight: "1rem" }}>{data.user_id}</span>{" "}
+          user: <span style={{ color: "var(--al-color)", marginRight: "1rem" }}>{data.user_name}</span>{" "}
           {elapsedText(new Date(data.created_at))}
         </StyledAuthorSection>
       </StyledContentContainer>

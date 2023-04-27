@@ -41,8 +41,8 @@ const StyledLink = styled.span`
 function SolutionItem() {
   return (
     <StyledUl>
-      {items.map(item => (
-        <StyledLi>
+      {items.map((item, i) => (
+        <StyledLi key={i}>
           {item.text}
           <StyledLink>
             <Link to={item.path}>{item.link}</Link>

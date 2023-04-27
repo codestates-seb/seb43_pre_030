@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { BsStackOverflow } from "react-icons/bs";

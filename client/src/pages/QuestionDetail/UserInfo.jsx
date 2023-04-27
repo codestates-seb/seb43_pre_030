@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaUserAlt } from "react-icons/fa";
@@ -35,19 +34,19 @@ const StyledUserInfoWrapper = styled.div`
 `;
 
 // 유저 정보 컨테이너
-function UserInfo({ type, userId, createAt }) {
+function UserInfo({ type, userName, createdAt }) {
   return (
     <StyledUserInfoWrapper bgColor={type === "question" ? "var(--tag-bg-color)" : "transparent"}>
       <div className="asked-date">
-        <span>{type === "question" ? "asked" : "answerd"}</span>
-        {elapsedText(new Date(createAt))}
+        <span>{type === "question" ? "asked" : "answered"}</span>
+        {elapsedText(new Date(createdAt))}
       </div>
       <div className="avatar-and-userId">
         <div className="avatar">
           <FaUserAlt size="2rem" />
         </div>
         <div className="userId">
-          <Link to="/users">{userId}</Link>
+          <Link to="/users">{userName}</Link>
         </div>
       </div>
     </StyledUserInfoWrapper>

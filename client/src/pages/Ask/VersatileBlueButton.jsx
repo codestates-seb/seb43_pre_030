@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -18,24 +17,31 @@ const VersatileBlueButtonContainer = styled.div`
 function VersatileBlueButton({ text, idx, askController, data }) {
   const currentUser = useSelector(s => s.user);
   const navigation = useNavigate();
-  const { id, title, body1, body2, tags } = data;
+  const { title, body1, body2, tags } = data;
 
   const body = body1 + body2;
   const user_id = currentUser.id;
-  const created_at = new Date();
-  const modified_at = new Date();
+  const user_name = currentUser.name;
   const answers = [];
 
   const postData = async () => {
-    await axios.post(`${process.env.REACT_APP_API_URL}/questions`, {
-      title,
-      body,
-      created_at,
-      modified_at,
-      user_id,
-      answers,
-      tags: tags || [],
-    });
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/questions`,
+      {
+        question: {
+          title,
+          body,
+          user_id,
+          user_name,
+        },
+        tag: typeof tags === "object" ? tags : [],
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
     navigation("/");
   };
 
@@ -48,7 +54,7 @@ function VersatileBlueButton({ text, idx, askController, data }) {
         onClick={() => {
           clickForm(idx);
           clickButton(idx);
-          idx === 4 && postData();
+          idx === 3 && postData();
         }}
       >
         {text}

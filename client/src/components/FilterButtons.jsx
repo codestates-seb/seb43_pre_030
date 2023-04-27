@@ -11,7 +11,7 @@ const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 0.1rem;
-  width: 100%;
+  /* width: 100%; */
 `;
 function FilterButtons({ buttons }) {
   return (

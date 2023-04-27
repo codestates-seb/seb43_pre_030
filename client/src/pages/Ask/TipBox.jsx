@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { BsFillPencilFill } from "react-icons/bs";
-import monami from "./monami.jpg";
 
 const TipBoxContainer = styled.div`
   position: absolute;
@@ -58,8 +56,6 @@ function TipBox({ tipTitle, tipContent }) {
     <TipBoxContainer>
       <h1>{tipTitle}</h1>
       <div className="divContainer">
-        {/* 경로가 이상해 */}
-        {/* <img src={monami} alt="monami" /> */}
         <StyledIcon>
           <BsFillPencilFill />
         </StyledIcon>
