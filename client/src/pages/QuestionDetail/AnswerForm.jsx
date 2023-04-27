@@ -49,10 +49,10 @@ function AnswerForm({ question_id }) {
   // 답변 추가 생성
   const onSubmit = () => {
     // 글쓴 유저의 이름의 위치 찾아불러와서 생성할때 유저네임 추가!
-    const nameInd = data.findIndex(a => a.user_name === currentUser.name);
+    // const nameInd = data.findIndex(a => a.user_name === currentUser.name);
     const newAnswer = {
       body: answerValue,
-      user_name: data[nameInd].user_name,
+      user_name: currentUser.name,
       user_id: currentUser.id,
       question_id: +id,
     };

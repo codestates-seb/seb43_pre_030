@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import lock from "./1.png";
-import glass from "./2.png";
+import { CiLock, CiSearch } from "react-icons/ci";
+
 
 const SmallBubbleContainer = styled.div`
   display: flex;
@@ -19,9 +19,8 @@ const SmallBubbleContainer = styled.div`
     border-radius: 0.5rem;
     font-size: 1.2rem;
 
-    img {
-      width: 5rem;
-      height: 5rem;
+    svg {
+      font-size: 4rem;
     }
 
     span {
@@ -51,12 +50,18 @@ const SmallBubbleContainer = styled.div`
     button {
       background-color: var(--primary-color);
     }
+    svg {
+      color: var(--primary-color);
+    }
   }
 
   .rSmallBubble {
     background-color: #cce8fe;
     button {
       background-color: var(--btn-bg-color);
+    }
+    svg {
+      color: var(--btn-bg-color);
     }
   }
 
@@ -76,13 +81,13 @@ function SmallBubble() {
   return (
     <SmallBubbleContainer>
       <div className="lSmallBubble">
-        <img src={glass} alt="" />
+        <CiSearch />
         <span>Find the best answer to your technical question, help others answer theirs</span>
         <button type="button">Join the community</button>
         <a href="/">or search content</a>
       </div>
       <div className="rSmallBubble">
-        <img src={lock} alt="" />
+        <CiLock />
         <span>Want a secure, private space for your technical knowledge?</span>
         <button type="button">Discover Teams</button>
       </div>

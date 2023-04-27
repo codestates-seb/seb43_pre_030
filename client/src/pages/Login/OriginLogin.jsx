@@ -182,32 +182,3 @@ function OriginLogin() {
 }
 
 export default OriginLogin;
-
-// 유저 정보 확인을 jwt토큰으로 서버쪽에서
-// const found = User.find(a => a.email === email);
-
-// // 유효한 email,pw이고 입력값이 User정보와 같다면
-// if (found && password === found.password) {
-//   setIsEmailEmpty(false);
-//   setIsPwEmpty(false);
-//   setEmailValid(true);
-//   setPwValid(true);
-//   navigate("/"); // 메인페이지 이동
-// } else if (!found) {
-//   setEmail("");
-//   setPassword("");
-// } else if (password !== found.password) {
-//   setEmail("");
-//   setPassword("");
-// }
-
-// useEffect(() => {
-//   // 첫 랜더링 시 질문 조회
-// },[]);
-
-// useEffect(() => {
-//   // 페이지 번호를 눌렀을 때 해당 페이지의 질문 목록을 가져옴
-//   axios.post(`localhost:8080/?page=${currentPage}&size=10`).then(res => {
-//     setCurruntPosts(res.data.data);
-//   })
-// },[currentPage])
