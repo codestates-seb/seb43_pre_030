@@ -37,7 +37,7 @@
 <br />
 
 ### 🖥 Front-end
-<img src="http://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000"> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="http://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3"> <img src="http://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react"> <img src="http://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents"> <img src="http://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux"> <img src="http://img.shields.io/badge/express-000000?style=for-the-badge&logo=express"> <img src="http://img.shields.io/badge/nodedotjs-339933?style=for-the-badge&logo=nodedotjs">
+<img src="http://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000"> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="http://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3"> <img src="http://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=React"> <img src="http://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents"> <img src="http://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux"> <img src="http://img.shields.io/badge/express-000000?style=for-the-badge&logo=express"> <img src="http://img.shields.io/badge/nodedotjs-339933?style=for-the-badge&logo=nodedotjs">
 <br /><br /><br /><br />
 
 ### ⚙️ Back-end
