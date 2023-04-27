@@ -5,19 +5,15 @@
 <br>
 <br>
 
-<BR/>
-<BR/>
-<BR/>
 
 # 👨‍👩‍👦‍👦 Team
 
-<br/>
+<br />
 
 
 ### 🖥 Front-end
 |김진완|강수암|이제윤|유호균|
 |:-:|:-:|:-:|:-:|
-
 |<img src="https://avatars.githubusercontent.com/u/32172056?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/108013978?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/104041787?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/74657430?v=4" width=150>|
 |[@insidelamp](https://github.com/crowwan)|[@SuamKang](https://github.com/SuamKang)|[@tari45800](https://github.com/tari45800)|[@ghrbsaod](https://github.com/ghrbsaod)
 
@@ -28,6 +24,7 @@
 |:-:|:-:|:-:|
 |<img src="https://avatars.githubusercontent.com/u/113077033?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/101793138?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/120398048?v=4" width=150>|
 |[@mins-git](https://github.com/mins-git)|[@YoonSeungHyun2](https://github.com/YoonSeungHyun2)|[@hunm719](https://github.com/hunm719)|
+  
   
   
   
