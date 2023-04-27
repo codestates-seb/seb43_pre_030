@@ -15,13 +15,19 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!currentUser) navigation("/");
-    axios(`${process.env.REACT_APP_API_URL}/user/userinfo`, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    }).then(res => {
-      dispatch(setUser({ ...res.data }));
-    });
+    if (localStorage.getItem("token")) {
+      axios(`${process.env.REACT_APP_API_URL}/user/userinfo`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+        .then(res => {
+          dispatch(setUser({ ...res.data }));
+        })
+        .catch(err => {
+          if (err.response.status === 401) localStorage.removeItem("token");
+        });
+    }
   }, []);
   return (
     <>

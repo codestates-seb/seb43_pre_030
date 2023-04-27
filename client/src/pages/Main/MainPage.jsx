@@ -16,13 +16,18 @@ function MainPage() {
     window.scrollTo(0, 0);
     setIsLoading(true);
     (async () => {
-      const { data } = await axios(`${process.env.REACT_APP_API_URL}/questions/newest`, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
+      try {
+        const { data } = await axios(`${process.env.REACT_APP_API_URL}/questions/newest`, {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        });
+
+        dispatch(setData(data));
+      } catch (err) {
+        alert("질문을 불러오지 못했습니다.");
+      }
       setIsLoading(false);
-      dispatch(setData(data));
     })();
   }, []);
   // const onPageChange = el => {

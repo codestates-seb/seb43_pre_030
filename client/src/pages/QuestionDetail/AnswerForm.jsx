@@ -74,7 +74,7 @@ function AnswerForm({ question_id }) {
         setAnswerValue("");
       })
       .catch(err => {
-        console.error(err);
+        alert("답변을 생성하지 못했습니다.");
       });
   };
   return (

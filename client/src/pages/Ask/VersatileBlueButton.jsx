@@ -25,24 +25,28 @@ function VersatileBlueButton({ text, idx, askController, data }) {
   const answers = [];
 
   const postData = async () => {
-    await axios.post(
-      `${process.env.REACT_APP_API_URL}/questions`,
-      {
-        question: {
-          title,
-          body,
-          user_id,
-          user_name,
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/questions`,
+        {
+          question: {
+            title,
+            body,
+            user_id,
+            user_name,
+          },
+          tag: typeof tags === "object" ? tags : [],
         },
-        tag: typeof tags === "object" ? tags : [],
-      },
-      {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      }
-    );
-    navigation("/");
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+      navigation("/");
+    } catch (err) {
+      alert("질문을 생성하지 못했습니다.");
+    }
   };
 
   const { clickForm, clickButton } = askController;

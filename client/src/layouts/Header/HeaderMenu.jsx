@@ -54,7 +54,7 @@ function HeaderMenu() {
         dispatch(setUser(""));
         navigation("/");
       })
-      .catch(err => console.error(err));
+      .catch(err => alert("로그아웃에 실패했습니다."));
   };
   return (
     <StyledMenuContainer>

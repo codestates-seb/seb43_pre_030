@@ -132,7 +132,6 @@ function OriginLogin() {
       dispatch(setUser({ ...user.data }));
       navigate("/");
     } catch (err) {
-      console.error(err);
       setIsLogin(false);
       setPwValid(true);
       setIsPwEmpty(false);

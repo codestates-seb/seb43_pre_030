@@ -24,22 +24,12 @@ const StyledSubHeaderWrapper = styled.div`
 `;
 
 // 서브 헤더(작성날짜, 업데이트날짜, 조회수정보)
-function QuestionSubHeader({ createAt, modifiedAt, views }) {
+function QuestionSubHeader({ createAt, views }) {
   return (
     <StyledSubHeaderWrapper>
       <div>
         <span>Asked</span>
         <time>{elapsedText(new Date(createAt))}</time>
-      </div>
-      {modifiedAt && (
-        <div>
-          <span>Modified</span>
-          <time>{elapsedText(new Date(modifiedAt))}</time>
-        </div>
-      )}
-      <div>
-        <span>Viewd</span>
-        {views} times
       </div>
     </StyledSubHeaderWrapper>
   );

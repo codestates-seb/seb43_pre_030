@@ -69,15 +69,7 @@ function QuestionDetailPage() {
         dispatch(setData(newData));
       })
       .catch(err => {
-        const ind = data.findIndex(a => a.question_id === +id);
-        const answer_ind = data[ind].answers.findIndex(a => a.id === answer_id);
-        const newAnswers = [
-          ...data[ind].slice(0, answer_ind),
-          { ...data[ind].answers[answer_ind], body: data },
-          ...data[ind].slice(answer_ind + 1),
-        ];
-        const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
-        dispatch(setData(newData));
+        alert("답변을 수정하지 못했습니다.");
       });
   };
 
@@ -99,9 +91,7 @@ function QuestionDetailPage() {
         dispatch(setData(newData));
       })
       .catch(err => {
-        const ind = data.findIndex(a => a.question_id === id);
-        const newData = [...data.slice(0, ind), { ...data[ind], body }, ...data.slice(ind + 1)];
-        dispatch(setData(newData));
+        alert("질문을 수정하지 못했습니다.");
       });
   };
 
@@ -119,6 +109,9 @@ function QuestionDetailPage() {
         const newAnswers = data[ind].answers.filter(a => a.id !== answer_id);
         const newData = [...data.slice(0, ind), { ...data[ind], answers: newAnswers }, ...data.slice(ind + 1)];
         dispatch(setData(newData));
+      })
+      .catch(err => {
+        alert("답변을 삭제하지 못했습니다.");
       });
   };
 
@@ -134,6 +127,9 @@ function QuestionDetailPage() {
         const newData = data.filter(a => a.question_id !== +id);
         dispatch(setData(newData));
         navigation("/");
+      })
+      .catch(err => {
+        alert("질문을 삭제하지 못했습니다.");
       });
   };
 
@@ -142,11 +138,7 @@ function QuestionDetailPage() {
       {isPending && <Loading />}
       {questionData && (
         <Main>
-          <QuestionHeaderSection
-            title={questionData.title}
-            createAt={questionData.created_at}
-            modifiedAt={questionData.modified_at}
-          />
+          <QuestionHeaderSection title={questionData.title} createAt={questionData.created_at} />
           {/* 내용 */}
           <QuestionContentSection
             type="question"
