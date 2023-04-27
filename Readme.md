@@ -4,7 +4,15 @@
 
 <br>
 <br>
+<br/>
 
+<div  align="center">
+  <img width="80%" src="https://content.presspage.com/uploads/2658/c1920_logo-stackoverflow-banner.jpg?64224" alt="roobits">
+</div>
+
+<BR/>
+<BR/>
+<BR/>
 
 # 👨‍👩‍👦‍👦 Team
 
@@ -14,6 +22,7 @@
 ### 🖥 Front-end
 |김진완|강수암|이제윤|유호균|
 |:-:|:-:|:-:|:-:|
+
 |<img src="https://avatars.githubusercontent.com/u/32172056?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/108013978?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/104041787?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/74657430?v=4" width=150>|
 |[@insidelamp](https://github.com/crowwan)|[@SuamKang](https://github.com/SuamKang)|[@tari45800](https://github.com/tari45800)|[@ghrbsaod](https://github.com/ghrbsaod)
 
@@ -77,13 +86,11 @@
     <BR>
 
 
-## :memo: Documents
+## :notebook: 사용자 요구사항 정의서
+[사용자 요구사항 정의서](http://)
 
-### [Wireframe](https://)
-### [API 문서](https://)
-### [ERD 문서](https://)
-### [User Flow](https://)
-  
+
+
 <BR>
   <BR>
     <BR>
