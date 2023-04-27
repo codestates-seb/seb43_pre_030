@@ -44,7 +44,7 @@
 <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=AmazonEC2&logoColor=white"> <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=AmazonRDS&logoColor=white"> <img alt="GithubActions" src="https://img.shields.io/badge/Github Actions-2088FF.svg?&style=for-the-badge&logo=GithubActions&logoColor=white"/> <img alt="NGINX" src="https://img.shields.io/badge/NGINX-009639.svg?&style=for-the-badge&logo=NGINX&logoColor=white"> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
 
   <BR><BR>
-    ### Collaboration Tools
+### Collaboration Tools
 
 <p>
   <img src="https://user-images.githubusercontent.com/61264510/194802015-8823f450-9df6-48dd-9474-dec2c331cfe5.svg">
@@ -72,7 +72,7 @@
 <br >
 <div align="start">
 
-  ##API
+##API
   
   
 ## 🖥️ 기능
