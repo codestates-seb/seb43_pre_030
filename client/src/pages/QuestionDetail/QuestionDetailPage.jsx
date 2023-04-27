@@ -144,8 +144,8 @@ function QuestionDetailPage() {
         <Main>
           <QuestionHeaderSection
             title={questionData.title}
-            createAt={questionData.created_at}
-            modifiedAt={questionData.modified_at}
+            createdAt={questionData.created_at}
+            updatedAt={questionData.updated_at}
           />
           {/* 내용 */}
           <QuestionContentSection
