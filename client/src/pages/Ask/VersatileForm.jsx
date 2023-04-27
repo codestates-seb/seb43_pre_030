@@ -169,7 +169,7 @@ function VersatileForm({ idx, el, askController }) {
   // 버튼 제어
   const nextButton = !isDoneYet ? (
     <VersatileBlueButton
-      text={idx === 4 ? `Post your question` : `Next`}
+      text={idx === 3 ? `Post your question` : `Next`}
       idx={idx}
       askController={askController}
       data={postValue}
@@ -181,10 +181,11 @@ function VersatileForm({ idx, el, askController }) {
   const [tags, setTags] = useState([]);
 
   function handleInput(e) {
+    if (e.nativeEvent.isComposing) return;
     if (e.key === "Enter") {
       setTags([...tags, e.target.value]);
+      setData([...tags.map(a => ({ name: a })), { name: e.target.value }]);
       setQuestionFormValue("");
-      setData([...tags, { name: e.target.value }]);
     }
   }
 
