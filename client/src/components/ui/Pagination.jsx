@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PaginationCustom from "react-js-pagination";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -41,6 +42,10 @@ const StyledContainer = styled.div`
 
 function Pagination({ curPage, onPageChange }) {
   const data = useSelector(s => s.data);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [curPage]);
 
   return (
     <StyledWrapper>
