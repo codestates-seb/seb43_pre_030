@@ -85,7 +85,7 @@
 [사용자 요구사항 정의서](https://www.notion.so/SEB43_PRE_030-db1d21687cbc417c87c97d6375ea5bf8)
       <br>
 [개발자 체크리스트](https://www.notion.so/SEB43_PRE_030-a1a5288a9cd147fd95cea50e938eb3e2)
-      <img src="[https://www.notion.so/5788f22328044b4bb4f7ed2e0f15a0ee?pvs=4#c524693821584475b4076c223a978f67](https://file.notion.so/f/s/b65482cb-e567-4a34-a6ae-024e300756e7/234235_1.png?id=c5246938-2158-4475-b407-6c223a978f67&table=block&spaceId=f56d6eea-e721-40bc-90d0-5434f992d7a8&expirationTimestamp=1682663116073&signature=5itczHy0LMLt_CZstRJurc5qPXqyC37QAZsQraRCyaU&downloadName=234235_1.png)">
+      <img src="(https://file.notion.so/f/s/b65482cb-e567-4a34-a6ae-024e300756e7/234235_1.png?id=c5246938-2158-4475-b407-6c223a978f67&table=block&spaceId=f56d6eea-e721-40bc-90d0-5434f992d7a8&expirationTimestamp=1682663116073&signature=5itczHy0LMLt_CZstRJurc5qPXqyC37QAZsQraRCyaU&downloadName=234235_1.png)">
 
 
 <BR>
