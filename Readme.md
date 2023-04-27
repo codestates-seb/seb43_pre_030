@@ -111,7 +111,7 @@
 |---|---|
 |한동민| |
 |윤승현| |
-|강지산| |답변 CRUD 구현, 댓글 CRUD 구현, Rest Docs 문서화 기능 구현, AWS 배포 
+|강지산|답변 CRUD 구현, 댓글 CRUD 구현, Rest Docs 문서화 기능 구현, AWS 배포| 
   
   
 ## 🍵Team Culture
