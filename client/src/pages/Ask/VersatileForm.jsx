@@ -184,7 +184,7 @@ function VersatileForm({ idx, el, askController }) {
     if (e.nativeEvent.isComposing) return;
     if (e.key === "Enter") {
       setTags([...tags, e.target.value]);
-      setData([...tags, { name: e.target.value }]);
+      setData([...tags.map(a => ({ name: a })), { name: e.target.value }]);
       setQuestionFormValue("");
     }
   }
