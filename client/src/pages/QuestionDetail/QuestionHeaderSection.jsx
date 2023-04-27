@@ -24,22 +24,28 @@ const StyledSubHeaderWrapper = styled.div`
 `;
 
 // 서브 헤더(작성날짜, 업데이트날짜, 조회수정보)
-function QuestionSubHeader({ createAt, views }) {
+function QuestionSubHeader({ createdAt, updatedAt, views }) {
   return (
     <StyledSubHeaderWrapper>
       <div>
         <span>Asked</span>
-        <time>{elapsedText(new Date(createAt))}</time>
+        <time>{elapsedText(new Date(createdAt))}</time>
       </div>
+      {updatedAt && (
+        <div>
+          <span>Modified</span>
+          <time>{elapsedText(new Date(updatedAt))}</time>
+        </div>
+      )}
     </StyledSubHeaderWrapper>
   );
 }
 
 // 상세페이지 헤더 섹션
-function QuestionHeaderSection({ title, createAt, modifiedAt, views }) {
+function QuestionHeaderSection({ title, createdAt, updatedAt, views }) {
   return (
     <HeaderContentSection title={title}>
-      <QuestionSubHeader createAt={createAt} modifiedAt={modifiedAt} views={views} />
+      <QuestionSubHeader createdAt={createdAt} updatedAt={updatedAt} views={views} />
     </HeaderContentSection>
   );
 }

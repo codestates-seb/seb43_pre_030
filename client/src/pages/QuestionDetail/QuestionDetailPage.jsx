@@ -138,7 +138,11 @@ function QuestionDetailPage() {
       {isPending && <Loading />}
       {questionData && (
         <Main>
-          <QuestionHeaderSection title={questionData.title} createAt={questionData.created_at} />
+          <QuestionHeaderSection
+            title={questionData.title}
+            createdAt={questionData.created_at}
+            updatedAt={questionData.updated_at}
+          />
           {/* 내용 */}
           <QuestionContentSection
             type="question"
