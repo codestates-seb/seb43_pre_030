@@ -1,0 +1,6 @@
+aws:
+  paramstore:
+    enabled: true
+    prefix: /spring-boot-aws
+    name: seb43-pre-030
+    profileSeparator: _
