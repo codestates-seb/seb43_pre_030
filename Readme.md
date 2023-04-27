@@ -85,6 +85,7 @@
 [사용자 요구사항 정의서](https://www.notion.so/SEB43_PRE_030-db1d21687cbc417c87c97d6375ea5bf8)
       <br>
 [개발자 체크리스트](https://www.notion.so/SEB43_PRE_030-a1a5288a9cd147fd95cea50e938eb3e2)
+      <img src="[https://cdn.discordapp.com/attachments/1037945125998968864/1094890785595465738/https3A2F2Fs3-us-west-2.png]">
 
 
 <BR>
