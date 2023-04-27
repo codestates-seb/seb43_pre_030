@@ -21,8 +21,9 @@ const QuestionPageContainer = styled.main`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    overflow: hidden;
     h1 {
+      line-height: 2rem;
       font-size: 2rem;
       font-weight: bold;
     }
